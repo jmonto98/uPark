@@ -15,3 +15,6 @@ def user(request):
 
 def visitor(request):
    return render (request, 'visitor.html')
+
+def vehicles(request):
+   return render (request, 'vehicles.html')

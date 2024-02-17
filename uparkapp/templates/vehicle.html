@@ -1,23 +1,48 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<div class="container">
-    <h1>Upark - Tariff Administration</h1>
-    <form action="">
-        <div class="mb-3">
-            <label for="typeVehicle" class="form-label">
-                Vehicles:
-            </label>
-            <select name="vehicle" id="lang">
-                <option value="car">JavaScript</option>
-                <option value="motorcycle">Motorcycle</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="rate" class="form-label">
-                Rate:
-            </label>
-            <input type="text" class="form-control" name="rate"/>
-        </div><br>
-        <button type="submit" class="btn btn-primary">Save</button><br>
-    </form>
+<body>
+
+        <div class="container">
+        <h1>Upark - Tariff Administration</h1>
+        <br>
+        <form action="">
+            <div class="mb-3">
+                <label for="typeVehicle" class="col">
+                    Vehicles:
+                </label>
+    		</div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Type Vehicle
+                </button>
+		        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			        <a class="dropdown-item" href="#">Car</a>
+		    	    <a class="dropdown-item" href="#">Motorcycle</a>            
+		        </div>
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="rate" class="col">
+                    Rate:
+                </label>
+		    </div>
+		    <div>
+             <input type="text" class="col-6 col-sm-4 col" name="rate"/>
+            </div>
+             <br>
+            <div class="mb-3">
+                <label for="status" class="col">
+                    Vehicles:
+                </label>
+		    </div>
+		    <div>
+             <select name="statusvehicle" id="lang" class="col-6 col-sm-4">
+                  <option value="enabled">Enabled</option>
+                  <option value="disabled">Disabled</option>
+               </select>
+             </div><br>
+             <button type="submit" class="btn btn-primary">Save</button><br>
+        </form>
+    </div>
+</body>

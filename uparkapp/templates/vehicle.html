@@ -1,33 +1,70 @@
+<html lang="en">
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB5IXNxFwWQfE7u8Lj+XJHAxKlXiG/8rsrtpb6PEdzD828Ii" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+  <title>Upark - Tariff Administration</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.5.2.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX5" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js" integrity="sha384-MrFsm+sodUMSWw+KcQgfbdymkU/+IrjNzI5L06febp/Zdnobx93bgs/pMD14Ehdb" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .table-input input {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Type of Vehicle</th>
-                    <th scope="col">Rate</th>
-                    <th scope="col">Currency</th>
-                    <th scope="col">Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Camión pesado</td>
-                    <td>$20.00</td>
-                    <td>USD</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-outline-secondary me-2">Save</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary me-2">Modify</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        
+  <div class="container mt-4">
+    <table class="table table-bordered table-input">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Type</th>
+          <th scope="col">Rate</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="text" class="form-control"></td>
+          <td><input type="text" class="form-control" ></td>
+          <td>
+            <button type="button" class="btn btn-sm btn-success">Save</button>
+            <button type="button" class="btn btn-sm btn-secondary">Modify</button>
+            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+          </td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+  <br><br><br>
+  
+  <!--Consulting section-->
+  <div class="container mt-4">
+    <table class="table table-bordered table-query">
+      <thead>
+        <tr colspan="4"><h2>Search</h2></tr>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Type</th>
+          <th scope="col">Rate</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><select class="form-control"></select></td>
+          <td><input type="text" class="form-control"></td>
+          <td><button type="button" class="btn btn-secondary">Search<i class="fas fa-search"></i></button></td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
 </body>
+</html>

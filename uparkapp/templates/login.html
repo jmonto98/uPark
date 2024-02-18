@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="login-form">
-        <h2 class="text-center mb-4">Welcome to uPark</h2>
+        <h2 class="text-center mb-4">Welcome uPark</h2>
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
@@ -30,8 +30,11 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block" onclick="window.location.href='http://127.0.0.1:8000/vehicle/'" >Log in</button>
+
         </form>
+	<hr>
+        <p class="text-center"  onclick="window.location.href='http://127.0.0.1:8000/vehicle/'"  >Or log in as guest</p>
     </div>
 </body>
 </html>

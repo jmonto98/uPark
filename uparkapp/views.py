@@ -14,7 +14,7 @@ def user(request):
     return render (request, 'user.html')
 
 def visitor(request):
-   return render (request, 'visitor.html')
+    return render (request, 'visitor.html')
 
 def vehicle(request):
-   return render (request, 'vehicle.html')
+    return render (request, 'vehicle.html')

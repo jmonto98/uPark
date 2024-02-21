@@ -19,13 +19,15 @@ from django.urls import path
 from uparkapp import views as appViews
 
 urlpatterns = [
+    path('', appViews.main),
+    path('main/', appViews.main),
     path('manage/', admin.site.urls),
-    path('', appViews.login),
+    #path('', appViews.login),
     path('admin/', appViews.admin),
     path('user/', appViews.user),
     path('visitor/', appViews.visitor),
     path('vehicle/', appViews.vehicle),
     path('login/', appViews.login),
-    path('main/', appViews.main)
+    path('qr/', appViews.qr)       
 
 ]

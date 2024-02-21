@@ -25,6 +25,7 @@ urlpatterns = [
     path('user/', appViews.user),
     path('visitor/', appViews.visitor),
     path('vehicle/', appViews.vehicle),
-    path('login/', appViews.login)
+    path('login/', appViews.login),
+    path('main/', appViews.main)
 
 ]

@@ -18,3 +18,7 @@ def visitor(request):
 
 def vehicle(request):
     return render (request, 'vehicle.html')
+
+
+def main(request):
+    return render (request, 'main.html')

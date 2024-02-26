@@ -1,7 +1,5 @@
 import qrcode
 import time
-import os
-
 
 input = 'uPark-tiquete de carro-' + time.strftime("%c")
 
@@ -11,4 +9,4 @@ qr.add_data(input)
 qr.make(fit=True)
 
 img=qr.make_image(fill='black',back_color='white')
-img.save('../uPark/media/qrcodes/PruebaQR.png')
+img.save('../uPark/media/qrcodes/CarroQR.png')

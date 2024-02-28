@@ -14,9 +14,12 @@
     }
   </style>
 </head>
+{% include "navigator.html" %}
+<form action="" method="post">
+
 <body>
   <div class="container mt-4">
-    <table class="table table-bordered table-input">
+    <table class="table table-bordered table-input table-striped">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -40,37 +43,33 @@
       </tbody>
     </table>
   </div>
+
   <br><br><br>
-  
-  <!--Consulting section-->
   <div class="container mt-4">
-    <table class="table table-bordered table-query">
+    <table class="table table-bordered table-query table-striped">
       <thead>
-        <tr colspan="4"><h2>Search</h2></tr>
+        <tr colspan="4"><h2>List Vehicle</h2></tr>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Type</th>
           <th scope="col">Rate</th>
-          <th scope="col"></th>
+          <th scope="col" colspan="2">Options</th>
         </tr>
+        <tbody>
+          {% for vehicle in Vehicles %}
+          <tr>
+            <td>{{vehicle.idVehicle}}</td>
+            <td>{{vehicle.type}}</td>
+            <td>{{vehicle.rate}}</td>
+            <td><a href="editVehicle/{{vehicle.idVehicle}}" class="btn btn-sm btn-block btn-info">Edit </a></td>
+            <td><a href="deleteVehicle/{{vehicle.idVehicle}}" class="btn btn-sm btn-block btn-danger">Delete </a></td>
+            <!--<td><button type="button" class="btn btn-secondary">Edit<i class="fas fa-search"></i></button></td>-->
+         </tr>
+         {% endfor %}
+        </tbody>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td><input type="text" class="form-control" disabled value="Car"></td>
-          <td><input type="text" class="form-control" disabled value="7000"></td>
-          <td><button type="button" class="btn btn-secondary">Select<i class="fas fa-search"></i></button></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><input type="text" class="form-control" disabled value="Motorcycle"></td>
-            <td><input type="text" class="form-control" disabled value="3000"></td>
-            <td><button type="button" class="btn btn-secondary">Select<i class="fas fa-search"></i></button></td>
-          </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
     </table>
   </div>
-
+</form>
 </body>
 </html>

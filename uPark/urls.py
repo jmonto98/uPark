@@ -21,6 +21,7 @@ from uparkapp import views as appViews
 urlpatterns = [
     path('', appViews.main),
     path('main/', appViews.main),
+    #Adminsktrador del proyecto
     path('manage/', admin.site.urls),
     #path('', appViews.login),
     path('admin/', appViews.admin),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('visitor/', appViews.visitor),
     path('vehicle/', appViews.vehicle),
     path('login/', appViews.login),
-    path('qr/', appViews.qr)       
+    path('qr/', appViews.qr),
+    path('deleteVehicle/<int:id>',appViews.vehicle)   
 
 ]

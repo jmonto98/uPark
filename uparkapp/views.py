@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,redirect
 from django.http import HttpResponse
 from django.views.generic import ListView
 from .models import *
+
 # Create your views here.
 
 def login(request):
@@ -27,8 +28,13 @@ def main(request):
 def qr(request):
     return render (request, 'qr.html')
 
+def addVehicle (request):
+    type = request.POST ['type']
+    rate= request.POST ['rate']
+    
+    vehicle = Vehicle.objects.create(type='type',rate='rate')
+    return redirect ('/')
 
-def deleteVehicle (request, id):
-    vehicle=Vehicle.objects.get(id=vehicle.idVehicle)
-    vehicle.delete
-    return redirect ('')
+            
+    
+    

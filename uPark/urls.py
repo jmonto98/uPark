@@ -21,13 +21,15 @@ from uparkapp import views as appViews
 urlpatterns = [
     path('', appViews.main),
     path('main/', appViews.main),
+    #Adminsktrador del proyecto
     path('manage/', admin.site.urls),
     #path('', appViews.login),
     path('admin/', appViews.admin),
     path('user/', appViews.user),
     path('visitor/', appViews.visitor),
-    path('vehicle/', appViews.vehicle),
+    path('vehicle/', appViews.vehicle, name='vehicle'),
     path('login/', appViews.login),
-    path('qr/', appViews.qr)       
+    path('qr/', appViews.qr),
+    path('addvehicle/',appViews.addVehicle)
 
 ]

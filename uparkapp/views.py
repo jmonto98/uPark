@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect,redirect
 from django.http import HttpResponse
+from django.views.generic import ListView
+from .models import *
 
 # Create your views here.
 
@@ -17,10 +19,22 @@ def visitor(request):
     return render (request, 'visitor.html')
 
 def vehicle(request):
-    return render (request, 'vehicle.html')
+    vehiclelist=Vehicle.objects.all().order_by("idVehicle")  
+    return render(request,'vehicle.html',{"Vehicles":vehiclelist})
 
 def main(request):
     return render (request, 'main.html')
 
 def qr(request):
     return render (request, 'qr.html')
+
+def addVehicle (request):
+    type = request.POST ['type']
+    rate= request.POST ['rate']
+    
+    vehicle = Vehicle.objects.create(type='type',rate='rate')
+    return redirect ('/')
+
+            
+    
+    

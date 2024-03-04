@@ -1,76 +1,66 @@
-<html lang="en">
+{%  extends "./navigator.html"  %}
+{% block title %} uPark {% endblock %}
+{% block body %}
 
-<head>
-  <title>Upark - Tariff Administration</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
- <script src="https://code.jquery.com/jquery-3.5.2.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntX5" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js" integrity="sha384-MrFsm+sodUMSWw+KcQgfbdymkU/+IrjNzI5L06febp/Zdnobx93bgs/pMD14Ehdb" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    .table-input input {
-      width: 100%;
-      margin-bottom: 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="container mt-4">
-    <table class="table table-bordered table-input">
+
+<form action="" method="post">
+<body>  
+    <!--ADD VEHICLE-->
+    <table class="table table-bordered table-input table-striped">
       <thead>
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">Type</th>
           <th scope="col">Rate</th>
-          <th scope="col"></th>
+          <th scope="col">Option</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
-          <td><input type="text" class="form-control"></td>
-          <td><input type="text" class="form-control" ></td>
+          <form action="/addVehicle/" method="POST">{% csrf_token %}
+          <td><input type="text" class="form-control" id="type" name ="type" class="form-control" 
+              placeholder="Type" required></td>
+          <td><input type="text" class="form-control" id="rate" name ="rate" class="form-control" 
+              placeholder="Rate" required></td>
           <td>
-            <button type="button" class="btn btn-sm btn-success">Save</button>
-            <button type="button" class="btn btn-sm btn-secondary">Modify</button>
-            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+            <!--Save Vehicle-->
+            <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
+            {% comment %} <button type="button" class="btn btn-sm btn-secondary">Modify</button>
+            <button type="button" class="btn btn-sm btn-danger">Delete</button> {% endcomment %}
           </td>
         </tr>
+      </form>
         <!-- Add more rows as needed -->
       </tbody>
     </table>
   </div>
   <br><br><br>
-  
-  <!--Consulting section-->
+
+  <!--LIST-->
   <div class="container mt-4">
-    <table class="table table-bordered table-query">
+    <table class="table table-bordered table-query table-striped">
       <thead>
-        <tr colspan="4"><h2>Search</h2></tr>
+        <tr colspan="4"><h2>List Vehicle</h2></tr>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Type</th>
           <th scope="col">Rate</th>
-          <th scope="col"></th>
+          <th scope="col" colspan="2">Options</th>
         </tr>
+        <tbody>
+          {% for c in Vehicles %}
+          <tr>
+            <td>{{c.idVehicle}}</td>
+            <td>{{c.type}}</td>
+            <td>{{c.rate}}</td>
+            <td><a href="#" class="btn btn-sm btn-block btn-info">Edit </a></td>
+            <td><a href="#" class="btn btn-sm btn-block btn-danger">Delete </a></td>
+            <!--<td><button type="button" class="btn btn-secondary">Edit<i class="fas fa-search"></i></button></td>-->
+         </tr>
+         {% endfor %}
+        </tbody>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td><input type="text" class="form-control" disabled value="Car"></td>
-          <td><input type="text" class="form-control" disabled value="7000"></td>
-          <td><button type="button" class="btn btn-secondary">Select<i class="fas fa-search"></i></button></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><input type="text" class="form-control" disabled value="Motorcycle"></td>
-            <td><input type="text" class="form-control" disabled value="3000"></td>
-            <td><button type="button" class="btn btn-secondary">Select<i class="fas fa-search"></i></button></td>
-          </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
     </table>
   </div>
-
+</form>
 </body>
-</html>
+{% endblock %}

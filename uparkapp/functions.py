@@ -1,12 +1,27 @@
 import qrcode
 import time
+import random
 
-input = 'uPark-tiquete de carro-' + time.strftime("%c")
+def cusGen():
+    chars = '0123456789ABCDEFGHIJKLMNOPQRSTVWXYZ'
+    cus = ''
+    for _ in range(7):
+        cus += random.choice(chars)
 
-qr = qrcode.QRCode(version=1,box_size=10,border=5)
+    return cus
 
-qr.add_data(input)
-qr.make(fit=True)
 
-img=qr.make_image(fill='black',back_color='white')
-img.save('../uPark/media/qrcodes/CarroQR.png')
+def qrGenerate(cus, vehicleType):
+    input = 'uPark-tiquete de '+ vehicleType + '-' + time.strftime("%c") + '-' + cus
+    
+    qr = qrcode.QRCode(version=1,box_size=10,border=5)
+
+    qr.add_data(input)
+    qr.make(fit=True)
+
+    img=qr.make_image(fill='black',back_color='white')
+    img.save('../uPark/media/qrcodes/'+vehicleType+'_'+cus+'QR.png')
+    print(input)
+
+#codigo = cusGen()
+qrGenerate(cusGen(), 'carro')

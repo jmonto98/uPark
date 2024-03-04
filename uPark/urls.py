@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from uparkapp import views as appViews
 
+
 urlpatterns = [
     path('', appViews.main),
     path('main/', appViews.main),
-    #Adminsktrador del proyecto
-    path('manage/', admin.site.urls),
+    path('manage/', admin.site.urls),#Adminsktrador del proyecto
     #path('', appViews.login),
     path('admin/', appViews.admin),
     path('user/', appViews.user),
@@ -30,6 +30,6 @@ urlpatterns = [
     path('vehicle/', appViews.vehicle, name='vehicle'),
     path('login/', appViews.login),
     path('qr/', appViews.qr),
-    path('addvehicle/',appViews.addVehicle)
+    path('addVehicle/',appViews.addVehicle)
 
 ]

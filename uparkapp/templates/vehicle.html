@@ -14,23 +14,22 @@
           <th scope="col">Option</th>
         </tr>
       </thead>
-      <tbody>
         <tr>
-          <form action="/addVehicle/" method="POST">{% csrf_token %}
-          <td><input type="text" class="form-control" id="type" name ="type" class="form-control" 
+          <form action="/addVehicle/" method="POST">
+            {% csrf_token %}
+            <td><input type="text" class="form-control" id="type" name ="type" class="form-control" 
               placeholder="Type" required></td>
-          <td><input type="text" class="form-control" id="rate" name ="rate" class="form-control" 
+            <td><input type="text" class="form-control" id="rate" name ="rate" class="form-control" 
               placeholder="Rate" required></td>
-          <td>
+            <td>
             <!--Save Vehicle-->
-            <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
+              <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
             {% comment %} <button type="button" class="btn btn-sm btn-secondary">Modify</button>
             <button type="button" class="btn btn-sm btn-danger">Delete</button> {% endcomment %}
-          </td>
+            </td>
+          </form>
         </tr>
-      </form>
         <!-- Add more rows as needed -->
-      </tbody>
     </table>
   </div>
   <br><br><br>
@@ -59,6 +58,7 @@
          {% endfor %}
         </tbody>
       </thead>
+
     </table>
   </div>
 </form>

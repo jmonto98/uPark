@@ -13,6 +13,7 @@ class Vehicle(models.Model):
     idVehicle = models.AutoField(primary_key=True)
     type =  models.CharField(max_length=20)
     rate = models.IntegerField()
+    
     def __str__(self):
         texto = "{0}({1})"
         return texto.format(self.type,self.rate)

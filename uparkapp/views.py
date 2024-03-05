@@ -30,11 +30,33 @@ def qr(request):
 
 def addVehicle (request):
     type = request.POST ['type']
-    rate = request.POST ['rate']
-    
+    rate = request.POST ['rate']    
     vehicle = Vehicle.objects.create(type=type, rate=rate)
     vehicle.save()
-    return redirect ('/')
+    return redirect ('/vehicle')
+
+def editVehicle (request, idVehicle):
+    vehicle = Vehicle.objects.get(idVehicle=idVehicle)
+    return render (request, "editVehicle.html",{"vehicle" : vehicle})
+
+def editarVehicle (request):
+    idVehicle = request.POST ['idVehicle']
+    type = request.POST ['type']
+    rate = request.POST ['rate'] 
+    vehicle = Vehicle.objects.get(idVehicle=idVehicle)
+    vehicle.type = type
+    vehicle.rate = rate
+    vehicle.save()
+    return redirect ('/vehicle')
+    
+
+def deleteVehicle (request, idVehicle):
+    vehicle = Vehicle.objects.get(idVehicle=idVehicle)
+    vehicle.delete()
+    return redirect ('/vehicle')
+    
+    
+    
 
             
     

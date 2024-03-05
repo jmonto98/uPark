@@ -27,9 +27,12 @@ urlpatterns = [
     path('admin/', appViews.admin),
     path('user/', appViews.user),
     path('visitor/', appViews.visitor),
-    path('vehicle/', appViews.vehicle),
+    path('vehicle/', appViews.vehicle, name="vehicle"),
     path('login/', appViews.login),
     path('qr/', appViews.qr),
-    path('addVehicle/',appViews.addVehicle)
+    path('addVehicle/',appViews.addVehicle),
+    path('editarVehicle/',appViews.editarVehicle),
+    path('editVehicle/<idVehicle>',appViews.editVehicle),
+    path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle")
 
 ]

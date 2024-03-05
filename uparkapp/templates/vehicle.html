@@ -6,6 +6,7 @@
 
 <body> 
   <div class="container mt-4"> 
+
     <!--ADD VEHICLE-->
     <table class="table table-bordered table-input table-striped">
       <thead>
@@ -46,20 +47,19 @@
           <th scope="col">Rate</th>
           <th scope="col" colspan="2">Options</th>
         </tr>
+      </thead>
         <tbody>
           {% for c in Vehicles %}
           <tr>
             <td>{{c.idVehicle}}</td>
             <td>{{c.type}}</td>
             <td>{{c.rate}}</td>
-            <td><a href="#" class="btn btn-sm btn-block btn-info">Edit </a></td>
-            <td><a href="#" class="btn btn-sm btn-block btn-danger">Delete </a></td>
+            <td><a href="/editVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-info btn-block">Edit</a></td>
+            <td><a href="/deleteVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-danger btn-block">Delete</a></td>
          </tr>
          {% endfor %}
         </tbody>
-      </thead>
-
-    </table>
+      </table>
   </div>
 </body>
 {% endblock %}

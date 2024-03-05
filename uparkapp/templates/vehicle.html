@@ -1,10 +1,11 @@
 {%  extends "./navigator.html"  %}
 {% block title %} uPark {% endblock %}
+
 {% block body %}
 
 
-<form action="" method="post">
-<body>  
+<body> 
+  <div class="container mt-4"> 
     <!--ADD VEHICLE-->
     <table class="table table-bordered table-input table-striped">
       <thead>
@@ -25,13 +26,13 @@
             <!--Save Vehicle-->
               <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
             {% comment %} <button type="button" class="btn btn-sm btn-secondary">Modify</button>
-            <button type="button" class="btn btn-sm btn-danger">Delete</button> {% endcomment %}
+            <button type="button" class="btn btn-sm btn-danger">Delete</button>{% endcomment %}
             </td>
           </form>
         </tr>
         <!-- Add more rows as needed -->
     </table>
-  </div>
+  </div>  
   <br><br><br>
 
   <!--LIST-->
@@ -53,7 +54,6 @@
             <td>{{c.rate}}</td>
             <td><a href="#" class="btn btn-sm btn-block btn-info">Edit </a></td>
             <td><a href="#" class="btn btn-sm btn-block btn-danger">Delete </a></td>
-            <!--<td><button type="button" class="btn btn-secondary">Edit<i class="fas fa-search"></i></button></td>-->
          </tr>
          {% endfor %}
         </tbody>
@@ -61,6 +61,5 @@
 
     </table>
   </div>
-</form>
 </body>
 {% endblock %}

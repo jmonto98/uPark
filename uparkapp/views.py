@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView
 from .models import *
@@ -33,6 +33,7 @@ def addVehicle (request):
     rate = request.POST ['rate']
     
     vehicle = Vehicle.objects.create(type=type, rate=rate)
+    vehicle.save()
     return redirect ('/')
 
             

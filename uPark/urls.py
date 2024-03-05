@@ -33,6 +33,7 @@ urlpatterns = [
     path('addVehicle/',appViews.addVehicle),
     path('editarVehicle/',appViews.editarVehicle),
     path('editVehicle/<idVehicle>',appViews.editVehicle),
-    path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle")
+    path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle"),
+    path('reportVehicle/',appViews.reportVehicle)
 
 ]

@@ -11,10 +11,52 @@
        .table-input input {
          width: 100%;
          margin-bottom: 0;
-       }
+       }    
      </style>
    </head>
    <div class="container">
     <h1>Please keep this code</h1>
     <h2>it's necesary to leave de parking lot </h2>
+    <form action="/generateQr/" method="POST">
+    <div class="container-fluid" >
+        {% csrf_token %}
+        {% load static %}
+        <div align="center">
+            <img src="{%static "images/PSE.png" %}" alt ="centered image" width ="90" height = "84" class="d-inline-block align-text-top" />
+        </div>
+        <label class="form-label">First Name</label>
+        <input type="firstName" class="form-control" id="firstName">
+        <label class="form-label">Last Name</label>
+        <input type="lastName" class="form-control" id="lastName">
+        <label class="form-label">Phone</label>
+        <input type="Phone" class="form-control" id="Phone">
+        <label class="form-label">Mail</label>
+        <input type="Mail" class="form-control" id="Mail">
+        <label class="form-label">Date of Birth</label>
+        <input type="Birth" class="form-control" id="Birth">
+        <label class="form-label">Bank</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select Bank</option>
+            <option value="1">Banco Caja Social</option>
+            <option value="2">Banco Popular</option>
+            <option value="3">Banco De Bogota</option>
+            <option value="4">Banco Credifinanciera </option>
+            <option value="5">Banco Gnb Sudameris </option>
+            <option value="6">Banco Av Villas </option>
+            <option value="7">Banco Falabella</option>
+            <option value="8">Scotiabank Colpatria</option>
+            <option value="9">Banco Davivienda </option>
+            <option value="10">Banco Agrario</option>
+            <option value="11">Bancamia</option>
+            <option value="12">Banco Pichincha </option>
+            <option value="13">Banco W </option>
+            <option value="14">Banco De Occidente</option>
+            <option value="15">Bancolombia</option>
+            <option value="16">Itau</option>
+            <option value="17">Nequi</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-sm btn-success btn-block">Pay</button>       
+    </div>
+</form>
    </div>

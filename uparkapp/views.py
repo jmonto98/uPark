@@ -1,4 +1,5 @@
 from typing import Any
+from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
@@ -66,20 +67,22 @@ def deleteVehicle (request, idVehicle):
     return redirect ('/vehicle')
 
 def addPerson (request):
-    firstName = request.POST ['firstName']
-    lastName = request.POST ['lastName']
-    phone  = request.POST ['phone']
-    mail =  request.POST ['mail']
-    dateOfBirth = request.POST ['dateOfBirth']
-    personType = request.POST ['personType']
-    person = Person.objects.create(firstName=firstName,
-                                lastName=lastName,
-                                phone=phone,
-                                mail=mail,
-                                dateOfBirth=dateOfBirth,
-                                personType=personType)
-    person.save()
-    return redirect ('/user')
+        firstName = request.POST ['firstName']
+        lastName = request.POST ['lastName']
+        pwd = request.POST.get ['password']
+        phone  = request.POST ['phone']
+        mail =  request.POST ['mail']
+        dateOfBirth = request.POST ['dateOfBirth']
+        personType = request.POST ['personType']
+        person = Person.objects.create(firstName=firstName,
+                                    lastName=lastName,
+                                    password = pwd,
+                                    phone=phone,
+                                    mail=mail,
+                                    dateOfBirth=dateOfBirth,
+                                    personType=personType)
+        person.save()
+        return redirect ('/user')
 
 def addCard (request):
     #idCard = request.POST ['idCard']

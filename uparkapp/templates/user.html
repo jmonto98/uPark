@@ -1,6 +1,38 @@
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
+{%  extends "./navigator.html"  %}
+{% block title %} uPark {% endblock %}
 
-<h1>Welcome employee/student</h1>
-<h2>This page  it's for buy a ticket and reload money to the card</h2>
+{% block body %}
+
+
+<body> 
+    <div class="container">   
+        <form action="/addPerson/" method="POST">
+            <h2>Create Person</h2>  
+        <div class="container-fluid" >
+            {% csrf_token %}
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required> 
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" required>
+            <label class="form-label">Mail</label>
+            <input type="text" class="form-control" id="mail" name="mail" required>
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" min="1900-01-01" max="2100-12-31" id="dateOfBirth" name="dateOfBirth" required>
+            <label class="form-label">Type of person</label>
+            <select class="form-select" aria-label="personType" id="personType" name="personType" required>
+              <option selected>Select Type</option>
+              <option value="A">Administrator</option>
+              <option value="E">Employee</option>
+              <option value="S">Student</option>
+              <option value="G">Graduate</option>
+              <option value="V">Visitor</option>
+          </select>
+            <br>
+            <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>       
+        </div>
+    </form>
+
+</body>
+{% endblock %}

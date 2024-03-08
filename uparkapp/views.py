@@ -20,6 +20,9 @@ def admin(request):
 def user(request):
     return render (request, 'user.html')
 
+def card(request):
+    return render (request, 'card.html')
+
 def visitor(request):
     return render (request, 'visitor.html')
 
@@ -55,13 +58,38 @@ def editarVehicle (request):
     vehicle.type = type
     vehicle.rate = rate
     vehicle.save()
-    return redirect ('/vehicle')
-    
+    return redirect ('/vehicle')    
 
 def deleteVehicle (request, idVehicle):
     vehicle = Vehicle.objects.get(idVehicle=idVehicle)
     vehicle.delete()
     return redirect ('/vehicle')
+
+def addPerson (request):
+    firstName = request.POST ['firstName']
+    lastName = request.POST ['lastName']
+    phone  = request.POST ['phone']
+    mail =  request.POST ['mail']
+    dateOfBirth = request.POST ['dateOfBirth']
+    personType = request.POST ['personType']
+    person = Person.objects.create(firstName=firstName,
+                                lastName=lastName,
+                                phone=phone,
+                                mail=mail,
+                                dateOfBirth=dateOfBirth,
+                                personType=personType)
+    person.save()
+    return redirect ('/user')
+
+def addCard (request):
+    #idCard = request.POST ['idCard']
+    balance = request.POST ['balance']
+    card = Card.objects.create (balance = balance)
+    card.save()
+    return redirect ('/card')
+    
+
+    
 
 #"Pendiente-en construccion"
 def reportVehicle(request):

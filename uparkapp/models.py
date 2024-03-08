@@ -1,6 +1,6 @@
 from django.db import models
-
 from .choices import person_type
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -32,6 +32,7 @@ class Person (models.Model):
     mail =  models.CharField(max_length=100)
     dateOfBirth = models.DateField()
     personType = models.CharField(max_length=10, choices=person_type)
+    password = models.CharField(max_length=15, null=False, blank=False)
     #images = models.ImageField(upload_to = 'movie/images/')
 
     def __str__(self):

@@ -18,6 +18,10 @@ def login(request):
 def admin(request):
     return render (request, 'admin.html')
 
+def prueba(request):
+    vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
+    return render (request, 'prueba.html',{"Vehicles":vehiclelist})
+
 def user(request):
     return render (request, 'user.html')
 
@@ -32,7 +36,8 @@ def vehicle(request):
     return render(request,'vehicle.html',{"Vehicles":vehiclelist})
 
 def main(request):
-    return render (request, 'main.html')
+    vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
+    return render (request, 'main.html',{"Vehicles":vehiclelist})
 
 def pse(request):
     return render (request, 'pse.html')

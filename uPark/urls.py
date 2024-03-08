@@ -20,6 +20,7 @@ from uparkapp import views as appViews
 
 
 urlpatterns = [
+    path('prueba/', appViews.prueba),
     path('', appViews.main),
     path('main/', appViews.main),
     path('manage/', admin.site.urls),#Administrador del proyecto

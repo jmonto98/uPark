@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   /* Custom CSS for centering buttons and background image */
-  body {
+body {
     background-image: url('/static/images/EAFIT - Copy.jpeg');
     background-size: cover;
     background-position: center;
@@ -53,17 +53,27 @@
   </div>
     <div class="col-12 text-center button-container center">
       <table>
-        <tr>
-          <td><a href="http://127.0.0.1:8000/login/" class="btn btn-primary btn-lg btn-block">Recharge card</a></td>
-        </tr>
-        <tr>
+        <tbody>
+          <tr>
+            <div class="d-grid gap-14">
+              <td colspan="2"><a href="http://127.0.0.1:8000/login/" class="btn btn-primary btn-lg btn-block">Recharge card</a></td>
+            </div>
+          </tr>
+          {% for vehicle in Vehicles %}
+          <tr>
+            <td><FONT size=5 COLOR="white">Buy ticket for {{vehicle.type}}</FONT> </td>
+            <td><a href="#" class="btn btn-primary btn-lg btn-block">Buy</a></td>
+         </tr>
+         {% endfor %}
+        </tbody>
+        {% comment %} <tr>
           <td><a href="http://127.0.0.1:8000/pse/" class="btn btn-primary btn-lg btn-block" id="car">Buy Car Ticket</a></td>
         </tr>
         <tr>
           <td><a href="" class="btn btn-primary btn-lg btn-block" id="motorcycle">Buy Motorcycle Ticket</a></td>
         </tr>
-        <tr>
-          <td><a href="http://127.0.0.1:8000/login/" id="admin">Login as administrator</a></td>
+        <tr> {% endcomment %}
+          <td colspan="2"><a href="http://127.0.0.1:8000/login/" id="admin"><FONT COLOR="white">Login as administrator</a></FONT></td>
         </tr>
       </table>
     </div>

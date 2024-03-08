@@ -30,8 +30,11 @@ def vehicle(request):
 def main(request):
     return render (request, 'main.html')
 
-def qr(request):
-    return render (request, 'qr.html')
+def pse(request):
+    return render (request, 'pse.html')
+
+def generateQr(request):
+    return render (request, 'generateQr.html')
 
 def addVehicle (request):
     type = request.POST ['type']

@@ -9,6 +9,10 @@ class Card (models.Model):
     #idPerson = models.ForeignKey(Person, null=False, on_delete=models.CASCADE)
     balance = models.IntegerField()
 
+    def __str__(self):
+        texto = "{0}: ({1})"
+        return texto.format(self.idCard,self.balance)
+
 class Vehicle(models.Model):
     idVehicle = models.AutoField(primary_key=True)
     type =  models.CharField(max_length=20)
@@ -30,9 +34,17 @@ class Person (models.Model):
     personType = models.CharField(max_length=10, choices=person_type)
     #images = models.ImageField(upload_to = 'movie/images/')
 
+    def __str__(self):
+        texto = "{0}: {1} {2} - {3}"
+        return texto.format(self.idPerson,self.firstName, self.lastName, self.personType)
 class Pay(models.Model):
     idPay = models.AutoField(primary_key=True)
     idPerson = models.ForeignKey(Person, null=False, on_delete=models.CASCADE)
     idVehicle = models.ForeignKey(Vehicle, null=False, on_delete=models.CASCADE)
     transactionValue = models.IntegerField()
+    cusCod = models.CharField(max_length=7, null=False)
     date = models.DateTimeField()
+
+    def __str__(self):
+        texto = "{0} - {1}"
+        return texto.format(self.cusCod,self.transactionValue)

@@ -1,5 +1,5 @@
 import qrcode
-import time
+from datetime import datetime
 import random
 
 def cusGen():
@@ -12,7 +12,8 @@ def cusGen():
 
 
 def qrGenerate(cus, vehicleType):
-    input = 'uPark-tiquete de '+ vehicleType + '-' + time.strftime("%c") + '-' + cus
+    now = datetime.now()
+    input = 'uPark-tiquete de '+ vehicleType + '-' + now.strftime('%d%m%Y_%H%M%S') + '-' + cus
     
     qr = qrcode.QRCode(version=1,box_size=10,border=5)
 

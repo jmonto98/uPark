@@ -22,10 +22,10 @@ from uparkapp import views as appViews
 urlpatterns = [
     path('prueba/', appViews.prueba),
     path('', appViews.main),
-    path('main/', appViews.main),
-    path('manage/', admin.site.urls),#Administrador del proyecto
+    #path('main/', appViews.main),
+    path('manage/', admin.site.urls),#Administrador del proyecto django
     path('admin/', appViews.admin),
-    path('user/', appViews.user),
+    path('user/', appViews.user), #Para crear personas
     path('card/',appViews.card),
     path('generateQr/', appViews.generateQr),
     path('vehicle/', appViews.vehicle, name="vehicle"),

@@ -5,7 +5,6 @@ from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 from .models import *
-from django.contrib.auth.forms import UserCreationForm
 
 #Manejo de libros de excel
 from openpyxl import Workbook
@@ -23,7 +22,6 @@ def login(request):
 
 
 def mainuniversity(request):
-    #return HttpResponse('<h1>Welcome to Upark login</h1>')
     return render (request, 'mainuniversity.html')
 
 def admin(request):
@@ -36,7 +34,8 @@ def adminuser(request):
     return render (request, 'adminuser.html')
 
 def card(request):
-    return render (request, 'card.html')
+    cardList= Card.objects.all().order_by("idCard")
+    return render (request, 'card.html',{"Card": cardList})
 
 def visitor(request):
     return render (request, 'visitor.html')
@@ -93,16 +92,28 @@ def addPerson (request):
                                     dateOfBirth=dateOfBirth,
                                     personType=personType)
         person.save()
-        return redirect ('/user')
+        return redirect ('/adminuser')
 
 def addCard (request):
-    #idCard = request.POST ['idCard']
+    #idCard = request.POST ['idCard']    
+    idPerson = request.POST ['idPerson']
     balance = request.POST ['balance']
-    card = Card.objects.create (balance = balance)
+    status = request.POST ['status']
+    card = Card.objects.create (idPerson_id=idPerson, balance = balance,status=status)
     card.save()
     return redirect ('/card')
     
-
+def balance (request):
+    data = 6
+    try:
+        datos=data
+        obj = Card.objects.get(idPerson =  '6')
+        data = (obj.idPerson, obj.balance)
+    except:
+        data=data
+        
+    return render(request, 'mainuniversity.html',{'data':data})
+        
     
 
 #"Pendiente-en construccion"

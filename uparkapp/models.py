@@ -34,7 +34,7 @@ class Person (models.Model):
     
 class Card (models.Model):
     idCard = models.AutoField(primary_key=True)
-    idPerson = models.ForeignKey(Person, null=False, on_delete=models.CASCADE)
+    idPerson= models.ForeignKey(Person, null=False, on_delete=models.CASCADE)
     balance = models.IntegerField()
     status = models.CharField(max_length=10, default='A', choices=card_status)
 

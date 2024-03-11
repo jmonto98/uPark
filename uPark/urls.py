@@ -26,11 +26,7 @@ urlpatterns = [
     #path('main/', appViews.main),
     path('manage/', admin.site.urls),#Administrador del proyecto django
     path('admin/', appViews.admin),
-<<<<<<< HEAD
-    path('user/', appViews.user), #Para crear personas
-=======
     path('adminuser/', appViews.adminuser),
->>>>>>> 50d852431260e095e106e4837c37408595e707e7
     path('card/',appViews.card),
     path('generateQr/', appViews.generateQr),
     path('vehicle/', appViews.vehicle, name="vehicle"),

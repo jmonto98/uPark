@@ -10,17 +10,48 @@
         <h2>Create Card</h2>  
     <div class="container-fluid" >
         {% csrf_token %}
-        <label class="form-label">Card</label>
-        {% for c in Card %}
-        <input type="text" class="form-control" id="idCard" name="idCard" value= "{{c.idCard}}" readonly required>
-        {% endfor %}
+        <label class="form-label">Id Person</label>
+        <input type="text" class="form-control" id="idPerson_id" name="idPerson_id" required>
         <label class="form-label">Balance</label>
         <input type="text" class="form-control" id="balance" name="balance" class="form-control" 
         placeholder="Balance" required>
+        <label class="form-label">Status</label>
+                <select class="form-select" aria-label="personType" id="status" name="status" required>
+                    <option selected>Select Type</option>
+                    <option value="A">Active</option>
+                    <option value="I">Inactive</option>
+                </select>
         <br>
             <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>   
     </div>
 </form>
+<!--LIST-->
+<div class="container mt-4">
+    <table class="table table-bordered table-query table-striped">
+      <thead>
+        <tr colspan="4"><h2>List Card</h2></tr>
+        <tr>
+          <th scope="col">Id Card</th>
+          <th scope="col">Id Person</th>
+          <th scope="col">Balance</th>
+          <th scope="col">Status</th>
+          <th scope="col" colspan="2">Options</th>
+        </tr>
+      </thead>
+        <tbody>
+          {% for c in Card %}
+          <tr>
+            <td>{{c.idCard}}</td>
+            <td>{{c.idPerson_id}}</td>
+            <td>{{c.balance}}</td>
+            <td>{{c.status}}</td>
+            <td><a href="/editVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-info btn-block">Edit</a></td>
+            <td><a href="/deleteVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-danger btn-block">Delete</a></td>
+         </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+  </div>
 </div>
 </body>
 {% endblock %}

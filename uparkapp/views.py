@@ -5,15 +5,22 @@ from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+
 #Manejo de libros de excel
 from openpyxl import Workbook
 
 
 # Create your views here.
 
+def main(request):
+    vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
+    return render (request, 'main.html',{"Vehicles":vehiclelist})
+
 def login(request):
     #return HttpResponse('<h1>Welcome to Upark login</h1>')
     return render (request, 'login.html')
+
 
 def mainuniversity(request):
     #return HttpResponse('<h1>Welcome to Upark login</h1>')
@@ -23,8 +30,7 @@ def admin(request):
     return render (request, 'admin.html')
 
 def prueba(request):
-    vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
-    return render (request, 'prueba.html',{"Vehicles":vehiclelist})
+    return render (request, 'prueba.html')
 
 def adminuser(request):
     return render (request, 'adminuser.html')
@@ -38,10 +44,6 @@ def visitor(request):
 def vehicle(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle")  
     return render(request,'vehicle.html',{"Vehicles":vehiclelist})
-
-def main(request):
-    vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
-    return render (request, 'main.html',{"Vehicles":vehiclelist})
 
 def pse(request):
     return render (request, 'pse.html')
@@ -78,7 +80,7 @@ def deleteVehicle (request, idVehicle):
 def addPerson (request):
         firstName = request.POST ['firstName']
         lastName = request.POST ['lastName']
-        pwd = request.POST.get ['password']
+        pwd = request.POST ['password']
         phone  = request.POST ['phone']
         mail =  request.POST ['mail']
         dateOfBirth = request.POST ['dateOfBirth']

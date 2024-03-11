@@ -25,7 +25,7 @@ urlpatterns = [
     path('main/', appViews.main),
     path('manage/', admin.site.urls),#Administrador del proyecto
     path('admin/', appViews.admin),
-    path('user/', appViews.user),
+    path('adminuser/', appViews.adminuser),
     path('card/',appViews.card),
     path('generateQr/', appViews.generateQr),
     path('vehicle/', appViews.vehicle, name="vehicle"),
@@ -37,6 +37,7 @@ urlpatterns = [
     path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle"),
     path('reportVehicle/',appViews.reportVehicle),
     path('addPerson/',appViews.addPerson),
-    path('addCard/',appViews.addCard)
+    path('addCard/',appViews.addCard),
+    path('mainuniversity/',appViews.mainuniversity)
     
 ]

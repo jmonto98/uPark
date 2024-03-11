@@ -5,3 +5,8 @@ person_type =(
     ('G','Graduado'),
     ('V','Visitante')
 )
+
+card_status = (
+    ('A','Active'),
+    ('I','Inactive')
+)

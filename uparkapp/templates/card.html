@@ -10,8 +10,10 @@
         <h2>Create Card</h2>  
     <div class="container-fluid" >
         {% csrf_token %}
-{% comment %}         <label class="form-label">Card</label>
-        <input type="text" class="form-control" id="idCard" name="idCard" required> {% endcomment %}
+        <label class="form-label">Card</label>
+        {% for c in Card %}
+        <input type="text" class="form-control" id="idCard" name="idCard" value= "{{c.idCard}}" readonly required>
+        {% endfor %}
         <label class="form-label">Balance</label>
         <input type="text" class="form-control" id="balance" name="balance" class="form-control" 
         placeholder="Balance" required>

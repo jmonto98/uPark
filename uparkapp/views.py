@@ -15,6 +15,10 @@ def login(request):
     #return HttpResponse('<h1>Welcome to Upark login</h1>')
     return render (request, 'login.html')
 
+def mainuniversity(request):
+    #return HttpResponse('<h1>Welcome to Upark login</h1>')
+    return render (request, 'mainuniversity.html')
+
 def admin(request):
     return render (request, 'admin.html')
 
@@ -22,8 +26,8 @@ def prueba(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
     return render (request, 'prueba.html',{"Vehicles":vehiclelist})
 
-def user(request):
-    return render (request, 'user.html')
+def adminuser(request):
+    return render (request, 'adminuser.html')
 
 def card(request):
     return render (request, 'card.html')

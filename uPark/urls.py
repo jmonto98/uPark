@@ -39,6 +39,9 @@ urlpatterns = [
     path('reportVehicle/',appViews.reportVehicle),
     path('addPerson/',appViews.addPerson),
     path('addCard/',appViews.addCard),
-    path('mainuniversity/',appViews.mainuniversity)
+    path('editCard/<idCard>', appViews.editCard, name="editcard"),
+    path('editarCard/',appViews.editarCard),
+    path ('balance/', appViews.balance),
+    path('mainuniversity/',appViews.mainuniversity, name="Welcome")
 
 ]

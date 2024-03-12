@@ -102,16 +102,34 @@ def addCard (request):
     card = Card.objects.create (idPerson_id=idPerson, balance = balance,status=status)
     card.save()
     return redirect ('/card')
+
+def editCard (request, idCard):
+    card = Card.objects.get(idCard=idCard)
+    return render (request, "editCard.html",{"card" : card})
+
+def editarCard (request):
+    idCard = request.POST ['idCard']
+    idPerson = request.POST ['idPerson']
+    balance = request.POST ['balance']
+    status = request.POST ['status']
+    card = Card.objects.get(idCard=idCard)
+    card.idPerson = idPerson
+    card.balance = balance
+    card.status = status
+    card.save()
+    return redirect ('/editcard')    
     
 def balance (request):
     data = request.POST ['example']
+    obj = Card.objects.get(idCard =  data)
+    d = (obj.idPerson, obj.balance)
+    #return render(request, "login.html")
+    #return render(request, "mainuniversity.html",{"d": d})
     try:
-        datos=data
-        obj = Card.objects.get(idCard =  datos)
-        data = (obj.idCard, obj.balance)
-    except:
-        data=data     
-    return render(request, "mainuniversity.html",{"data": data})
+        return render(request, "mainuniversity.html",{"d": d})
+    except NameError:
+        #obj = Card.objects.get(idCard =  1)
+        return render(request, "mainuniversity.html",{"d":"Error"})
         
     
 

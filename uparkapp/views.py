@@ -130,7 +130,6 @@ def balance (request):
     except NameError:
         #obj = Card.objects.get(idCard =  1)
         return render(request, "mainuniversity.html",{"d":"Error"})
-        
     
 
 #"Pendiente-en construccion"

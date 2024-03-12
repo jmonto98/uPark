@@ -1,3 +1,4 @@
+from .functions import *
 from typing import Any
 from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render, redirect
@@ -36,12 +37,8 @@ def login(request):
         else:
            
          login(request,user)
-         return redirect('admin')
-            
+         return redirect('admin')  
         
-
-
-
 
 def mainuniversity(request):
     return render (request, 'mainuniversity.html')
@@ -67,9 +64,13 @@ def vehicle(request):
     return render(request,'vehicle.html',{"Vehicles":vehiclelist})
 
 def pse(request):
-    return render (request, 'pse.html')
+    vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])
+    return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate})
+
 
 def generateQr(request):
+    #vehicle = request.POST ['vehicle']
+    qrGenerate(cusGen(),"carro")
     return render (request, 'generateQr.html')
 
 def addVehicle (request):

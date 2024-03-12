@@ -61,18 +61,22 @@ body {
           </tr>
           {% for vehicle in Vehicles %}
           <tr>
+            <form action="/pse/" method="POST">
+              {% csrf_token %}
             <td><FONT size=5 COLOR="white">Buy ticket for {{vehicle.type}}</FONT> </td>
-            <td><a href="#" class="btn btn-primary btn-lg btn-block">Buy</a></td>
+            <td><input type="hidden" name="type" value={{vehicle.idVehicle}}></td>
+            <td><button type="submit" class="btn btn-primary btn-lg btn-block">Buy</button></td>
+            </form>
          </tr>
          {% endfor %}
         </tbody>
-        {% comment %} <tr>
+        <!-- {% comment %} <tr>
           <td><a href="http://127.0.0.1:8000/pse/" class="btn btn-primary btn-lg btn-block" id="car">Buy Car Ticket</a></td>
         </tr>
         <tr>
           <td><a href="" class="btn btn-primary btn-lg btn-block" id="motorcycle">Buy Motorcycle Ticket</a></td>
         </tr>
-        <tr> {% endcomment %}
+        <tr> {% endcomment %} -->
           <td colspan="2"><a href="http://127.0.0.1:8000/login/" id="admin"><FONT COLOR="white">Login as administrator</a></FONT></td>
         </tr>
       </table>

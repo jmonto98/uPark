@@ -51,14 +51,14 @@
             <option value="16">Itau</option>
             <option value="17">Nequi</option>
         </select>
-        <label class="form-label">Select vehicle type</label>
-        <select class="form-select" aria-label="typeVehicle">
-          <option selected>Select Vehicle</option>
-          <option value="1">Car</option>
-          <option value="2">Motorcycle</option>
-      </select>
         <br>
-        <button type="submit" class="btn btn-sm btn-success btn-block">Pay</button>       
+        <label class="form-label">Vehicle type</label>
+        <input disabled type="text" name="vehicle" value = {{ vehicle }} class="form-control">        
+        <label class="form-label">Rate</label>        
+        <input disabled type="text" name="rate" value = {{ rate }} class="form-control">
+        <br>
+        <button type="submit" class="btn btn-sm btn-success btn-block">Accepted</button> 
+        <button type="submit" class="btn btn-sm btn-success btn-block">Declined</button>       
     </div>
 </form>
    </div>

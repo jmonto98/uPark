@@ -2,10 +2,10 @@ from .functions import *
 from typing import Any
 from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import *
@@ -72,8 +72,8 @@ def pse(request):
 
 
 def generateQr(request):
-    #vehicle = request.POST ['vehicle']
-    qrGenerate(cusGen(),"carro")
+    vehicle = 'avion'#request.POST ['vehicle']
+    qrGenerate(cusGen(),vehicle)
     return render (request, 'generateQr.html')
 
 def addVehicle (request):

@@ -21,7 +21,7 @@ def qrGenerate(cus, vehicleType):
     qr.make(fit=True)
 
     img=qr.make_image(fill='black',back_color='white')
-    #img.save('../uPark/media/qrcodes/'+vehicleType+'_'+cus+'QR.png')
+    #img.save('/uPark/media/qrcodes/'+vehicleType+'_'+cus+'QR.png')
     print(input)
     
 

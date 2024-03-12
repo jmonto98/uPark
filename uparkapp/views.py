@@ -5,6 +5,8 @@ from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 from .models import *
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 #Manejo de libros de excel
 from openpyxl import Workbook
@@ -18,7 +20,27 @@ def main(request):
 
 def login(request):
     #return HttpResponse('<h1>Welcome to Upark login</h1>')
-    return render (request, 'login.html')
+    if request.method == 'GET':
+        return render(request, 'login.html',{
+            'form':AuthenticationForm
+        })
+    else:  
+        user = authenticate(
+            request, username=request.POST['username'],password=request.POST['password'])
+        if user is None:
+
+            return render(request, 'login.html',{
+                'form':AuthenticationForm,
+                'error':'username or password is incorrect'
+            })
+        else:
+           
+         login(request,user)
+         return redirect('admin')
+            
+        
+
+
 
 
 def mainuniversity(request):

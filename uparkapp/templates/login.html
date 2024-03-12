@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
+    <title>uPark</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -20,6 +20,7 @@
 <body>
     <div class="login-form">
         <h2 class="text-center mb-4">Welcome uPark</h2>
+       
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
@@ -30,9 +31,11 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" onclick="window.location.href='http://127.0.0.1:8000/vehicle/'" >Log in</button>
+            <button type="submit" class="btn btn-primary btn-block" >Log in</button>
 
         </form>
+    <h5 class="text-center mb-4">{{error}}</h5>
+    
 	<hr>
         <!-- <p class="text-center"  onclick="window.location.href='http://127.0.0.1:8000/vehicle/'"  >Or log in as guest</p>-->
     </div>

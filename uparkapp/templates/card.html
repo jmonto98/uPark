@@ -35,7 +35,7 @@
           <th scope="col">Id Person</th>
           <th scope="col">Balance</th>
           <th scope="col">Status</th>
-          <th scope="col" colspan="2">Options</th>
+          <th scope="col" colspan="1">Options</th>
         </tr>
       </thead>
         <tbody>
@@ -46,7 +46,6 @@
             <td>{{c.balance}}</td>
             <td>{{c.status}}</td>
             <td><a href="/editCard/{{c.idCard}}" class="btn btn-sm btn-block btn-info btn-block">Edit</a></td>
-            <td><a href="/deleteVehicle/{{c.idCard}}" class="btn btn-sm btn-block btn-danger btn-block">Delete</a></td>
          </tr>
          {% endfor %}
         </tbody>

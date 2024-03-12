@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -40,8 +43,8 @@ def login(request):
          return redirect('admin')  
         
 
-def mainuniversity(request):
-    return render (request, 'mainuniversity.html')
+def welcome(request):
+    return render (request, 'welcome.html')
 
 def admin(request):
     return render (request, 'admin.html')
@@ -149,10 +152,9 @@ def balance (request):
     #return render(request, "login.html")
     #return render(request, "mainuniversity.html",{"d": d})
     try:
-        return render(request, "mainuniversity.html",{"d": d})
-    except NameError:
-        #obj = Card.objects.get(idCard =  1)
-        return render(request, "mainuniversity.html",{"d":"Error"})
+        return render(request, "welcome.html",{"d": d})
+    except Card.DoesNotExist:
+        raise Http404("No MyModel matches the given query.")
     
 
 #"Pendiente-en construccion"

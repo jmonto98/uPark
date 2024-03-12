@@ -104,15 +104,14 @@ def addCard (request):
     return redirect ('/card')
     
 def balance (request):
-    data = 6
+    data = request.POST ['example']
     try:
         datos=data
-        obj = Card.objects.get(idPerson =  '6')
-        data = (obj.idPerson, obj.balance)
+        obj = Card.objects.get(idCard =  datos)
+        data = (obj.idCard, obj.balance)
     except:
-        data=data
-        
-    return render(request, 'mainuniversity.html',{'data':data})
+        data=data     
+    return render(request, "mainuniversity.html",{"data": data})
         
     
 

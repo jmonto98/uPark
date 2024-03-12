@@ -16,11 +16,16 @@
  </style>
 </head>
 {% block body %}
-<h1>Welcome Employee/idPerson</h1>
-<h2>In this page you can reload the card and view the balance you have.</h2>
+<form method="POST">
+  {% csrf_token %}
+  <h1>Welcome Employee/idPerson</h1>
+  <h2>In this page you can reload the card and view the balance you have.</h2><br><br>
+  <input type="text" name="example" id="example"><br><br>
+  <button type="submit">Enviar</button>
+</form>
+<br><br>
 <h3>Data</h3>
-
-<h3>{{data}}</h3>
+<h3>datos consultados: {{ data }}</h3>
 
 
 {% endblock %}

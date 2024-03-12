@@ -3,6 +3,7 @@ from typing import Any
 from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import *
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
@@ -149,12 +150,11 @@ def balance (request):
     data = request.POST ['example']
     obj = Card.objects.get(idCard =  data)
     d = (obj.idPerson, obj.balance)
-    #return render(request, "login.html")
-    #return render(request, "mainuniversity.html",{"d": d})
     try:
         return render(request, "welcome.html",{"d": d})
-    except Card.DoesNotExist:
-        raise Http404("No MyModel matches the given query.")
+    except ObjectDoesNotExist:
+        mensaje = "El objeto que estás buscando no se encuentra en la base de datos."
+        return render(request, "welcome.html",{"mensaje":mensaje})
     
 
 #"Pendiente-en construccion"

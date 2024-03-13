@@ -45,10 +45,6 @@ def login(request):
            #estudiante o empleado a la pagina welcome.html
          login(request,user)
          return redirect('admin')  
-        
-
-# def welcome(request):
-#     return render (request, 'welcome.html')
 
 def admin(request):
     return render (request, 'admin.html')

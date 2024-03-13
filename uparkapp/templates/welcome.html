@@ -10,18 +10,19 @@
  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
  <style>
    .table-input input {
-     width: 100%;
-     margin-bottom: 0;
-   }
+    width: 100%;
+    margin-bottom: 0;
+  } 
  </style>
 </head>
 {% block body %}
 <form method="POST" action="/balance/">
   {% csrf_token %}
+  {% load static %}
   <h1>Welcome Employee/idPerson</h1>
   <h2>In this page you can reload the card and view the balance you have.</h2><br><br>
   <input type="text" name="example" id="example"><br><br>
-  <button type="submit">Enviar</button>
+  <img type="submit" src="{%static "images/iconCard.png" %}" width="50" height="50">
 </form>
 <br><br>
 <h3>Data</h3>
@@ -29,5 +30,5 @@
 
 <h3>Error: {{ mensaje }}</h3>
 
-
+<img type="button" src="{%static "images/PSE.png" %}"width="50" height="50">
 {% endblock %}

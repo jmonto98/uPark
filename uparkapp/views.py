@@ -147,7 +147,8 @@ def editarCard (request):
     return redirect ('/editcard')    
     
 def balance (request):
-    data = request.POST ['example']
+    data = request.POST ['username']
+    person=Person.objects.get (mail=data)
     obj = Card.objects.get(idCard =  data)
     d = (obj.idPerson, obj.balance)
     try:

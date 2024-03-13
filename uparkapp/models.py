@@ -45,7 +45,7 @@ class Card (models.Model):
 class Pay(models.Model):
     idPay = models.AutoField(primary_key=True)
     idPerson = models.ForeignKey(Person, null=False, on_delete=models.CASCADE)
-    idVehicle = models.ForeignKey(Vehicle, null=False, on_delete=models.CASCADE)
+    idVehicle = models.ForeignKey(Vehicle, null=True, on_delete=models.CASCADE)
     transactionValue = models.IntegerField()
     cusCod = models.CharField(max_length=7, null=False)
     date = models.DateTimeField()

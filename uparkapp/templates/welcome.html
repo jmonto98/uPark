@@ -16,18 +16,14 @@
  </style>
 </head>
 {% block body %}
-<form method="POST" action="/balance/">
+<form method="POST">
   {% csrf_token %}
   {% load static %}
   <h1>Welcome Employee/idPerson</h1>
   <h2>In this page you can reload the card and view the balance you have.</h2><br><br>
-  <input type="text" name="example" id="example" value="dposada13@gmail.com"><br><br>
-  <button type="submit">Enviar</button>
 </form>
 <br><br>
-<h3>Bienvenido señor (a): {{ d }}</h3>
+<h3>Bienvenido {{ resulPerson }}</h3>
 
-<h3>Error: {{ mensaje }}</h3>
-
-<img type="button" src="{%static "images/PSE.png" %}"width="50" height="50">
+<h3>Error: {{ resulCard }}</h3>
 {% endblock %}

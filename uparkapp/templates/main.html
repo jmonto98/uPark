@@ -9,7 +9,7 @@
 <style>
   /* Custom CSS for centering buttons and background image */
 body {
-    background-image: url('/static/images/EAFIT - Copy.jpeg');
+    background-image: url('/static/images/EAFIT.jpeg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -56,21 +56,21 @@ body {
         <tbody>
           <tr>
             <div class="d-grid gap-14">
-              <td colspan="2"><a href="http://127.0.0.1:8000/login/" class="btn btn-primary btn-lg btn-block">Recharge card</a></td>
+              <td colspan="3"><a href="http://127.0.0.1:8000/login/" class="btn btn-primary  btn-block">Recharge card</a></td>
             </div>
           </tr>
           {% for vehicle in Vehicles %}
           <tr>
             <form action="/pse/" method="POST">
               {% csrf_token %}
-            <td><FONT size=5 COLOR="white">Buy ticket for {{vehicle.type}}</FONT> </td>
+            <td><FONT size=5 COLOR="white">Ticket {{vehicle.type}}</FONT> </td>
             <td><input type="hidden" name="type" value={{vehicle.idVehicle}}></td>
-            <td><button type="submit" class="btn btn-primary btn-lg btn-block">Buy</button></td>
+            <td><button type="submit" class="btn btn-primary btn-block">Buy</button></td>
             </form>
          </tr>
          {% endfor %}
         </tbody>
-          <td colspan="2"><a href="http://127.0.0.1:8000/login/" id="admin"><FONT COLOR="white">Login as administrator</a></FONT></td>
+          <td colspan="3"><a href="http://127.0.0.1:8000/login/" id="admin"><FONT COLOR="white">Login as administrator</a></FONT></td>
         </tr>
       </table>
     </div>

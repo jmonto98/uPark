@@ -13,17 +13,28 @@
     width: 100%;
     margin-bottom: 0;
   } 
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
  </style>
 </head>
 {% block body %}
-<form method="POST">
-  {% csrf_token %}
-  {% load static %}
-  <h1>Welcome Employee/idPerson</h1>
-  <h2>In this page you can reload the card and view the balance you have.</h2><br><br>
-</form>
-<br><br>
-<h3>Bienvenido {{ resulPerson }}</h3>
-
-<h3>Error: {{ resulCard }}</h3>
+{% load static %}
+{% load humanize %}
+<body> 
+  <div class="container">
+    <div class="container-fluid" align="center">
+        <img src="{%static "images/Card.png" %}" alt ="centered image"  width ="200" height = "350" class="d-inline-block align-text-top" /><br><br> 
+      <h3><FONT size=5 COLOR="#010368"> Welcome,  {{ resulPerson }}, your current balance reloaded on your card is a  {{ resulCard | intcomma }} COP</FONT></h3>
+    </div>
+    <div class="container mt-4" align="center">
+      <button type="submit" class="btn btn-success">Recharge</button>
+    </div>
+  </div>
+  
+</body>
 {% endblock %}

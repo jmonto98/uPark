@@ -74,6 +74,8 @@ def pse(request):
     vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])
     return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate})
 
+def rechargePse(request):
+    return render(request, 'rechargepse.html')
 
 def generateQr(request):
     qr = qrGenerate(cusGen(),request.POST ['vehi'])
@@ -150,11 +152,11 @@ def editarCard (request):
     
 def welcome (request):
     data = request.POST ['username']
-    person=Person.objects.get (mail=data)
-    card = Card.objects.get(idPerson =  person.idPerson)
-    resulPerson = (person.firstName )
-    resulCard = (card.balance)
     try:
+        person=Person.objects.get (mail=data)
+        card = Card.objects.get(idPerson =  person.idPerson)
+        resulPerson = (person.firstName )
+        resulCard = (card.balance)
         return render(request, "welcome.html",{"resulPerson": resulPerson, 
                                                "resulCard": resulCard})
     except ObjectDoesNotExist:

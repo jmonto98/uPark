@@ -73,7 +73,7 @@ def pse(request):
 
 
 def generateQr(request):
-    vehicle = 'avion'#request.POST ['vehicle']
+    vehicle = request.POST ['vehicle']
     qrGenerate(cusGen(),vehicle)
     return render (request, 'generateQr.html')
 

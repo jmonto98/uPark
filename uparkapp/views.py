@@ -1,3 +1,4 @@
+import re
 from .functions import *
 from typing import Any
 from django.utils.datastructures import MultiValueDictKeyError
@@ -147,10 +148,10 @@ def editarCard (request):
     return redirect ('/editcard')    
     
 def balance (request):
-    data = request.POST ['username']
+    data = request.POST ['example']
     person=Person.objects.get (mail=data)
-    obj = Card.objects.get(idCard =  data)
-    d = (obj.idPerson, obj.balance)
+    #obj = Card.objects.get(idCard =  data)
+    d = (person.firstName, person.lastName)
     try:
         return render(request, "welcome.html",{"d": d})
     except ObjectDoesNotExist:

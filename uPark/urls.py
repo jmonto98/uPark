@@ -42,5 +42,4 @@ urlpatterns = [
     path('editCard/<idCard>', appViews.editCard, name="editcard"),
     path('editarCard/',appViews.editarCard),
     path('welcome/',appViews.welcome, name="Welcome")
-
 ]

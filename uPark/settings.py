@@ -18,6 +18,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_ROOT= os.path.join (BASE_DIR,'media')
 MEDIA_URL='/media/'
+#QR_ROOT = './uPark/media/qrcodes/'
+QR_ROOT = 'uparkapp/static/images/qrcodes/'
+QR_URL= '/qrcodes/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

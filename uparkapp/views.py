@@ -76,9 +76,8 @@ def pse(request):
 
 
 def generateQr(request):
-    vehicle = request.POST ['vehicle']
-    qrGenerate(cusGen(),vehicle)
-    return render (request, 'generateQr.html')
+    qr = qrGenerate(cusGen(),request.POST ['vehi'])
+    return render (request, 'generateQr.html', {"qr":qr})
 
 def addVehicle (request):
     type = request.POST ['type']

@@ -1,35 +1,66 @@
-{%  extends "./navigator.html"  %}
-{% block title %} uPark {% endblock %}
-
-{% block body %}
-<div class="container mt-4"> 
-    <!--EDIT VEHICLE-->
-    <h2> Edit Vehicle </h2>
-    <table class="table table-bordered table-input table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Type</th>
-          <th scope="col">Rate</th>
-          <th scope="col">Option</th>
-        </tr>
-      </thead>
-        <tr>
-          <form action="/editarVehicle/" method="POST">
-            {% csrf_token %}
-            <td><input value="{{vehicle.idVehicle}}" type="text" class="form-control" id="idVehicle" name ="idVehicle" class="form-control" 
-                placeholder="idVehicle" readonly required></td>
-            <td><input value="{{vehicle.type}}" type="text" class="form-control" id="type" name ="type" class="form-control" 
-              placeholder="Type" required></td>
-            <td><input value="{{vehicle.rate}}" type="text" class="form-control" id="rate" name ="rate" class="form-control" 
-              placeholder="Rate" required></td>
-            <td>
-            <!--Save Vehicle-->
-              <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
-            </td>
-          </form>
-        </tr>
-        <!-- Add more rows as needed -->
-    </table>
-  </div>  
+{% extends "./navigator.html" %} {% block title %} uPark {% endblock %} {% block
+body %}
+<div class="container mt-4">
+  <!--EDIT VEHICLE-->
+  <h2>Edit Vehicle</h2>
+  <table class="table table-bordered table-input table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Type</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Option</th>
+      </tr>
+    </thead>
+    <tr>
+      <form action="/editarVehicle/" method="POST">
+        {% csrf_token %}
+        <td>
+          <input
+            value="{{vehicle.idVehicle}}"
+            type="text"
+            class="form-control"
+            id="idVehicle"
+            name="idVehicle"
+            class="form-control"
+            placeholder="idVehicle"
+            readonly
+            required
+          />
+        </td>
+        <td>
+          <input
+            value="{{vehicle.type}}"
+            type="text"
+            class="form-control"
+            id="type"
+            name="type"
+            class="form-control"
+            placeholder="Type"
+            required
+          />
+        </td>
+        <td>
+          <input
+            value="{{vehicle.rate}}"
+            type="text"
+            class="form-control"
+            id="rate"
+            name="rate"
+            class="form-control"
+            placeholder="Rate"
+            required
+          />
+        </td>
+        <td>
+          <!--Save Vehicle-->
+          <button type="submit" class="btn btn-sm btn-success btn-block">
+            Save
+          </button>
+        </td>
+      </form>
+    </tr>
+    <!-- Add more rows as needed -->
+  </table>
+</div>
 {% endblock %}

@@ -1,3 +1,4 @@
+import re
 from .functions import *
 from typing import Any
 from django.utils.datastructures import MultiValueDictKeyError
@@ -39,13 +40,15 @@ def login(request):
                 'error':'username or password is incorrect'
             })
         else:
-           
+           #Validacion de perfiles- y direccionarlo 
+           #admin a la pagina  admin.html
+           #estudiante o empleado a la pagina welcome.html
          login(request,user)
          return redirect('admin')  
         
 
-def welcome(request):
-    return render (request, 'welcome.html')
+# def welcome(request):
+#     return render (request, 'welcome.html')
 
 def admin(request):
     return render (request, 'admin.html')
@@ -146,12 +149,15 @@ def editarCard (request):
     card.save()
     return redirect ('/editcard')    
     
-def balance (request):
-    data = request.POST ['example']
-    obj = Card.objects.get(idCard =  data)
-    d = (obj.idPerson, obj.balance)
+def welcome (request):
+    data = request.POST ['username']
+    person=Person.objects.get (mail=data)
+    card = Card.objects.get(idPerson =  person.idPerson)
+    resulPerson = (person.firstName )
+    resulCard = (card.balance)
     try:
-        return render(request, "welcome.html",{"d": d})
+        return render(request, "welcome.html",{"resulPerson": resulPerson, 
+                                               "resulCard": resulCard})
     except ObjectDoesNotExist:
         mensaje = "El objeto que estás buscando no se encuentra en la base de datos."
         return render(request, "welcome.html",{"mensaje":mensaje})

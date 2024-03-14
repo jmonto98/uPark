@@ -28,8 +28,9 @@
 <body> 
   <div class="container">
     <div class="container-fluid" align="center">
+      <h3><FONT size=5 COLOR="#010368"> Welcome,  {{ resulPerson }}</FONT></h3>
         <img src="{%static "images/Card.png" %}" alt ="centered image"  width ="200" height = "350" class="d-inline-block align-text-top" /><br><br> 
-      <h3><FONT size=5 COLOR="#010368"> Welcome,  {{ resulPerson }}, your current balance reloaded on your card is a  {{ resulCard | intcomma }} COP</FONT></h3>
+      <h3><FONT size=5 COLOR="#010368">Your current balance  {{ resulCard | intcomma }} COP</FONT></h3>
     </div>
     <table align="center">
       <tr>

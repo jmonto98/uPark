@@ -16,7 +16,7 @@ def cusGen():
 
 def qrGenerate(cus, vehicleType):
     now = datetime.now()
-    input = 'uPark-Ticket of '+ vehicleType + '-' + now.strftime('%d%m%Y_%H%M%S') + '-' + cus
+    input = 'uPark- '+ vehicleType + ' Ticket -' + now.strftime('%d%m%Y_%H%M%S') + '-' + cus
     nameQr = vehicleType+'_'+cus+'.png'
     qr = qrcode.QRCode(version=1,box_size=10,border=5)
 

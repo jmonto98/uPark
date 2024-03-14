@@ -28,10 +28,16 @@
 <body> 
   <div class="container">
     <div class="container-fluid" align="center">
+      <h3><FONT size=5 COLOR="#010368"> Welcome,  {{ resulPerson }}</FONT></h3>
         <img src="{%static "images/Card.png" %}" alt ="centered image"  width ="200" height = "350" class="d-inline-block align-text-top" /><br><br> 
-      <h3><FONT size=5 COLOR="#010368"> Welcome,  {{ resulPerson }}, your current balance reloaded on your card is a  {{ resulCard | intcomma }} COP</FONT></h3>
+      <h3><FONT size=5 COLOR="#010368">Your current balance  {{ resulCard | intcomma }} COP</FONT></h3>
     </div>
     <table align="center">
+      <tr>
+      <td>  <span class="input-group-text" id="inputGroup-sizing-sm">Value to recharge</span></td>
+        <td>   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></td>
+
+      </tr>
       <tr>
         <td><a role ="button" href="http://127.0.0.1:8000/rechargepse" class="btn btn-sm btn-block btn-success">Recharge</a></td>
         <td><a role ="button" href="http://127.0.0.1:8000" class="btn btn-sm btn-block btn-danger btn-lg">Exit</a></td>

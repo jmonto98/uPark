@@ -28,6 +28,7 @@ def main(request):
 def login(request):
     person = Person.objects.get(mail=request.POST['username'])
 
+<<<<<<< HEAD
                    
     if person is None:
         return render(request, 'login.html',{'error':'username does not exist'})
@@ -38,6 +39,18 @@ def login(request):
          
 # def welcome(request):
 #     return render (request, 'welcome.html')
+=======
+            return render(request, 'login.html',{
+                'form':AuthenticationForm,
+                'error':'username or password is incorrect'
+            })
+        else:
+           #Validacion de perfiles- y direccionarlo 
+           #admin a la pagina  admin.html
+           #estudiante o empleado a la pagina welcome.html
+         login(request,user)
+         return redirect('admin')  
+>>>>>>> c9a9d6e5ea31c72d3f61a86c0f264cba50995304
 
 def admin(request):
     return render (request, 'admin.html')

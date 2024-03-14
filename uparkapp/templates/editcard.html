@@ -1,38 +1,78 @@
-{%  extends "./navigator.html"  %}
-{% block title %} uPark {% endblock %}
-
-{% block body %}
-<div class="container mt-4"> 
-    <!--EDIT Card-->
-    <h2> Edit Card </h2>
-    <table class="table table-bordered table-input table-striped">
-      <thead>
-        <tr>
-            <th scope="col">Id Card</th>
-            <th scope="col">Id Person</th>
-            <th scope="col">Balance</th>
-            <th scope="col">Status</th>
-        </tr>
-      </thead>
-        <tr>
-          <form action="/editarCard/" method="POST">
-            {% csrf_token %}
-            <td><input value="{{card.idCard}}" type="text" class="form-control" id="idCard" name ="idCard" class="form-control" 
-                placeholder="idCard" readonly required></td>
-            <td><input value="{{card.idPerson}}" type="text" class="form-control" id="idPerson" name ="idPerson" class="form-control" 
-              placeholder="idPerson" required></td>
-            <td><input value="{{card.balance}}" type="text" class="form-control" id="balance" name ="balance" class="form-control" 
-              placeholder="Balance" required></td>
-            <td><input value="{{card.status}}" type="text" class="form-control" id="status" name ="status" class="form-control" 
-            placeholder="status" required></td>
-            <td>
-            <!--Save Vehicle-->
-              <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
-            </td>
-          </form>
-        </tr>
-        <!-- Add more rows as needed -->
-    </table>
-
-</div>  
+{% extends "./navigator.html" %} {% block title %} uPark {% endblock %} {% block
+body %}
+<div class="container mt-4">
+  <!--EDIT Card-->
+  <h2>Edit Card</h2>
+  <table class="table table-bordered table-input table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id Card</th>
+        <th scope="col">Id Person</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tr>
+      <form action="/editarCard/" method="POST">
+        {% csrf_token %}
+        <td>
+          <input
+            value="{{card.idCard}}"
+            type="text"
+            class="form-control"
+            id="idCard"
+            name="idCard"
+            class="form-control"
+            placeholder="idCard"
+            readonly
+            required
+          />
+        </td>
+        <td>
+          <input
+            value="{{card.idPerson}}"
+            type="text"
+            class="form-control"
+            id="idPerson"
+            name="idPerson"
+            class="form-control"
+            placeholder="idPerson"
+            required
+          />
+        </td>
+        <td>
+          <input
+            value="{{card.balance}}"
+            type="text"
+            class="form-control"
+            id="balance"
+            name="balance"
+            class="form-control"
+            placeholder="Balance"
+            required
+          />
+        </td>
+        <td>
+          <input
+            value="{{card.status}}"
+            type="text"
+            class="form-control"
+            id="status"
+            name="status"
+            class="form-control"
+            placeholder="status"
+            required
+          />
+        </td>
+        <td>
+          <!--Save Vehicle-->
+          <button type="submit" class="btn btn-sm btn-success btn-block">
+            Save
+          </button>
+        </td>
+      </form>
+    </tr>
+    <!-- Add more rows as needed -->
+  </table>
+</div>
 {% endblock %}

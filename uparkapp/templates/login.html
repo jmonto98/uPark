@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +26,23 @@
   </head>
   <body>
     <div class="login-form">
+<<<<<<< HEAD
+        <h2 class="text-center mb-4">Welcome uPark</h2>
+       
+        <form method="POST" action="/welcome/">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">User:</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" >Log in</button><br>
+=======
       <h2 class="text-center mb-4">Welcome uPark</h2>
+>>>>>>> c9a9d6e5ea31c72d3f61a86c0f264cba50995304
 
       <form method="POST" action="/welcome/">
         {% csrf_token %}
@@ -46,8 +66,7 @@
             name="password"
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Log in</button
-        ><br />
+        <button type="submit" class="btn btn-primary btn-block">Log in</button><br />
       </form>
       <h5 class="text-center mb-4">{{error}}</h5>
 
@@ -55,3 +74,6 @@
     </div>
   </body>
 </html>
+
+
+{% endblock %}

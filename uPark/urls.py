@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from uparkapp import views as appViews
+from django.contrib.auth.views import LogoutView
 
 
 
@@ -30,7 +31,7 @@ urlpatterns = [
     path('card/',appViews.card),
     path('generateQr/', appViews.generateQr),
     path('vehicle/', appViews.vehicle, name="vehicle"),
-    path('login/', appViews.login),
+    path('login/', appViews.login,name='login'),
     path('pse/', appViews.pse),
     path("rechargepse/", appViews.rechargePse),
     path('addVehicle/',appViews.addVehicle),

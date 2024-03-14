@@ -50,8 +50,11 @@ def vehicle(request):
     return render(request,'vehicle.html',{"Vehicles":vehiclelist})
 
 def pse(request):
-    vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])
-    return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate})
+    try:
+        vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])
+        return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate})
+    except:
+        return render(request, "pse.html",{"vehicle": "Any", "rate": request.POST ['rate']})
 
 def rechargePse(request):
     return render(request, 'rechargepse.html')

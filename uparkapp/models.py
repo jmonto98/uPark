@@ -49,6 +49,7 @@ class Pay(models.Model):
     transactionValue = models.IntegerField()
     cusCod = models.CharField(max_length=7, null=False)
     date = models.DateTimeField()
+    qrCode =  models.ImageField()
 
     def __str__(self):
         texto = "{0} - {1}"

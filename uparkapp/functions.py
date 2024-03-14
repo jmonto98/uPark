@@ -2,6 +2,7 @@ import qrcode
 from datetime import datetime
 import random
 from uPark import settings 
+from .models import *
 
 
 def cusGen():
@@ -28,6 +29,12 @@ def qrGenerate(cus, vehicleType):
     #print(input)
     return (nameQr)
     
-
-#codigo = cusGen()
-#qrGenerate(cusGen(), 'AAAA')
+def authenticate(user):
+    person = Person.objects.get(mail = user)
+    
+    if person is None:
+        return(0)
+    elif person.password == "123456789":
+        return (1)
+    else:
+        return (2)

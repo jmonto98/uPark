@@ -30,7 +30,7 @@ urlpatterns = [
     path('card/',appViews.card),
     path('generateQr/', appViews.generateQr),
     path('vehicle/', appViews.vehicle, name="vehicle"),
-    path('login/', appViews.login,name='login'),
+    path('login/', appViews.login),
     path('pse/', appViews.pse),
     path("rechargepse/", appViews.rechargePse),
     path('addVehicle/',appViews.addVehicle),

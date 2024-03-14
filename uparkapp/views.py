@@ -27,26 +27,7 @@ def main(request):
 
 
 def login(request):
-    #return HttpResponse('<h1>Welcome to Upark login</h1>')
-    if request.method == 'GET':
-        return render(request, 'login.html',{
-            'form':AuthenticationForm
-        })
-    else:  
-        user = authenticate(
-            request, username=request.POST['username'],password=request.POST['password'])
-        if user is None:
-
-            return render(request, 'login.html',{
-                'form':AuthenticationForm,
-                'error':'username or password is incorrect'
-            })
-        else:
-           #Validacion de perfiles- y direccionarlo 
-           #admin a la pagina  admin.html
-           #estudiante o empleado a la pagina welcome.html
-         login(request,user)
-         return redirect('admin')  
+    return render(request, 'login.html')
 
 def admin(request):
     return render (request, 'admin.html')

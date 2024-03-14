@@ -22,16 +22,14 @@ from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-    path('prueba/', appViews.prueba),
     path('', appViews.main),
-    #path('main/', appViews.main),
     path('manage/', admin.site.urls),#Administrador del proyecto django
     path('admin/', appViews.admin),
     path('adminuser/', appViews.adminuser),
     path('card/',appViews.card),
     path('generateQr/', appViews.generateQr),
     path('vehicle/', appViews.vehicle, name="vehicle"),
-    path('login/', appViews.login,name='login'),
+    path('login/', appViews.login),
     path('pse/', appViews.pse),
     path("rechargepse/", appViews.rechargePse),
     path('addVehicle/',appViews.addVehicle),

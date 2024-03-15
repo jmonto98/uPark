@@ -48,19 +48,19 @@
     <div class="container-fluid">
       {% csrf_token %} {% load static %}
       <div align="center">
-        <img src="{%static "images/PSE.png" %}" alt ="centered image" width
-        ="90" height = "84" class="d-inline-block align-text-top" />
+        <a href="http://127.0.0.1:8000/"><img src="{%static "images/PSE.png" %}" alt ="centered image" width
+        ="90" height = "84" class="d-inline-block align-text-top"></a>
       </div>
       <label class="form-label">First Name</label>
-      <input type="firstName" class="form-control" id="firstName" />
+      <input type="firstName" class="form-control" id="firstName" required />
       <label class="form-label">Last Name</label>
-      <input type="lastName" class="form-control" id="lastName" />
+      <input type="lastName" class="form-control" id="lastName" required/>
       <label class="form-label">Phone</label>
-      <input type="Phone" class="form-control" id="Phone" />
+      <input type="Phone" class="form-control" id="Phone" required/>
       <label class="form-label">Mail</label>
-      <input type="Mail" class="form-control" id="Mail" />
+      <input type="Mail" class="form-control" id="Mail" required/>
       <label class="form-label">Bank</label>
-      <select class="form-select" aria-label="Bank">
+      <select class="form-select" aria-label="Bank" required>
         <option selected>Select Bank</option>
         <option value="1">Banco Caja Social</option>
         <option value="2">Banco Popular</option>

@@ -110,7 +110,7 @@ def addPerson (request):
         card=Card.objects.create(idPerson_id= cont,
                                  balance= '0',                                 
                                  status='A')
-        #person.save()
+        person.save()
         card.save()
         return redirect ('/adminuser')
 

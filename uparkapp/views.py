@@ -53,9 +53,9 @@ def pse(request):
     try:
         vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])
         if vehicle.idVehicle != 0:
-            return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate, "idVehicle": vehicle.idVehicle})
+            return render(request, "pse.html",{"vehicle": vehicle.type, "idVehicle": vehicle.idVehicle, "rate": vehicle.rate, "idPerson":request.POST ['idPerson']})
         else:
-            return render(request, "pse.html",{"vehicle": vehicle.type, "rate": request.POST ['rate'], "idVehicle": vehicle.idVehicle})
+            return render(request, "pse.html",{"vehicle": vehicle.type, "idVehicle": vehicle.idVehicle, "rate": request.POST ['rate'], "idPerson":request.POST ['idPerson']})
     except:
         return render(request, "main.html")
 
@@ -63,15 +63,32 @@ def rechargePse(request):
     return render(request, 'rechargepse.html')
 
 def generateQr(request):
-    try:
+    #try:
+        cus = cusGen()
+        now = datetime.now()
+        
+        person = Person.objects.get(idPerson = request.POST['idPerson'])
         vehicle = Vehicle.objects.get(idVehicle = request.POST ['idVehicle'])
+        pay = Pay.objects.create(transctionValue = request.POST ['_rate'],
+                                 idPerson = person.idPerson,
+                                 idVehicle = vehicle.idVehicle,
+                                 cus = cus,
+                                 date = now)
+        
         if vehicle.idVehicle != 0:
-            qr = qrGenerate(cusGen(), vehicle.type)
+            pay.idVehicle = request.POST ['idVehicle']
+            qr = qrGenerate(cus, vehicle.type, now)
+            pay.save()
             return render (request, 'generateQr.html', {"qr":qr})
-        else:
-            return render(request, "welcome.html")#,{"resulPerson": person.firstName, "resulCard": card.balance})
-    except:
-         return render (request, 'main.html')
+        else:            
+            card = Card.objects.get(idPerson = person.idPerson)
+            pay.idPerson = card.idPerson
+            card.balance += request.POST['rate']
+            card.save()
+            pay.save()
+            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
+    # except:
+    #      return render (request, 'admin.html')
 
 def addVehicle (request):
     type = request.POST ['type']
@@ -160,7 +177,7 @@ def welcome (request):
         if person.personType == 'A':
            return render(request, "Admin.html")
         else:
-            return render(request, "welcome.html",{"resulPerson": person.firstName, "resulCard": card.balance})
+            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
     else:
         return render(request, "login.html",{"error": "Contraseña inválida"})
 

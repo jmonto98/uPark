@@ -49,19 +49,29 @@ def vehicle(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle")  
     return render(request,'vehicle.html',{"Vehicles":vehiclelist})
 
-def pse(request):
+def pse(request):    
     try:
         vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])
-        return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate})
+        if vehicle.idVehicle != 0:
+            return render(request, "pse.html",{"vehicle": vehicle.type, "rate": vehicle.rate, "idVehicle": vehicle.idVehicle})
+        else:
+            return render(request, "pse.html",{"vehicle": vehicle.type, "rate": request.POST ['rate'], "idVehicle": vehicle.idVehicle})
     except:
-        return render(request, "pse.html",{"vehicle": "Any", "rate": request.POST ['rate']})
+        return render(request, "main.html")
 
 def rechargePse(request):
     return render(request, 'rechargepse.html')
 
 def generateQr(request):
-    qr = qrGenerate(cusGen(),request.POST ['vehi'])
-    return render (request, 'generateQr.html', {"qr":qr})
+    try:
+        vehicle = Vehicle.objects.get(idVehicle = request.POST ['idVehicle'])
+        if vehicle.idVehicle != 0:
+            qr = qrGenerate(cusGen(), vehicle.type)
+            return render (request, 'generateQr.html', {"qr":qr})
+        else:
+            return render(request, "welcome.html")#,{"resulPerson": person.firstName, "resulCard": card.balance})
+    except:
+         return render (request, 'main.html')
 
 def addVehicle (request):
     type = request.POST ['type']

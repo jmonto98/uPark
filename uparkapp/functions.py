@@ -28,13 +28,3 @@ def qrGenerate(cus, vehicleType):
     img.save(settings.QR_ROOT + nameQr)
     #print(input)
     return (nameQr)
-    
-def authenticate(user):
-    person = Person.objects.get(mail = user)
-    
-    if person is None:
-        return(0)
-    elif person.password == "123456789":
-        return (1)
-    else:
-        return (2)

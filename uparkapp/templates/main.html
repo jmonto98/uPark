@@ -73,9 +73,11 @@ body {
           <tr>
             <form action="/pse/" method="POST">
               {% csrf_token %}
-            
-            <td><button type="submit" class="btn btn-primary btn-block"> Ticket {{vehicle.type}}</button></td>
-            </form>
+              {% if vehicle.rate > 0 %}
+              <td><button type="submit" class="btn btn-primary btn-block"> Ticket {{vehicle.type}}</button></td>
+              <td><input type="hidden" name="type" value={{vehicle.idVehicle}}></td>
+              {% endif %}
+          </form>
          </tr>
          {% endfor %}
         </tbody>

@@ -96,6 +96,13 @@
         value= {{ vehicle }}
         class="form-control"
       />
+      <input
+        hidden
+        type="text"
+        name="idVehicle"
+        value= {{ idVehicle }}
+        class="form-control"
+      />
       <label class="form-label">Rate</label>
       <input
         disabled
@@ -105,10 +112,10 @@
         class="form-control"
       />
       <br />
-      <button type="submit" class="btn btn-sm btn-success btn-block">
+      <button type="submit" class="btn btn-sm btn-success btn-block" name="accepted" id="accepted">
         Accepted
       </button>
-      <button type="submit" class="btn btn-sm btn-success btn-block">
+      <button type="submit" class="btn btn-sm btn-success btn-block" name="declined">
         Declined
       </button>
     </div>

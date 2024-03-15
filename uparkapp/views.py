@@ -69,24 +69,25 @@ def generateQr(request):
         
         person = Person.objects.get(idPerson = request.POST['idPerson'])
         vehicle = Vehicle.objects.get(idVehicle = request.POST ['idVehicle'])
-        pay = Pay.objects.create(transctionValue = request.POST ['_rate'],
-                                 idPerson = person.idPerson,
-                                 idVehicle = vehicle.idVehicle,
-                                 cus = cus,
+        
+        pay = Pay.objects.create(transactionValue = request.POST ['_rate'],
+                                 idPerson = person,
+                                 idVehicle = vehicle,
+                                 cusCod = cus,
                                  date = now)
         
         if vehicle.idVehicle != 0:
-            pay.idVehicle = request.POST ['idVehicle']
             qr = qrGenerate(cus, vehicle.type, now)
             pay.save()
             return render (request, 'generateQr.html', {"qr":qr})
         else:            
             card = Card.objects.get(idPerson = person.idPerson)
             pay.idPerson = card.idPerson
-            card.balance += request.POST['rate']
+            card.balance = card.balance + int(request.POST['_rate'])
             card.save()
             pay.save()
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
+            
     # except:
     #      return render (request, 'admin.html')
 

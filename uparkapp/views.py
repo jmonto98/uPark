@@ -11,6 +11,7 @@ from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import *
+from django.db.models import Max
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
@@ -21,8 +22,7 @@ from openpyxl import Workbook
 # Create your views here.
 
 def main(request):
-    vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
-    
+    vehiclelist=Vehicle.objects.all().order_by("idVehicle")     
     return render (request, 'main.html',{"Vehicles":vehiclelist})
 
 
@@ -103,8 +103,15 @@ def addPerson (request):
                                     phone=phone,
                                     mail=mail,
                                     dateOfBirth=dateOfBirth,
-                                    personType=personType)
-        person.save()
+                                    personType=personType)        
+        
+        lastId = Person.objects.aggregate(idPerson = models.Max('idPerson'))
+        cont = lastId['idPerson']
+        card=Card.objects.create(idPerson_id= cont,
+                                 balance= '0',                                 
+                                 status='A')
+        #person.save()
+        card.save()
         return redirect ('/adminuser')
 
 def addCard (request):

@@ -39,6 +39,16 @@ body {
     width: 200px; /* Adjust width as needed */
     margin: 5px; /* Adjust margin as needed */
   }
+  .btn-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 40px;
+  line-height: 1.5;
+}
+
+
 </style>
 </head>
 <body>
@@ -63,9 +73,8 @@ body {
           <tr>
             <form action="/pse/" method="POST">
               {% csrf_token %}
-            <td><FONT size=5 COLOR="white">Ticket {{vehicle.type}}</FONT> </td>
-            <td><input type="hidden" name="type" value={{vehicle.idVehicle}}></td>
-            <td><button type="submit" class="btn btn-primary btn-block">Buy</button></td>
+            
+            <td><button type="submit" class="btn btn-primary btn-block"> Ticket {{vehicle.type}}</button></td>
             </form>
          </tr>
          {% endfor %}

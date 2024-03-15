@@ -59,11 +59,12 @@ def pse(request):
     except:
         return render(request, "main.html")
 
-def rechargePse(request):
-    return render(request, 'rechargepse.html')
+def errors(request):
+    return render (request, 'errors.html',{"error": request.POST['error']})
 
-def generateQr(request):
-    #try:
+
+def validatePay(request):
+    try:
         cus = cusGen()
         now = datetime.now()
         
@@ -88,8 +89,8 @@ def generateQr(request):
             pay.save()
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
             
-    # except:
-    #      return render (request, 'admin.html')
+    except:
+        return render (request, 'errors.html',{"error": "Algo salío mal durante la transacción"})
 
 def addVehicle (request):
     type = request.POST ['type']

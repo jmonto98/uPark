@@ -44,7 +44,7 @@
   </style>
 </head>
 <div class="container">
-  <form action="/generateQr/" method="POST">
+  <form action="/validatePay/" method="POST">
     <div class="container-fluid">
       {% csrf_token %} {% load static %}
       <div align="center">
@@ -126,12 +126,25 @@
         class="form-control"
       />
       <br />
-      <button type="submit" class="btn btn-sm btn-success btn-block" name="accepted" id="accepted">
+      <button type="submit" class="btn btn-sm btn-success btn-block" name="accepted">
         Accepted
-      </button>
+      </button>      
+    </div>
+  </form>
+ 
+  <form action="/errors/" method="POST">
+    <div class="container-fluid">
+      {% csrf_token %} {% load static %}
       <button type="submit" class="btn btn-sm btn-success btn-block" name="declined">
         Declined
       </button>
+      <input
+          hidden
+          type="text"
+          name="error"
+          value="Transacción rechazada!"
+          class="form-control"
+      />
     </div>
   </form>
 </div>

@@ -23,23 +23,24 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', appViews.main),
-    path('manage/', admin.site.urls),#Administrador del proyecto django
+    path('addCard/',appViews.addCard),
+    path('addPerson/',appViews.addPerson),
+    path('addVehicle/',appViews.addVehicle),
     path('admin/', appViews.admin),
     path('adminuser/', appViews.adminuser),
     path('card/',appViews.card),
-    path('generateQr/', appViews.generateQr),
-    path('vehicle/', appViews.vehicle, name="vehicle"),
-    path('login/', appViews.login),
-    path('pse/', appViews.pse),
-    path("rechargepse/", appViews.rechargePse),
-    path('addVehicle/',appViews.addVehicle),
-    path('editarVehicle/',appViews.editarVehicle),
-    path('editVehicle/<idVehicle>',appViews.editVehicle),
     path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle"),
-    path('reportVehicle/',appViews.reportVehicle),
-    path('addPerson/',appViews.addPerson),
-    path('addCard/',appViews.addCard),
-    path('editCard/<idCard>', appViews.editCard, name="editcard"),
     path('editarCard/',appViews.editarCard),
+    path('editarVehicle/',appViews.editarVehicle),
+    path('editCard/<idCard>', appViews.editCard, name="editcard"),
+    path('editVehicle/<idVehicle>',appViews.editVehicle),
+    path('validatePay/', appViews.validatePay),
+    path('login/', appViews.login),
+    path('main', appViews.main),
+    path('manage/', admin.site.urls),#Administrador del proyecto django
+    path('pse/', appViews.pse),
+    path('errors/', appViews.errors),
+    path('reportVehicle/',appViews.reportVehicle),
+    path('vehicle/', appViews.vehicle, name="vehicle"),
     path('welcome/',appViews.welcome, name="Welcome")
 ]

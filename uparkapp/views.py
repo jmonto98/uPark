@@ -49,6 +49,9 @@ def vehicle(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle")  
     return render(request,'vehicle.html',{"Vehicles":vehiclelist})
 
+def generateQr(request):
+    return render(request,'generateQr.html')
+
 def pse(request):    
     try:
         vehicle=Vehicle.objects.get(idVehicle = request.POST ['type'])

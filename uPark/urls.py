@@ -34,12 +34,13 @@ urlpatterns = [
     path('editarVehicle/',appViews.editarVehicle),
     path('editCard/<idCard>', appViews.editCard, name="editcard"),
     path('editVehicle/<idVehicle>',appViews.editVehicle),
+    path('errors/', appViews.errors),
+    path('generateQr/', appViews.generateQr),
     path('validatePay/', appViews.validatePay),
     path('login/', appViews.login),
     path('main', appViews.main),
     path('manage/', admin.site.urls),#Administrador del proyecto django
     path('pse/', appViews.pse),
-    path('errors/', appViews.errors),
     path('reportVehicle/',appViews.reportVehicle),
     path('vehicle/', appViews.vehicle, name="vehicle"),
     path('welcome/',appViews.welcome, name="Welcome")

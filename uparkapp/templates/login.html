@@ -156,9 +156,9 @@
       <h4>uPark</h4>
       <form class="form"  method="POST" action="/welcome/">
         {% csrf_token %}
-        <input type="email"  class="form-control" id="username" name="username">
+        <input type="email" placeholder="user@upark.com"" class="form-control" id="username" name="username">
 
-        <input type="password" class="form-control" id="password" name="password">
+        <input type="password" placeholder="******" class="form-control" id="password" name="password">
         <button>log in</button><br>
         <h5 class="text-center mb-4">{{error}}</h5>
       </form>

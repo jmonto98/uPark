@@ -13,6 +13,23 @@
     width: 100%;
     margin-bottom: 0;
   } 
+  .btn-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 40px;
+    line-height: 1.5;
+  }
+  .btn-danger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 40px;
+    line-height: 1.5;
+    width: 100%;
+  }
   body {
     height: 100vh;
     margin: 0;
@@ -38,15 +55,20 @@
       <table align="center">
         <tr>
         <td> <span class="input-group-text" id="inputGroup-sizing-sm">Value to recharge</span></td>
-        <td><input type="hidden" name="type" value="0"></td>
+        <td><input type="hidden" name="type" value="0"> </td>
         <td><input type="text" name="rate" id="rate" idclass="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></td>
         <td><input hidden text name="idPerson" value={{ idPerson }}></td>
 
         </tr>
         <tr>
           <td><button type="submit" class="btn btn-primary btn-block">Recharge</button></td>
-          <td><a role ="button" class="btn btn-sm btn-block btn-danger btn-lg">Exit</a></td>
+          <td><input type="hidden" name="type" value="0"> </td>
+          <td><button type="submit" class="btn btn-primary btn-danger">Exit</button></td>
+          <td><input type="hidden" name="type" value="0"></td>
         </tr>
+       
+      </table>
+     
       </form>
   </div>
   

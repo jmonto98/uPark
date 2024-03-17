@@ -36,16 +36,23 @@ body {
     align-items: center;
   }
   .button-container .btn {
-    width: 200px; /* Adjust width as needed */
+    width: 250px; /* Adjust width as needed */
     margin: 5px; /* Adjust margin as needed */
   }
   .btn-block {
   display: flex;
+  border-radius:28px;
+  font-size: 16px;
+  font-family: inherit;
+  
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   height: 100%;
-  min-height: 40px;
-  line-height: 1.5;
+  min-height: 45px;
+  line-height: 1.0;
+  background: #315cfd;
+  color: white;
 }
 
 
@@ -64,7 +71,7 @@ body {
         <tbody>
           <tr>
             <div class="d-grid gap-14">
-              <td colspan="3"><a href="http://127.0.0.1:8000/login/" class="btn btn-primary  btn-block">Recharge card</a></td>
+              <td colspan="3"><a href="/login/" class="btn btn-primary  btn-block">Recharge card</a></td>
             </div>
           </tr>
           {% for vehicle in Vehicles %}
@@ -80,7 +87,7 @@ body {
          </tr>
          {% endfor %}
         </tbody>
-          <td colspan="3"><a href="http://127.0.0.1:8000/login/" id="admin"><FONT COLOR="white">Login as administrator</a></FONT></td>
+          <td colspan="3"><a href="/login/" id="admin"><FONT COLOR="white">Login as administrator</a></FONT></td>
         </tr>
       </table>
     </div>

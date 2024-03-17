@@ -35,7 +35,7 @@ urlpatterns = [
     path('editCard/<idCard>', appViews.editCard, name="editcard"),
     path('editVehicle/<idVehicle>',appViews.editVehicle),
     path('errors/', appViews.errors),
-    path('generateQr/', appViews.generateQr),
+    path('generateQr/', appViews.generateQr, name="qr"),
     path('validatePay/', appViews.validatePay),
     path('login/', appViews.login),
     path('main', appViews.main),

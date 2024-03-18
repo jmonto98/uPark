@@ -2,11 +2,11 @@
 Este es un sistema de pago de parqueadero desarrollado en Django y Python.
 ## Instalación
 1. Clona este repositorio en tu máquina local:
-https://github.com/jmonto98/uPark
+    https://github.com/jmonto98/uPark
 2. Accede al directorio del proyecto:
-cd uPark
+    cd uPark
 3. Instala las dependencias del proyecto:
-pip install -r requirements.txt
+    pip install -r requirements.txt
 4. Realiza las migraciones de la base de datos:
     python manage.py makemigrations
     python manage.py migrate

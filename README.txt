@@ -8,9 +8,12 @@ cd uPark
 3. Instala las dependencias del proyecto:
 pip install -r requirements.txt
 4. Realiza las migraciones de la base de datos:
-python manage.py runserver
+    python manage.py makemigrations
+    python manage.py migrate
 
 ## Uso
+Inicia la  aplicación mediante el comando
+    python manage.py runserver
 Una vez que el servidor esté en funcionamiento, puedes acceder al sistema de uPark desde cualquier navegador 
 web en la siguiente dirección: `http://localhost:8000`. 
 A partir de ahí, podrás registrar vehículos, gestionar pagos, gestionar usuarios y realizar otras operaciones relacionadas 

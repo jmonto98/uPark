@@ -3,6 +3,7 @@ from datetime import datetime
 import random
 from uPark import settings 
 from .models import *
+from werkzeug.security import generate_password_hash, check_password_hash 
 
 
 def cusGen():
@@ -28,3 +29,11 @@ def qrGenerate(cus, vehicleType, now):
     img.save(settings.QR_ROOT + nameQr)
     #print(input)
     return (nameQr)
+
+def encryptPwd(pwd):
+    pwd = generate_password_hash(pwd)
+    return (pwd)
+
+def decryptPwd(encripted, pwd):   
+    return check_password_hash(encripted, pwd)
+

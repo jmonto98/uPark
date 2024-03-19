@@ -122,11 +122,12 @@ def deleteVehicle (request, idVehicle):
     return redirect ('/vehicle')
 
 def addPerson (request):
+    try:        
         firstName = request.POST ['firstName']
         lastName = request.POST ['lastName']
-        pwd = request.POST ['password']
+        pwd = encryptPwd(request.POST ['password'])
         phone  = request.POST ['phone']
-        mail =  request.POST ['mail']
+        mail = str.replace(request.POST ['mail'].lower(), ' ', '')
         dateOfBirth = request.POST ['dateOfBirth']
         personType = request.POST ['personType']
         person = Person.objects.create(firstName=firstName,
@@ -142,9 +143,15 @@ def addPerson (request):
         card=Card.objects.create(idPerson_id= cont,
                                  balance= '0',                                 
                                  status='A')
-        person.save()
+        #person.save()
         card.save()
         return redirect ('/adminuser')
+    except:
+        user = Person.objects.get(mail = mail)
+        if user:
+            return render (request, 'errors.html',{"error": "The email is already assigned to another person"})
+        else:
+            return render (request, 'errors.html',{"error": "Something went wrong!"})
 
 def addCard (request):
     #idCard = request.POST ['idCard']    
@@ -177,14 +184,16 @@ def welcome (request):
     except:
         return render(request, "login.html",{"error": "usuario no existe"})
     
-    if person.password == request.POST['password']:
+    if (decryptPwd(person.password, request.POST['password'])):
+    #if person.password == request.POST['password']:
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
            return render(request, "Admin.html")
         else:
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
     else:
-        return render(request, "login.html",{"error": "Contraseña inválida"})
+        #return render(request, "login.html",{"error": "Contraseña inválida"})
+        return render(request, "login.html",{"error": request.POST['password'] +" - "+person.password})
 
     
 

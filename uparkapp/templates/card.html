@@ -3,7 +3,8 @@
 
 <body>
   <div class="container">
-{% comment %}     <form action="/addCard/" method="POST">
+    {% comment %}
+     <form action="/addCard/" method="POST">
       <h2>Create Card</h2>
       <div class="container-fluid">
         {% csrf_token %}
@@ -42,7 +43,8 @@
           Save
         </button>
       </div>
-    </form> {% endcomment %}
+    </form> 
+    {% endcomment %}
     <!--LIST-->
     <div class="container mt-4">
       <table class="table table-bordered table-query table-striped">

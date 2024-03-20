@@ -25,7 +25,7 @@ class Person (models.Model):
     mail =  models.CharField(max_length=100, unique = True)
     dateOfBirth = models.DateField()
     personType = models.CharField(max_length=10, choices=person_type)
-    password = models.CharField(max_length=140, null=False, blank=False)
+    password = models.CharField(max_length=500, null=False, blank=False)
     #images = models.ImageField(upload_to = 'movie/images/')
 
     def __str__(self):

@@ -125,7 +125,8 @@ def addPerson (request):
     try:        
         firstName = request.POST ['firstName']
         lastName = request.POST ['lastName']
-        pwd = encryptPwd(request.POST ['password'])
+        #pwd = encryptPwd(request.POST ['password'])
+        pwd = request.POST ['password']
         phone  = request.POST ['phone']
         mail = str.replace(request.POST ['mail'].lower(), ' ', '')
         dateOfBirth = request.POST ['dateOfBirth']
@@ -143,7 +144,7 @@ def addPerson (request):
         card=Card.objects.create(idPerson_id= cont,
                                  balance= '0',                                 
                                  status='A')
-        #person.save()
+        person.save()
         card.save()
         return redirect ('/adminuser')
     except:
@@ -184,8 +185,8 @@ def welcome (request):
     except:
         return render(request, "login.html",{"error": "usuario no existe"})
     
-    if (decryptPwd(person.password, request.POST['password'])):
-    #if person.password == request.POST['password']:
+    #if (decryptPwd(person.password, request.POST['password'])):
+    if person.password == request.POST['password']:
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
            return render(request, "Admin.html")

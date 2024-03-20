@@ -31,7 +31,7 @@ def qrGenerate(cus, vehicleType, now):
     return (nameQr)
 
 def encryptPwd(pwd):
-    pwd = generate_password_hash(pwd)
+    pwd = generate_password_hash(pwd, 'pbkdf2:sha1', 8)
     return (pwd)
 
 def decryptPwd(encripted, pwd):   

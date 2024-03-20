@@ -125,8 +125,8 @@ def addPerson (request):
     try:        
         firstName = request.POST ['firstName']
         lastName = request.POST ['lastName']
-        #pwd = encryptPwd(request.POST ['password'])
-        pwd = request.POST ['password']
+        pwd = encryptPwd(request.POST ['password'])
+        #pwd = request.POST ['password']
         phone  = request.POST ['phone']
         mail = str.replace(request.POST ['mail'].lower(), ' ', '')
         dateOfBirth = request.POST ['dateOfBirth']
@@ -182,19 +182,19 @@ def editarCard (request):
 def welcome (request):
     try:
         person = Person.objects.get(mail = request.POST['username'])
+        #return render(request, "Errors.html",{"error":person.password})
     except:
         return render(request, "login.html",{"error": "usuario no existe"})
     
-    #if (decryptPwd(person.password, request.POST['password'])):
-    if person.password == request.POST['password']:
+    if (decryptPwd(person.password, request.POST['password'])):
+    #if person.password == request.POST['password']:
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
            return render(request, "Admin.html")
         else:
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
     else:
-        #return render(request, "login.html",{"error": "Contraseña inválida"})
-        return render(request, "login.html",{"error": request.POST['password'] +" - "+person.password})
+        return render(request, "login.html",{"error": "Contraseña inválida"})
 
     
 

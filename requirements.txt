@@ -4,3 +4,4 @@ Pillowpandas
 matplotlib
 qrcode
 openpyxl
+Werkzeug

@@ -25,7 +25,6 @@ def main(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle")     
     return render (request, 'main.html',{"Vehicles":vehiclelist})
 
-
 def login(request):
     return render(request, 'login.html')
 
@@ -64,7 +63,6 @@ def pse(request):
 
 def errors(request):
     return render (request, 'errors.html',{"error": request.POST['error']})
-
 
 def validatePay(request):
     try:
@@ -196,8 +194,6 @@ def welcome (request):
     else:
         return render(request, "login.html",{"error": "Contraseña inválida"})
 
-    
-
 #"Pendiente-en construccion"
 def reportVehicle(request):
     vehicle = Vehicle.objects.all()
@@ -222,11 +218,12 @@ def reportVehicle(request):
     response['Content-Disposition'] = content
     wb.save(response)
     return (response)
-            
-        
-    
- 
-    
+
+def Viewpay(request):
+    paylist=Pay.objects.filter(idPerson_id=request.GET ['idPerson_id']).order_by("idPay")  
+   
+    return render(request,'welcome.html',{"welcome":paylist})
+
 
             
     

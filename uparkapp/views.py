@@ -14,6 +14,11 @@ from .models import *
 from django.db.models import Max
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
+import matplotlib.pyplot as plt
+import matplotlib
+import io
+import urllib, base64
+from datetime import datetime
 
 #Manejo de libros de excel
 from openpyxl import Workbook
@@ -24,7 +29,6 @@ from openpyxl import Workbook
 def main(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle")     
     return render (request, 'main.html',{"Vehicles":vehiclelist})
-
 
 def login(request):
     return render(request, 'login.html')
@@ -64,7 +68,6 @@ def pse(request):
 
 def errors(request):
     return render (request, 'errors.html',{"error": request.POST['error']})
-
 
 def validatePay(request):
     try:
@@ -196,8 +199,6 @@ def welcome (request):
     else:
         return render(request, "login.html",{"error": "Contraseña inválida"})
 
-    
-
 #"Pendiente-en construccion"
 def reportVehicle(request):
     vehicle = Vehicle.objects.all()
@@ -222,11 +223,99 @@ def reportVehicle(request):
     response['Content-Disposition'] = content
     wb.save(response)
     return (response)
-            
+
+def Viewpay(request):
+    paylist=Pay.objects.filter(idPerson_id=request.GET ['idPerson_id']).order_by("idPay")  
+   
+    return render(request,'welcome.html',{"welcome":paylist})
+
+def statistics_view(request): 
+    matplotlib.use('Agg') 
+    # Obtener todas los pagos 
+    all_pays = Pay.objects.all() 
+    
+    # Crear un diccionario para almacenar la cantidad de pagos 
+    pay_counts_by_date = {} 
+    pay_counts_by_vehicle = {} 
+    
+    # Filtrar los pagos por fecha y contar la cantidad de pagos por fecha 
+    for pay in all_pays:         
+        date = pay.date.date if pay.date.date else "None" 
+        if date in pay_counts_by_date: 
+            pay_counts_by_date[pay] += 1 
+        else: 
+            pay_counts_by_date[pay] = 1  
+        #Captura datos por Vehiculo
+        veh = pay.idVehicle
+        vehicle = veh[0] if veh[0] else "None" 
+        if vehicle in pay_counts_by_vehicle: 
+            pay_counts_by_vehicle[vehicle] += 1 
+        else: 
+            pay_counts_by_vehicle[vehicle] = 1    
         
+    # Ancho de las barras 
+    bar_width = 0.5 
+    # Posiciones de las barras 
+    bar_positions = range(len(pay_counts_by_date)) 
     
- 
+    # Crear la gráfica de barras 
+    plt.bar(bar_positions, pay_counts_by_date.values(), width=bar_width, align='center', color ='green') 
     
+    # Personalizar la gráfica 
+    plt.title('Pay per Date') 
+    plt.xlabel('Date') 
+    plt.ylabel('Number of pay') 
+    plt.xticks(bar_positions, pay_counts_by_date.keys(), rotation=90) 
+    
+    # Ajustar el espaciado entre las barras 
+    plt.subplots_adjust(bottom=0.3) 
+    
+    # Guardar la gráfica en un objeto BytesIO
+    buffer = io.BytesIO() 
+    plt.savefig(buffer, format='png') 
+    buffer.seek(0) 
+    plt.close() 
+    
+    # Convertir la gráfica a base64 
+    image_png = buffer.getvalue() 
+    buffer.close() 
+    graphic = base64.b64encode(image_png) 
+    graphic = graphic.decode('utf-8') 
+
+    #---Creacion grafica por genero----#
+    bar_width = 0.5 
+    # Posiciones de las barras 
+    bar_positions = range(len(pay_counts_by_vehicle)) 
+    
+    # Crear la gráfica de barras 
+    ax=plt.subplot()
+    ax.stem(bar_positions,pay_counts_by_vehicle.values(),linefmt = 'k--')
+    
+    # Personalizar la gráfica 
+    plt.title('Pay per Vehicle') 
+    plt.xlabel('Vehicle') 
+    plt.ylabel('Number of pay') 
+    plt.xticks(bar_positions, pay_counts_by_vehicle.keys(), rotation='vertical') 
+    
+    # Ajustar el espaciado entre las barras 
+    plt.subplots_adjust(bottom=0.3) 
+    
+    # Guardar la gráfica en un objeto BytesIO
+    buffer = io.BytesIO() 
+    plt.savefig(buffer, format='png') 
+    buffer.seek(0) 
+    plt.close() 
+    
+    # Convertir la gráfica a base64 
+    image_png = buffer.getvalue() 
+    buffer.close() 
+    graphicG = base64.b64encode(image_png) 
+    graphicG = graphicG.decode('utf-8') 
+    
+    # Renderizar la plantilla 
+    # admin.html con la gráfica 
+    return render(request, 'admin.html', {'graphic': graphic, 'graphicG': graphicG})
+
 
             
     

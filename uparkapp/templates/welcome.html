@@ -64,14 +64,42 @@
           <td><button type="submit" class="btn btn-primary btn-block">Recharge</button></td>
           <td><input type="hidden" name="type" value="0"> </td>
           <!-- td><button type="submit" class="btn btn-primary btn-danger"><a href="main/">Exit</a></button></td> -->
-          <td colspan="3"><a href="http://127.0.0.1:8000/" class="btn btn-danger  btn-block">Exit</a></td>
+          <td colspan="3"><a href="/welcome/" class="btn btn-danger  btn-block">Exit</a></td>
           <td><input type="hidden" name="type" value="0"></td>
         </tr>
        
       </table>
-     
+      <br> 
+  <!-- List pay -->
+
+      <table class="table table-bordered table-query table-striped">
+        <thead>
+          <tr colspan="2">
+            <h2>List pay</h2>
+          </tr>
+         
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Transation</th>
+            <th scope="col">date</th>
+  
+          </tr>
+        </thead>
+        <tbody>
+          {% for LisPay in Viewpay %}
+          <tr>
+            <td>{{LisPay.idPay}}</td>
+            <td>{{LisPay.TransationValue}}</td>
+            <td>{{LisPay.date}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    <!--        -->
       </form>
   </div>
-  
+
+
 </body>
 {% endblock %}

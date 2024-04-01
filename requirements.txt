@@ -1,6 +1,7 @@
 Python
 django
-Pillowpandas
+Pillow
+pandas
 matplotlib
 qrcode
 openpyxl

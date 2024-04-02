@@ -43,7 +43,9 @@ def adminuser(request):
     return render (request, 'adminuser.html')
 
 def card(request):
-    cardList= Card.objects.all().order_by("idCard")
+    #userList= Person.objects.select_related ('idPerson').all()
+    cardList= Card.objects.select_related ('idPerson').all()
+    
     return render (request, 'card.html',{"Card": cardList})
 
 def visitor(request):
@@ -286,7 +288,7 @@ def statistics_view(request):
     graphic = base64.b64encode(image_png) 
     graphic = graphic.decode('utf-8') 
 
-    #---Creacion grafica por genero----#
+    #---Creacion grafica por vehiculo----#
     bar_width = 0.5 
     # Posiciones de las barras 
     bar_positions = range(len(pay_counts_by_vehicle)) 

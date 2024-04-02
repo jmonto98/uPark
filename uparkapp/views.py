@@ -240,47 +240,47 @@ def statistics_view(request):
     
     # Filtrar los pagos por fecha y contar la cantidad de pagos por fecha 
     for pay in all_pays:         
-        date = pay.date.date if pay.date.date else "None" 
-        if date in pay_counts_by_date: 
-            pay_counts_by_date[pay] += 1 
-        else: 
-            pay_counts_by_date[pay] = 1  
+        # date = pay.date.date if pay.date.date else "None" 
+        # if date in pay_counts_by_date: 
+        #     pay_counts_by_date[pay] += 1 
+        # else: 
+        #     pay_counts_by_date[pay] = 1  
         #Captura datos por Vehiculo
-        veh = pay.idVehicle
-        vehicle = veh[0] if veh[0] else "None" 
-        if vehicle in pay_counts_by_vehicle: 
-            pay_counts_by_vehicle[vehicle] += 1 
+        vehicle = pay.idVehicle
+
+        if vehicle.type in pay_counts_by_vehicle: 
+            pay_counts_by_vehicle[vehicle.type] += 1 
         else: 
-            pay_counts_by_vehicle[vehicle] = 1    
+            pay_counts_by_vehicle[vehicle.type] = 1    
         
-    # Ancho de las barras 
-    bar_width = 0.5 
-    # Posiciones de las barras 
-    bar_positions = range(len(pay_counts_by_date)) 
+    # # Ancho de las barras 
+    # bar_width = 0.5 
+    # # Posiciones de las barras 
+    # bar_positions = range(len(pay_counts_by_date)) 
     
-    # Crear la gráfica de barras 
-    plt.bar(bar_positions, pay_counts_by_date.values(), width=bar_width, align='center', color ='green') 
+    # # Crear la gráfica de barras 
+    # plt.bar(bar_positions, pay_counts_by_date.values(), width=bar_width, align='center', color ='green') 
     
-    # Personalizar la gráfica 
-    plt.title('Pay per Date') 
-    plt.xlabel('Date') 
-    plt.ylabel('Number of pay') 
-    plt.xticks(bar_positions, pay_counts_by_date.keys(), rotation=90) 
+    # # Personalizar la gráfica 
+    # plt.title('Pay per Date') 
+    # plt.xlabel('Date') 
+    # plt.ylabel('Number of pay') 
+    # plt.xticks(bar_positions, pay_counts_by_date.keys(), rotation=90) 
     
-    # Ajustar el espaciado entre las barras 
-    plt.subplots_adjust(bottom=0.3) 
+    # # Ajustar el espaciado entre las barras 
+    # plt.subplots_adjust(bottom=0.3) 
     
-    # Guardar la gráfica en un objeto BytesIO
-    buffer = io.BytesIO() 
-    plt.savefig(buffer, format='png') 
-    buffer.seek(0) 
-    plt.close() 
+    # # Guardar la gráfica en un objeto BytesIO
+    # buffer = io.BytesIO() 
+    # plt.savefig(buffer, format='png') 
+    # buffer.seek(0) 
+    # plt.close() 
     
-    # Convertir la gráfica a base64 
-    image_png = buffer.getvalue() 
-    buffer.close() 
-    graphic = base64.b64encode(image_png) 
-    graphic = graphic.decode('utf-8') 
+    # # Convertir la gráfica a base64 
+    # image_png = buffer.getvalue() 
+    # buffer.close() 
+    # graphic = base64.b64encode(image_png) 
+    # graphic = graphic.decode('utf-8') 
 
     #---Creacion grafica por genero----#
     bar_width = 0.5 
@@ -288,14 +288,13 @@ def statistics_view(request):
     bar_positions = range(len(pay_counts_by_vehicle)) 
     
     # Crear la gráfica de barras 
-    ax=plt.subplot()
-    ax.stem(bar_positions,pay_counts_by_vehicle.values(),linefmt = 'k--')
+    plt.bar(bar_positions, pay_counts_by_vehicle.values(), width=bar_width, align='center') 
     
     # Personalizar la gráfica 
     plt.title('Pay per Vehicle') 
     plt.xlabel('Vehicle') 
     plt.ylabel('Number of pay') 
-    plt.xticks(bar_positions, pay_counts_by_vehicle.keys(), rotation='vertical') 
+    plt.xticks(bar_positions, sorted(pay_counts_by_vehicle.keys()), rotation='vertical') 
     
     # Ajustar el espaciado entre las barras 
     plt.subplots_adjust(bottom=0.3) 
@@ -314,7 +313,7 @@ def statistics_view(request):
     
     # Renderizar la plantilla 
     # admin.html con la gráfica 
-    return render(request, 'admin.html', {'graphic': graphic, 'graphicG': graphicG})
+    return render(request, 'admin.html', {'graphicG': graphicG})
 
 
             

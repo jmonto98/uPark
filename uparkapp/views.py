@@ -244,7 +244,6 @@ def statistics_view(request):
     for pay in all_pays:
 
         date = pay.date
-        #date = datetime.strptime(pay.date, "%Y-%m-%d %H:%M:%S")
         date = date.strftime("%d/%m/%Y")
         if date in pay_counts_by_date: 
             pay_counts_by_date[date] += 1 
@@ -271,7 +270,10 @@ def statistics_view(request):
     plt.title('Pay per Date') 
     plt.xlabel('Date') 
     plt.ylabel('Number of pay') 
-    plt.xticks(bar_positions, pay_counts_by_date.keys(), rotation=90) 
+    plt.xticks(bar_positions, sorted(pay_counts_by_date.keys()), rotation=90) 
+
+    for i, label in enumerate(pay_counts_by_date.values()):
+        plt.annotate(label, (i-0.2, (label/2)))
     
     # Ajustar el espaciado entre las barras 
     plt.subplots_adjust(bottom=0.3) 
@@ -299,8 +301,11 @@ def statistics_view(request):
     # Personalizar la gráfica 
     plt.title('Pay per Vehicle') 
     plt.xlabel('Vehicle') 
-    plt.ylabel('Number of pay') 
-    plt.xticks(bar_positions, sorted(pay_counts_by_vehicle.keys()), rotation='vertical') 
+    plt.ylabel('Number of pay')
+    plt.xticks(bar_positions, sorted(pay_counts_by_vehicle.keys()), rotation='vertical')
+
+    for i, label in enumerate(pay_counts_by_vehicle.values()):
+        plt.annotate(label, (i-0.05, (label/2)))
     
     # Ajustar el espaciado entre las barras 
     plt.subplots_adjust(bottom=0.3) 

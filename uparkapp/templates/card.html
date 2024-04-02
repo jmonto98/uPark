@@ -55,6 +55,7 @@
           <tr>
             <th scope="col">Id Card</th>
             <th scope="col">Id Person</th>
+            <th scope="col">Name</th>
             <th scope="col">Balance</th>
             <th scope="col">Status</th>
             <th scope="col" colspan="1">Options</th>
@@ -65,8 +66,18 @@
           <tr>
             <td>{{c.idCard}}</td>
             <td>{{c.idPerson_id}}</td>
+            <td>{{c.idPerson.firstName}} {{c.idPerson.lastName}}</td>
             <td>{{c.balance}}</td>
-            <td>{{c.status}}</td>
+            <!--td>{{c.status}}</!--td-->
+            <td>{% if c.status =='A' %}
+              <p>Activo</p>
+              {% elif c.status =='I' %}
+              <p>Inactivo</p>
+              {% else %}
+              <p>Otro estado</p>
+              {% endif %}
+
+            </td>
             <td>
               <a
                 href="/editCard/{{c.idCard}}"

@@ -1,10 +1,9 @@
-{% extends "./navigator.html" %} {% block title %} uPark {% endblock %} 
-{% block body %}
+{% extends "./navigator.html" %} {% block title %} uPark {% endblock %} {% block body %}
 
 <body>
   <div class="container">
     {% comment %}
-     <form action="/addCard/" method="POST">
+    <form action="/addCard/" method="POST">
       <h2>Create Card</h2>
       <div class="container-fluid">
         {% csrf_token %}
@@ -43,7 +42,7 @@
           Save
         </button>
       </div>
-    </form> 
+    </form>
     {% endcomment %}
     <!--LIST-->
     <div class="container mt-4">
@@ -69,14 +68,14 @@
             <td>{{c.idPerson.firstName}} {{c.idPerson.lastName}}</td>
             <td>{{c.balance}}</td>
             <!--td>{{c.status}}</!--td-->
-            <td>{% if c.status =='A' %}
-              <p>Activo</p>
-              {% elif c.status =='I' %}
-              <p>Inactivo</p>
+            <td>
+              {% if c.status == 'A' %}
+                Active
+              {% elif c.status == 'I' %}
+                Inactive
               {% else %}
-              <p>Otro estado</p>
+                Other status
               {% endif %}
-
             </td>
             <td>
               <a

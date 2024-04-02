@@ -16,7 +16,7 @@ def cusGen():
 
 
 def qrGenerate(cus, vehicleType, now):
-    #now = datetime.now()
+    now = datetime.strptime(now, "%Y-%m-%d %H:%M:%S")
     input = 'uPark- '+ vehicleType + ' Ticket -' + now.strftime('%d%m%Y_%H%M%S') + '-' + cus
     nameQr = vehicleType+'_'+cus+'.png'
     qr = qrcode.QRCode(version=1,box_size=10,border=5)
@@ -36,4 +36,3 @@ def encryptPwd(pwd):
 
 def decryptPwd(encripted, pwd):   
     return check_password_hash(encripted, pwd)
-

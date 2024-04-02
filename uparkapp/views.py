@@ -43,9 +43,7 @@ def adminuser(request):
     return render (request, 'adminuser.html')
 
 def card(request):
-    #userList= Person.objects.select_related ('idPerson').all()
-    cardList= Card.objects.select_related ('idPerson').all()
-    
+    cardList= Card.objects.select_related ('idPerson').all()    
     return render (request, 'card.html',{"Card": cardList})
 
 def visitor(request):

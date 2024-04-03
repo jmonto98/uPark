@@ -6,3 +6,4 @@ matplotlib
 qrcode
 openpyxl
 Werkzeug
+openai

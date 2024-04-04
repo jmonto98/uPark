@@ -44,8 +44,7 @@ def adminuser(request):
 
 def card(request):
     #userList= Person.objects.select_related ('idPerson').all()
-    cardList= Card.objects.select_related ('idPerson').all()
-    
+    cardList= Card.objects.select_related ('idPerson').all()    
     return render (request, 'card.html',{"Card": cardList})
 
 def visitor(request):
@@ -195,7 +194,7 @@ def welcome (request):
     #if person.password == request.POST['password']:
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
-           return render(request, "Admin.html")
+            return render(request, "admin.html")
         else:
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
     else:
@@ -264,8 +263,9 @@ def statistics_view(request):
     bar_positions = range(len(pay_counts_by_date)) 
     
     # Crear la gráfica de barras 
-    plt.bar(bar_positions, pay_counts_by_date.values(), width=bar_width, align='center', color ='green') 
-    
+    #plt.bar(bar_positions, pay_counts_by_date.values(), width=bar_width, align='center', color ='green') 
+    plt.subplots()
+    plt.plot( pay_counts_by_date.values())
     # Personalizar la gráfica 
     plt.title('Pay per Date') 
     plt.xlabel('Date') 
@@ -273,7 +273,7 @@ def statistics_view(request):
     plt.xticks(bar_positions, sorted(pay_counts_by_date.keys()), rotation=90) 
 
     for i, label in enumerate(pay_counts_by_date.values()):
-        plt.annotate(label, (i-0.2, (label/2)))
+        plt.annotate(label, (i, label))
     
     # Ajustar el espaciado entre las barras 
     plt.subplots_adjust(bottom=0.3) 

@@ -32,5 +32,9 @@
     class="d-inline-block align-text-top"/></a>
     <h2><a href="../static/images/qrcodes/{{ qr }}" class="btn btn-primary  btn-block" download>Download QR Code</a></h2>
     <h2><a href="http://127.0.0.1:8000/" class="btn btn-primary  btn-block" >Return</a></h2>
-    
+    <h2><FONT size=5 COLOR="#007bff">¡This ticket is valid for today only!</FONT></h2>
+    <script>
+      date = new Date().toLocaleDateString();
+      document.write("This ticket expires on " + date + " 23:59");
+    </script>
 </div>

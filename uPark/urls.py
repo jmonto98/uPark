@@ -26,7 +26,7 @@ urlpatterns = [
     path('addCard/',appViews.addCard),
     path('addPerson/',appViews.addPerson),
     path('addVehicle/',appViews.addVehicle),
-    path('admin/', appViews.statistics_view),
+    path('admin/', appViews.statistics_view, name="admin"),
     path('adminuser/', appViews.adminuser),
     path('card/',appViews.card),
     path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle"),

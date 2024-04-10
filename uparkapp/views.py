@@ -22,6 +22,10 @@ from datetime import datetime
 
 #Manejo de libros de excel
 from openpyxl import Workbook
+from openpyxl.styles import Font, Color,colors,Alignment
+import xlsxwriter
+import pandas as pd
+import datetime
 
 
 # Create your views here.
@@ -199,30 +203,6 @@ def welcome (request):
     else:
         return render(request, "login.html",{"error": "Contraseña inválida"})
 
-#"Pendiente-en construccion"
-def reportVehicle(request):
-    vehicle = Vehicle.objects.all()
-    wb = Workbook()
-    ws = wb.active
-    ws['A1'] = 'VEHICLE LIST'
-    #Cabezera de reporte
-    ws.merge_cells('A1:C1')
-    ws['A3'] = 'Id Vehicle'
-    ws['B3'] = 'Type Vehicle'
-    ws['C3'] = 'Rate'
-    
-    cont = 5
-    for vechicle in vechicle:
-        ws.cell(row = cont, column =2).value = vehicle.idVehicle
-        ws.cell(row = cont, column =3).value = vehicle.type
-        ws.cell(row = cont, column =4).value = vehicle.rate
-        cont += 1
-    fileName= "List_Vechicle_Upark.xlsx"
-    response = HttpResponse(content_type = "applications/ms-excel")
-    content = "attachment"; filename={0},format(fileName)
-    response['Content-Disposition'] = content
-    wb.save(response)
-    return (response)
 
 def Viewpay(request):
     paylist=Pay.objects.filter(idPerson_id=request.GET ['idPerson_id']).order_by("idPay")  
@@ -325,7 +305,147 @@ def statistics_view(request):
     # admin.html con la gráfica 
     return render(request, 'admin.html', {'graphic': graphic,'graphicG': graphicG})
 
+def reportVehicle(request):
+    vehicle = Vehicle.objects.all()
+    wb = Workbook()
+    ws = wb.active
+    font = Font(b=True, color="00000080")
+    alignment = Alignment(horizontal="center", vertical="center")
+    a1 = ws['A1']
+    a1.font = font 
+    a1.alignment = alignment
+    a1.value  = 'VEHICLE LIST'
+    #Cabezera de reporte
+    ws.merge_cells('A1:C1')
+    a3 = ws['A3']
+    b3 = ws['B3'] 
+    c3 = ws['C3']
+    a3.font = font 
+    a3.alignment = alignment
+    b3.font = font 
+    b3.alignment = alignment
+    c3.font = font 
+    c3.alignment = alignment    
+    a3.value = 'Id Vehicle'
+    b3.value = 'Type Vehicle'
+    c3.value = 'Rate'
+    
+    cont = 5
+    for vehicle in vehicle:
+        ws.cell(row = cont, column =1).value = vehicle.idVehicle
+        ws.cell(row = cont, column =2).value = vehicle.type
+        ws.cell(row = cont, column =3).value = vehicle.rate
+        cont += 1
+    fileName= "List_vehicle_uPark.xlsx"
+    response = HttpResponse(content_type = "applications/ms-excel")
+    content = "attachment; filename={0}".format(fileName)
+    response['Content-Disposition'] = content
+    wb.save(response)
+    return (response)
 
-            
-    
-    
+def reportCard(request):
+    card = Card.objects.select_related ('idPerson').all()   
+    wb = Workbook()
+    ws = wb.active
+    font = Font(b=True, color="00000080")
+    alignment = Alignment(horizontal="center", vertical="center")
+    a1 = ws['A1']
+    a1.font = font 
+    a1.alignment = alignment
+    a1.value  = 'CARD LIST'
+    #Cabezera de reporte
+    ws.merge_cells('A1:E1')
+    a3 = ws['A3']
+    b3 = ws['B3']
+    c3 = ws['C3']
+    d3 = ws['D3']
+    e3 = ws['E3']
+    a3.font = font 
+    a3.alignment = alignment
+    b3.font = font 
+    b3.alignment = alignment
+    c3.font = font 
+    c3.alignment = alignment
+    d3.font = font 
+    d3.alignment = alignment
+    e3.font = font 
+    e3.alignment = alignment    
+    a3.value = 'Id Card'
+    b3.value = 'Id Person'
+    c3.value = 'Name'
+    d3.value = 'Balance'
+    e3.value = 'Status'    
+    cont = 5
+    for card in card:
+        ws.cell(row = cont, column =1).value = card.idCard
+        ws.cell(row = cont, column =2).value = card.idPerson.idPerson
+        ws.cell(row = cont, column =3).value = card.idPerson.firstName+' '+card.idPerson.lastName
+        ws.cell(row = cont, column =4).value = card.balance
+        if card.status == 'A':
+            ws.cell(row = cont, column =5).value = "Active"
+        elif card.status == 'I':
+            ws.cell(row = cont, column =5).value = "Inactive"
+        else:
+            ws.cell(row = cont, column =5).value = "Other status"
+        #ws.cell(row = cont, column =5).value = card.status
+        cont += 1
+    fileName= "List_card_uPark.xlsx"
+
+    response = HttpResponse(content_type = "applications/ms-excel")
+    content = "attachment; filename={0}".format(fileName)
+    response['Content-Disposition'] = content
+    wb.save(response)
+    return (response)           
+
+def reportPay(request):
+    pay = Pay.objects.select_related ('idPerson').all()   
+    wb = Workbook()
+    ws = wb.active
+    font = Font(b=True, color="00000080")
+    alignment = Alignment(horizontal="center", vertical="center")
+    a1 = ws['A1']
+    a1.font = font 
+    a1.alignment = alignment
+    a1.value  = 'PAY LIST'
+    #Cabezera de reporte
+    ws.merge_cells('A1:F1')
+    a3 = ws['A3']
+    b3 = ws['B3']
+    c3 = ws['C3']
+    d3 = ws['D3']
+    e3 = ws['E3']
+    f3 = ws['F3']
+    a3.font = font 
+    a3.alignment = alignment
+    b3.font = font 
+    b3.alignment = alignment
+    c3.font = font 
+    c3.alignment = alignment
+    d3.font = font 
+    d3.alignment = alignment
+    e3.font = font 
+    e3.alignment = alignment 
+    f3.font = font 
+    f3.alignment = alignment    
+    a3.value = 'Id Pay'
+    b3.value = 'Id Person'
+    c3.value = 'Name'
+    d3.value = 'Vehicle'
+    e3.value = 'Value'   
+    f3.value = 'Date'    
+    cont = 5
+    for pay in pay:
+        ws.cell(row = cont, column =1).value = pay.idPay
+        ws.cell(row = cont, column =2).value = pay.idPerson.idPerson
+        ws.cell(row = cont, column =3).value = pay.idPerson.firstName+' '+pay.idPerson.lastName
+        ws.cell(row = cont, column =4).value = pay.idVehicle.type
+        ws.cell(row = cont, column =5).value = pay.transactionValue
+        ws.cell(row = cont, column =6).value = pay.date.strftime("%d/%m/%Y")
+        cont += 1
+    fileName= "List_pay_uPark.xlsx"
+
+    response = HttpResponse(content_type = "applications/ms-excel")
+    content = "attachment; filename={0}".format(fileName)
+    response['Content-Disposition'] = content
+    wb.save(response)
+    return (response)    

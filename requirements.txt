@@ -7,3 +7,4 @@ qrcode
 openpyxl
 Werkzeug
 openai
+xlsxwriter

@@ -1,34 +1,42 @@
-{% block content %}
-{% load static %}
+{% block content %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Log in uPark</title>
 
-    <link rel="stylesheet" href="{% static 'styles/styles_login.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/styles_login.css' %}" />
   </head>
- 
+
   <body>
     <div class="background"></div>
     <div class="card">
       <img class="logo" src="{% static "images/logo.png" %}">
-     
+
       <h4>uPark</h4>
-      <form class="form"  method="POST" action="/welcome/">
+      <form class="form" method="POST" action="/welcome/">
         {% csrf_token %}
-        <input type="email" placeholder="user@upark.com" class="form-control" id="username" name="username">
-        
-        <input type="password" placeholder="******" class="form-control" id="password" name="password">
-        <button>log in</button><br>
+        <input
+          type="email"
+          placeholder="user@upark.com"
+          class="form-control"
+          id="username"
+          name="username"
+        />
+
+        <input
+          type="password"
+          placeholder="******"
+          class="form-control"
+          id="password"
+          name="password"
+        />
+        <button>log in</button><br />
         <h5 class="text-center mb-4">{{error}}</h5>
       </form>
-  
     </div>
   </body>
-
 </html>
-
 
 {% endblock %}

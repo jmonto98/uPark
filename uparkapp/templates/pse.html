@@ -43,108 +43,125 @@
     }
   </style>
 </head>
+
+
+<div class="card">
+  <div class="card-header">
+    <h5>uParky</h5>
+  </div>
+</div>
+
+<br />
+
 <div class="container">
-  <form action="/validatePay/" method="POST">
-    <div class="container-fluid">
-      {% csrf_token %} {% load static %}
-      <div align="center">
-        <a href="http://127.0.0.1:8000/"><img src="{%static "images/PSE.png" %}" alt ="centered image" width
-        ="90" height = "84" class="d-inline-block align-text-top"></a>
+  <div class="row">
+    <div class="col-sm-2 col-lg-1"></div>
+    <div class="col-sm-4 col-lg-2">
+      <div class="card" style="width: 50rem">
+
+          <form action="/validatePay/" method="POST">
+            <div class="container-fluid">
+              {% csrf_token %} {% load static %}
+<br>
+              <div align="center">
+                <a href="http://127.0.0.1:8000/"><img src="{%static "images/PSE.png" %}" alt ="centered image" width
+                ="90" height = "84" class="d-inline-block align-text-top"></a>
+              </div>
+              <div class="row">
+			  
+                <div class="col-md-6">
+                  <label class="form-label">First Name</label>
+                  <input type="firstName" class="form-control" id="firstName"  required/>
+                  <label class="form-label">Phone</label>
+                  <input type="Phone" class="form-control" id="Phone" required/>
+                  <label class="form-label">Bank</label>
+                    <div class="d-flex">
+                      <div class="dropdown me-1">
+                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Bank
+                          </button class="btn btn-primary">
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Banco Caja Social</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Popular</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Credifinanciera</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Gnb Sudameris</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Av Villas</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Falabella</a></li>
+                            <li><a class="dropdown-item" href="#">Scotiabank Colpatria</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Daviviend</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Agrario</a></li>
+                            <li><a class="dropdown-item" href="#">BaBanco Agrarionco</a></li>
+                            <li><a class="dropdown-item" href="#">Bancamia</a></li>
+                            <li><a class="dropdown-item" href="#">Banco Pichincha</a></li>
+                            <li><a class="dropdown-item" href="#">Banco De Occidente W</a></li>
+                            <li><a class="dropdown-item" href="#">Bancolombia</a></li>
+                            <li><a class="dropdown-item" href="#">Itau</a></li>
+                            <li><a class="dropdown-item" href="#">Nequi</a></li>
+
+                         </ul>
+                      </div>
+                   </div>
+                  <label class="form-label">Rate</label>
+                  <input disabled type="text" class="form-control" name="Rate"  value={{ rate }} id="rate" required />
+                  <input hidden   type="text" class="form-control" name="_rate"  value={{ rate }}    />
+                  <input hidden   type="text" class="form-control"  name="idVehicle"   value= {{ idVehicle }}    />
+            
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last Name</label>
+                  <input type="lastName" class="form-control" id="lastName" required/>
+                  <label class="form-label">Mail</label>
+                  <input type="Mail" class="form-control" id="Mail" required/>
+                  <label class="form-label">Vehicle type</label>
+                  <input disabled type="text" class="form-control" name="vehicle"  value={{ vehicle }} id="vehicle" required />
+                  <input hidden type="text"   class="form-control" name="vehi"  value= {{ vehicle }}   />
+                  <input hidden type="text"   class="form-control" name="idPerson"    value={{ idPerson }}     />
+                </div>
+            </div>
+            </div>
+            {% csrf_token %}
+<br>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 col-lg-4"></div>
+                  <div class="col-sm-12 col-lg-5">
+                      <div class="card mb-3" style="width: 18rem">                    
+                          <button type="submit" class="btn btn-primary" name="accepted">
+                              Accepted
+                          </button>
+                      </div>
+
+                      
+
+
+                  </div> 
+                </div>     
+              </div>  
+            </div>
+
+          </form>
+          
+          <form action="/errors/" method="POST">
+            <div class="container-fluid">
+              {% csrf_token %} {% load static %}
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 col-lg-4"></div>
+                    <div class="col-sm-12 col-lg-5">
+                        <div class="card mb-3" style="width: 18rem">  
+                          <button type="submit" class="btn btn-sm btn-danger btn-block" name="declined">
+                              Declined
+                          </button>
+                        </div>
+                    </div> 
+                  </div>     
+                </div>  
+              <input hidden type="text" name="error" value="Transacción rechazada!"  class="form-control" />
+              </div>
+            </div>
+          </form>
+        
       </div>
-      <label class="form-label">First Name</label>
-      <input type="firstName" class="form-control" id="firstName"  required/>
-      <label class="form-label">Last Name</label>
-      <input type="lastName" class="form-control" id="lastName" required/>
-      <label class="form-label">Phone</label>
-      <input type="Phone" class="form-control" id="Phone" required/>
-      <label class="form-label">Mail</label>
-      <input type="Mail" class="form-control" id="Mail" required/>
-      <label class="form-label">Bank</label>
-      <select class="form-select" aria-label="Bank" required>
-        <option selected>Select Bank</option>
-        <option value="1">Banco Caja Social</option>
-        <option value="2">Banco Popular</option>
-        <option value="3">Banco De Bogota</option>
-        <option value="4">Banco Credifinanciera</option>
-        <option value="5">Banco Gnb Sudameris</option>
-        <option value="6">Banco Av Villas</option>
-        <option value="7">Banco Falabella</option>
-        <option value="8">Scotiabank Colpatria</option>
-        <option value="9">Banco Davivienda</option>
-        <option value="10">Banco Agrario</option>
-        <option value="11">Bancamia</option>
-        <option value="12">Banco Pichincha</option>
-        <option value="13">Banco W</option>
-        <option value="14">Banco De Occidente</option>
-        <option value="15">Bancolombia</option>
-        <option value="16">Itau</option>
-        <option value="17">Nequi</option>
-      </select>
-      <br />
-      <label class="form-label">Vehicle type</label>
-      <input
-        disabled
-        type="text"
-        name="vehicle"
-        value={{ vehicle }}
-        class="form-control"
-      />
-      <input
-        hidden
-        type="text"
-        name="vehi"
-        value= {{ vehicle }}
-        class="form-control"
-      />
-      <input
-        hidden
-        type="text"
-        name="idVehicle"
-        value= {{ idVehicle }}
-        class="form-control"
-      />
-      <label class="form-label">Rate</label>
-      <input
-        disabled
-        type="text"
-        name="rate"
-        value={{ rate }}
-        class="form-control"
-      />
-      <input
-        hidden
-        type="text"
-        name="_rate"
-        value={{ rate }}
-        class="form-control"
-      />
-      <input
-        hidden
-        type="text"
-        name="idPerson"
-        value={{ idPerson }}
-        class="form-control"
-      />
-      <br />
-      <button type="submit" class="btn btn-sm btn-success btn-block" name="accepted">
-        Accepted
-      </button>      
     </div>
-  </form>
- 
-  <form action="/errors/" method="POST">
-    <div class="container-fluid">
-      {% csrf_token %} {% load static %}
-      <button type="submit" class="btn btn-sm btn-success btn-block" name="declined">
-        Declined
-      </button>
-      <input
-          hidden
-          type="text"
-          name="error"
-          value="Transacción rechazada!"
-          class="form-control"
-      />
-    </div>
-  </form>
+  </div>
 </div>

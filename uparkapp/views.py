@@ -199,15 +199,28 @@ def welcome (request):
         if person.personType == 'A':
             return render(request, "admin.html")
         else:
-            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
+          
+            if ( person.idPerson):   
+                paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("idPay")  
+                return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})
+            else:
+                return render (request, 'errors.html',{"error": "no entro"})
+
+
     else:
         return render(request, "login.html",{"error": "Contraseña inválida"})
 
 
 def Viewpay(request):
-    paylist=Pay.objects.filter(idPerson_id=request.GET ['idPerson_id']).order_by("idPay")  
-   
-    return render(request,'welcome.html',{"welcome":paylist})
+    IdPerson = request.GET.get('idPerson')
+    if (IdPerson):    
+        paylist=Pay.objects.filter(idPerson_id=IdPerson).order_by("idPay")  
+        return render(request,'welcome.html',{"Viewpay":paylist})
+    else:
+         return render (request, 'errors.html',{"error": "no entro"})
+
+
+
 
 def statistics_view(request): 
     matplotlib.use('Agg') 

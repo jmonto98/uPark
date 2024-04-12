@@ -14,19 +14,32 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-      }
-      header,
-      nav,
-      section,
-      footer {
-        border: 1px solid #000;
-        padding: 10px;
+        background-color: #C5C3C6; /* Cambia este valor al código del color deseado */
       }
       header {
         display: flex;
         justify-content: space-between;
-        align-items: left;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #1985A1;
+        border:0px !important ;
+        
       }
+    
+      
+    
+      .logo img {
+        width: 100px; /* Ajusta el tamaño de la imagen según necesites */
+        height: auto;
+      }
+
+      header,nav,section,
+      footer {
+        border: 1px solid #000;
+        padding: 10px;
+      }
+      
+    
 
       nav {
         width: 200px;
@@ -35,33 +48,51 @@
       section {
         clear: both;
       }
-      .button {
+      .btn-primary {
         display: inline-block;
         margin: 5px;
         padding: 5px 10px;
-        background: #ddd;
+        background: #1985A1 !important;
       }
+      .btn-primary:hover {
+        background: #4C5C68 !important; 
+    }
       .container {
         flex-wrap: nowrap | wrap | wrap-reverse;
       }
+      .card-title{
+        text-align: start;
+        transition-property: opacity, transform;
+        font-family: Rajdhani !important;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        font-optical-sizing: auto;
+        line-height: initial;
+        opacity: 1;
+        transition-duration: 350ms;
+    }
+     
+   
     </style>
   </head>
   
   <body>
-    <div class="card">
-      <div class="card-header">
-        <h5>uPark</h5>
-      </div>
+    <div class="card ">
+      <header>
+        <div class="logo ">Upark</div>
+        <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo de Upark"></div>
+      </header>
     </div>
 
     <br />
-    <div class="container">
+    <div class="container "><br><br>
       <div class="row">
-        <div class="col-sm-12 col-lg-2"></div>
-        <div class="col-sm-12 col-lg-4">
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Recharge your card</h5>
+        <div class="col-sm-12 col-lg-2"></div> 
+        <div class="col-sm-12 col-lg-4  align-items-center">
+          <div class="card " style="width: 18rem">
+            <div  style="height:320px; width:100% " class="card-body ">
+              <h5 class="card-title ">Recharge your card</h5>
 
               <form method="POST" action="/welcome/">
                 {% csrf_token %}
@@ -75,7 +106,7 @@
                     name="username"
                   />
                 </div>
-                <div class="form-group">
+                <div class="form-group ">
                   <label for="password">Password:</label>
                   <input
                     type="password"
@@ -94,18 +125,17 @@
           </div>
         </div>
 
-        <div class="col-sm-12 col-lg-4">
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <img
-                src="{% static 'images/logo.png' %}" class="img-thumbnail"  alt="Logo"  width="100"  height="100"
-              />
+        <div class="col-sm-12 col-lg-4 align-items-cente">
+
+          <div  class="card" style="width: 18rem">
+            <div style="height:320px; width:100%" class="card-body">
+              
               <h5 class="card-title">Buy your ticket</h5>
               {% for vehicle in Vehicles %}
               <form action="/pse/" method="POST">
                 {% csrf_token %} {% if vehicle.rate > 0 %}
 
-                <div class="row">
+                <div  class="row ">
 
                   <div class="card mb-3" style="width: 18rem">
                     

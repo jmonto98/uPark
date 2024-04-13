@@ -1,3 +1,4 @@
+{% block content %} {% load static %}
 <title>{% block title %} uPark {% endblock %} </title>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,17 +12,54 @@
     />
     <style>
       body {
+        font-family: Rajdhani !important;
+        background-color: #C5C3C6; /* Cambia este valor al código del color deseado */
+      }
+      
+      header {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        height: 100vh;
+        padding: 10px 20px;
+        background-color: #1985A1;
+        border:0px !important ;
+        
       }
-      .login-form {
-        width: 300px;
+      .logo img {
+        width: 100px; /* Ajusta el tamaño de la imagen según necesites */
+        height: auto;
       }
+      .card {
+        border-radius: .60rem;
+    }
     </style>
   </head>
   <body>
-    <h1>{{ error }}</h1>
+    <div class="card">
+      <header>
+        <div class="logo ">Upark</div>
+        <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo de Upark"></div>
+      </header>
+    </div>
+    
+    <br />
+
+    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h1>{{ error }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+
   </body>
 </html>
+
+
+{% endblock %}

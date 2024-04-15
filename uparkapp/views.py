@@ -1,4 +1,4 @@
-import re
+from django.utils import timezone
 from .functions import *
 from typing import Any
 from django.utils.datastructures import MultiValueDictKeyError
@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import io
 import urllib, base64
+import datetime
 from datetime import datetime
 
 #Manejo de libros de excel
@@ -25,7 +26,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, Color,colors,Alignment
 import xlsxwriter
 import pandas as pd
-import datetime
+
 
 
 # Create your views here.
@@ -37,7 +38,7 @@ def main(request):
 def login(request):
     return render(request, 'login.html')
 
-def admin(request):
+def admini(request):
     return render (request, 'admin.html')
 
 def prueba(request):
@@ -77,8 +78,8 @@ def validatePay(request):
     try:
         cus = cusGen()
         now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        
-        person = Person.objects.get(idPerson = request.POST['idPerson'])
+        #return render (request, 'errors.html',{"error": h})
+        person = Person.objects.get(idPerson = request.POST ['idPerson'])
         vehicle = Vehicle.objects.get(idVehicle = request.POST ['idVehicle'])
         
         pay = Pay.objects.create(transactionValue = request.POST ['_rate'],
@@ -89,7 +90,7 @@ def validatePay(request):
         
         if vehicle.idVehicle != 0:
             qr = qrGenerate(cus, vehicle.type, now)
-            pay.save()
+            #pay.save()
             return render (request, 'generateQr.html', {"qr":qr})
         else:            
             card = Card.objects.get(idPerson = person.idPerson)
@@ -97,10 +98,10 @@ def validatePay(request):
             card.balance = card.balance + int(request.POST['_rate'])
             card.save()
             pay.save()
-            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance})
-            
+            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("idPay")  
+            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})     
     except:
-        return render (request, 'errors.html',{"error": "Algo salío mal durante la transacción"})
+        return render (request, 'errors.html',{"error": "Something went wrong durig the transaction"})
 
 def addVehicle (request):
     type = request.POST ['type']
@@ -194,21 +195,14 @@ def welcome (request):
         return render(request, "login.html",{"error": "usuario no existe"})
     
     if (decryptPwd(person.password, request.POST['password'])):
-    #if person.password == request.POST['password']:
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
-            return render(request, "admin.html")
+            return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
         else:
-          
-            if ( person.idPerson):   
-                paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("idPay")  
-                return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})
-            else:
-                return render (request, 'errors.html',{"error": "no entro"})
-
-
+            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("idPay")  
+            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})
     else:
-        return render(request, "login.html",{"error": "Contraseña inválida"})
+        return render(request, "login.html",{"error": "Usuario o contraseña inválida"})
 
 
 def Viewpay(request):
@@ -218,8 +212,6 @@ def Viewpay(request):
         return render(request,'welcome.html',{"Viewpay":paylist})
     else:
          return render (request, 'errors.html',{"error": "no entro"})
-
-
 
 
 def statistics_view(request): 
@@ -455,7 +447,7 @@ def reportPay(request):
         ws.cell(row = cont, column =5).value = pay.transactionValue
         ws.cell(row = cont, column =6).value = pay.date.strftime("%d/%m/%Y")
         cont += 1
-    fileName= "List_pay_uPark.xlsx"
+    fileName= "List_pay_uPark.csv"
 
     response = HttpResponse(content_type = "applications/ms-excel")
     content = "attachment; filename={0}".format(fileName)

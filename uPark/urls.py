@@ -26,7 +26,7 @@ urlpatterns = [
     path('addCard/',appViews.addCard),
     path('addPerson/',appViews.addPerson),
     path('addVehicle/',appViews.addVehicle),
-    path('admin/', appViews.statistics_view, name="admin"),
+    path('admin/', appViews.statistics_view),
     path('adminuser/', appViews.adminuser),
     path('card/',appViews.card),
     path('deleteVehicle/<idVehicle>', appViews.deleteVehicle, name="deleteVehicle"),
@@ -37,7 +37,6 @@ urlpatterns = [
     path('errors/', appViews.errors),
     path('generateQr/', appViews.generateQr, name="qr"),
     path('validatePay/', appViews.validatePay),
-    path('login/', appViews.login),
     path('main', appViews.main),
     path('manage/', admin.site.urls),#Administrador del proyecto django
     path('pse/', appViews.pse),

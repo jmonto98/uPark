@@ -48,114 +48,94 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="card">
-              <div class="card-body">
-              
-                  <form action="/validatePay/" method="POST">
-                    <div class="container-fluid ">
-                      {% csrf_token %} {% load static %}
-                      <div align="center">
-                        <a href="http://127.0.0.1:8000/"><img src="{%static "images/PSE.png" %}" alt ="centered image" width
-                        ="90" height = "84" class="d-inline-block align-text-top"></a>
-                      </div>
-                      <div class="row">
+              <div class="card-body">          
+                <div class="container-fluid ">
+                  {% csrf_token %} {% load static %}
+                  <div align="center">
+                    <a href="http://127.0.0.1:8000/"><img src="{%static "images/PSE.png" %}" alt ="centered image" width
+                    ="90" height = "84" class="d-inline-block align-text-top"></a>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="firstName" class="form-control" id="firstName"  required/>
+                      <label class="form-label">First Name</label>
+                      
+                      <input type="Phone" class="form-control" id="Phone" required/>
+                      <label class="form-label">Phone</label>
+
+                      <input disabled type="text" class="form-control" name="Rate"  value={{ rate }} id="rate" required />
+                      <label class="form-label">Rate</label>
                 
-                        <div class="col-md-6">
-                          <label class="form-label">First Name</label>
-                          <input type="firstName" class="form-control" id="firstName"  required/>
-                          <label class="form-label">Phone</label>
-                          <input type="Phone" class="form-control" id="Phone" required/>
-                          <label class="form-label">Bank</label>
-                            <div class="d-flex">
-                              <div class="dropdown me-1">
-                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Select Bank
-                                  </button class="btn btn-primary">
-                                    <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Banco Caja Social</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Popular</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Credifinanciera</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Gnb Sudameris</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Av Villas</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Falabella</a></li>
-                                    <li><a class="dropdown-item" href="#">Scotiabank Colpatria</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Daviviend</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Agrario</a></li>
-                                    <li><a class="dropdown-item" href="#">BaBanco Agrarionco</a></li>
-                                    <li><a class="dropdown-item" href="#">Bancamia</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco Pichincha</a></li>
-                                    <li><a class="dropdown-item" href="#">Banco De Occidente W</a></li>
-                                    <li><a class="dropdown-item" href="#">Bancolombia</a></li>
-                                    <li><a class="dropdown-item" href="#">Itau</a></li>
-                                    <li><a class="dropdown-item" href="#">Nequi</a></li>
-        
-                                 </ul>
-                              </div>
-                           </div>
-                          <label class="form-label">Rate</label>
-                          <input disabled type="text" class="form-control" name="Rate"  value={{ rate }} id="rate" required />
-                          <input hidden   type="text" class="form-control" name="_rate"  value={{ rate }}    />
-                          <input hidden   type="text" class="form-control"  name="idVehicle"   value= {{ idVehicle }}    />
-                    
-                        </div>
-                        <div class="col-md-6">
-                          <label class="form-label">Last Name</label>
-                          <input type="lastName" class="form-control" id="lastName" required/>
-                          <label class="form-label">Mail</label>
-                          <input type="Mail" class="form-control" id="Mail" required/>
-                          <label class="form-label">Vehicle type</label>
-                          <input disabled type="text" class="form-control" name="vehicle"  value={{ vehicle }} id="vehicle" required />
-                          <input hidden type="text"   class="form-control" name="vehi"  value= {{ vehicle }}   />
-                          <input hidden type="text"   class="form-control" name="idPerson"    value={{ idPerson }}     />
-                        </div>
+                      <select class="form-control" name="banks" id="banks"> 
+                        <option value="">-------</option> 
+                        <option value="Banco Caja Social">Banco Caja Social</option> 
+                        <option value="BBVA">BBVA</option> 
+                        <option value="Bancolombia">Bancolombia</option> 
+                        <option value="Itau">Itau</option> 
+                      </select>
+                      <label class="form-label">Select a Bank</label> 
                     </div>
+                      
+                    <div class="col-md-6">
+                      <input type="lastName" class="form-control" id="lastName" required/>
+                      <label class="form-label">Last Name</label>
+                      
+                      <input type="Mail" class="form-control" id="Mail" required/>
+                      <label class="form-label">Mail</label>
+
+                      <input disabled type="text" class="form-control" name="vehicle"  value={{ vehicle }} id="vehicle" required />
+                      <label class="form-label">Vehicle type</label>
                     </div>
-                    {% csrf_token %}
-        <br>
+                  </div>
+               
+                <br>
+
+                <form action="/validatePay/" method="POST">
+                  {% csrf_token %} {% load static %}
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12 col-lg-4"></div>
+                        <div class="col-sm-12 col-lg-5">
+                            <div class="card mb-3" style="width: 18rem">                    
+                                <button type="submit" class="btn btn-primary" name="accepted">
+                                    Accepted
+                                </button>
+                                <input hidden type="text" class="form-control" name="idVehicle"   value= {{ idVehicle }}    />
+                                <input hidden type="text" class="form-control" name="_rate"  value={{ rate }}    />
+                                <input hidden type="text" class="form-control" name="idPerson"    value={{ idPerson }}     />
+                            </div>
+                        </div> 
+                      </div>     
+                    </div>  
+                  </div>
+                </form>
+
+                <form action="/errors/" method="POST">
+                  {% csrf_token %} {% load static %}
+                  <div class="container-fluid">
                     <div class="container">
                       <div class="row">
                         <div class="col-sm-12 col-lg-4"></div>
-                          <div class="col-sm-12 col-lg-5">
-                              <div class="card mb-3" style="width: 18rem">                    
-                                  <button type="submit" class="btn btn-primary" name="accepted">
-                                      Accepted
-                                  </button>
-                              </div>
-                          </div> 
-                        </div>     
-                      </div>  
-                    </div>
-        
-                  </form>
-
-                  
-          <form action="/errors/" method="POST">
-            <div class="container-fluid">
-              {% csrf_token %} {% load static %}
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm-12 col-lg-4"></div>
-                  <div class="col-sm-12 col-lg-5">
-                    <div class="card mb-3" >  
-                      <button type="submit" class="btn btn-danger" name="Declined">
-                        Declined
-                    
-                      </button>
-                    </div>
-                  </div> 
-                  
-                </div>     
-              </div>  
-              <input hidden type="text" name="error" value="Transacción rechazada!"  class="form-control" />
-            </div>
-          </form>
-
+                        <div class="col-sm-12 col-lg-5">
+                          <div class="card mb-3" style="width: 18rem">  
+                            <button type="submit" class="btn btn-danger" name="Declined">
+                              Declined
+                            </button>
+                          </div>
+                        </div> 
+                        
+                      </div>     
+                    </div>  
+                    <input hidden type="text" name="error" value="The transaction was Declined!"  class="form-control" />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>   
-
   </body>
 </html>
 

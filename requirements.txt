@@ -6,5 +6,4 @@ matplotlib
 qrcode
 openpyxl
 Werkzeug
-openai
 xlsxwriter

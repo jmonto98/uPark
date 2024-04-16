@@ -2,13 +2,30 @@
 {% block title %} uPark {% endblock %} 
 {% block content %}
 {% block body %}
-<body>
-  <a href="/reportPay">Export to Excel Pay</a>  
-  <br>
-  <img src="data:image/png;base64,{{ graphic }}" alt="Pay per Date">
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+  }
 
-  <img src="data:image/png;base64,{{ graphicG }}" alt="Pay per Vehicle">
+  .gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<body>
+  <div class="gallery">
+    <img src="data:image/png;base64,{{ graphic }}" alt="Pay per Date">
+    <img src="data:image/png;base64,{{ graphicG }}" alt="Pay per Vehicle">
+    <!-- Add more images here -->
+  </div>
 </body>
+</html>
+
+
 
 {% endblock %}
 {% endblock content %}

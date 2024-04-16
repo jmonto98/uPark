@@ -208,7 +208,7 @@ def welcome (request):
 def Viewpay(request):
     IdPerson = request.GET.get('idPerson')
     if (IdPerson):    
-        paylist=Pay.objects.filter(idPerson_id=IdPerson).order_by("idPay")  
+        paylist = Pay.objects.filter(idPerson_id=IdPerson).order_by("-idPay")  
         return render(request,'welcome.html',{"Viewpay":paylist})
     else:
          return render (request, 'errors.html',{"error": "no entro"})

@@ -30,8 +30,8 @@
       }
        
      .logo img {
-        width: 100px; /* Ajusta el tamaño de la imagen según necesites */
-        height: auto;
+        width: 50px; /* Ajusta el tamaño de la imagen según necesites */
+        height: 50px;
       }
 
       header,nav,section,
@@ -87,11 +87,11 @@
     </div>
 
     <br />
-    <div class="container "><br><br>
+    <div class="container  text-cente"><br><br>
       <div class="row">
-        <div class="col-sm-12 col-lg-2"></div> 
-        <div class="col-sm-12 col-lg-4  align-items-center">
-          <div class="card " style="width: 18rem">
+   
+        <div class="col align-items-center">
+          <div class="card " style="width: 30rem">
             <div  style="height:320px; width:100% " class="card-body ">
               <h5 class="card-title ">Recharge your card</h5>
 
@@ -126,9 +126,9 @@
           </div>
         </div>
         
-        <div class="col-sm-12 col-lg-4 align-items-cente">
-          <div  class="card" style="width: 18rem">
-            <div style="height:320px; width:100%" class="card-body">
+        <div class="col align-items-cente">
+          <div  class="card" style="width: 30rem">
+            <div  style="height:320px; width:100% " class="card-body ">
               <h5 class="card-title">Buy your ticket</h5>
               {% for vehicle in Vehicles %}
               <form action="/pse/" method="POST">
@@ -136,20 +136,20 @@
 
                 <div  class="row ">
 
-                  <div class="card mb-3" style="width: 18rem">
+                  <div class="card mb-3" style="width: 30rem">
                     
                     <button type="submit" class="btn btn-primary">
                         {{vehicle.type}}
                       </button>
 
-                      <div class="col-sm-12 col-lg-4">
+                      <div class="col">
                         <input
                           type="hidden"
                           name="type"
                           value="{{vehicle.idVehicle}}"
                         />
                       </div>
-                      <div class="col-sm-12 col-lg-4">
+                      <div class="col">
                         <input type="hidden" name="idPerson" value="0" />
                       </div>
                     
@@ -160,7 +160,7 @@
               {% endfor %}
             </div>
           </div>
-          <div class="col-sm-12 col-lg-2"></div>
+          <div class="col"></div>
         </div>
       </div>
     </div>

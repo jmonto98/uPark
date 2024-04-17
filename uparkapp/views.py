@@ -447,7 +447,7 @@ def reportPay(request):
         ws.cell(row = cont, column =5).value = pay.transactionValue
         ws.cell(row = cont, column =6).value = pay.date.strftime("%d/%m/%Y")
         cont += 1
-    fileName= "List_pay_uPark.csv"
+    fileName= "List_pay_uPark.xslx"
 
     response = HttpResponse(content_type = "applications/ms-excel")
     content = "attachment; filename={0}".format(fileName)

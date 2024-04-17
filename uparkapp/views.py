@@ -335,7 +335,7 @@ def reportVehicle(request):
     b3.value = 'Type Vehicle'
     c3.value = 'Rate'
     
-    cont = 5
+    cont = 4
     for vehicle in vehicle:
         ws.cell(row = cont, column =1).value = vehicle.idVehicle
         ws.cell(row = cont, column =2).value = vehicle.type
@@ -380,7 +380,7 @@ def reportCard(request):
     c3.value = 'Name'
     d3.value = 'Balance'
     e3.value = 'Status'    
-    cont = 5
+    cont = 4
     for card in card:
         ws.cell(row = cont, column =1).value = card.idCard
         ws.cell(row = cont, column =2).value = card.idPerson.idPerson
@@ -438,7 +438,7 @@ def reportPay(request):
     d3.value = 'Vehicle'
     e3.value = 'Value'   
     f3.value = 'Date'    
-    cont = 5
+    cont = 4
     for pay in pay:
         ws.cell(row = cont, column =1).value = pay.idPay
         ws.cell(row = cont, column =2).value = pay.idPerson.idPerson

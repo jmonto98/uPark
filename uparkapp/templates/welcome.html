@@ -121,11 +121,16 @@
         <div class="card" style="width: 40rem;">
           <div style="height: 550px; width: 100%;" class="card-body">
             <div style="height: 500px; width: 100%;">
-              <h2>List of pays</h2>
+              <h2>List of pays</h2><br>
               <div style="overflow-y: scroll; height: calc(100% - 40px);">
+                <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
+                  <div style="flex: 1;"><b>CUS Code</b></div>
+                  <div style="flex: 1;"><b>Transaction Value</b></div>
+                  <div style="flex: 1;"><b>Date</b></div>
+                </div>
                 {% for LisPay in Viewpay %}
                   <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
-                    <div style="flex: 1;">{{ LisPay.idPay }}</div>
+                    <div style="flex: 1;">{{ LisPay.cusCod }}</div>
                     <div style="flex: 1;">{{ LisPay.transactionValue }}</div>
                     <div style="flex: 1;">{{ LisPay.date }}</div>
                   </div>

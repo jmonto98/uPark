@@ -192,17 +192,17 @@ def welcome (request):
         person = Person.objects.get(mail = request.POST['username'])
         #return render(request, "Errors.html",{"error":person.password})
     except:
-        return render(request, "login.html",{"error": "usuario no existe"})
+        return render(request, "errors.html",{"error": "usuario no existe"})
     
     if (decryptPwd(person.password, request.POST['password'])):
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
             return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
         else:
-            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("idPay")  
+            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("-idPay")  
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})
     else:
-        return render(request, "login.html",{"error": "Usuario o contraseña inválida"})
+        return render(request, "errors.html",{"error": "Usuario o contraseña inválida"})
 
 
 def Viewpay(request):

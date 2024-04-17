@@ -103,30 +103,31 @@
                             </div>
                         </div> 
                         <div class="col">
-                          <form action="/errors/" method="POST">
-                            {% csrf_token %} {% load static %}
-                            <div class="container-fluid">
-                              <div class="container">
-                                <div class="row">
-                                  <div class="col-sm-12 col-lg-4"></div>
-                                  <div class="col-sm-12 col-lg-5">
-                                    <div class="card mb-3" style="width: 18rem">  
-                                      <button type="submit" class="btn btn-danger" name="Declined">
-                                        Declined
-                                      </button>
-                                    </div>
-                                  </div> 
-                                </div>     
-                              </div>  
-                              <input hidden type="text" name="error" value="The transaction was Declined!"  class="form-control" />
-                            </div>
-                          </form>
+                </form>    
+
+                <form action="/errors/" { error } method="POST">
+                  {% csrf_token %} {% load static %}
+                  <div class="container-fluid">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm-12 col-lg-4"></div>
+                        <div class="col-sm-12 col-lg-5">
+                          <div class="card mb-3" style="width: 18rem">  
+                            <button type="submit" class="btn btn-danger" name="Declined">
+                              Declined
+                            </button>
+                          </div>
+                        </div> 
+                      </div>     
+                    </div>  
+                    <input hidden type="text" name="error" value="The transaction was Declined!"  class="form-control" />
+                  </div>
+                </form>
                         
                         </div> 
                       </div>     
                     </div>  
                   </div>
-                </form>
               </div>
             </div>
           </div>

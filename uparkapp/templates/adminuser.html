@@ -7,6 +7,14 @@
       <h2>Create User</h2>
       <div class="container-fluid">
         {% csrf_token %}
+        <label class="form-label">Document ID</label>
+        <input
+          type="text"
+          class="form-control"
+          id="documentId"
+          name="documentId"
+          required
+        />
         <label class="form-label">First Name</label>
         <input
           type="text"

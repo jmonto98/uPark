@@ -98,7 +98,7 @@
               {% csrf_token %}
               <div class="form-group">
                 <label for="username">Value to recharge:</label>
-                <input type="hidden" name="type" value="0"/>
+                <input type="hidden" name="type" value="1"/>
                 <input type="number" name="rate" id="rate" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required/>
                 <input hidden text name="idPerson" value="{{ idPerson }}" />
               </div>

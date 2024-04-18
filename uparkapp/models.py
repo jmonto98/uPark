@@ -18,13 +18,13 @@ class Vehicle(models.Model):
 
 class Person (models.Model):
     idPerson = models.AutoField(primary_key=True)
-    #idCard = models.ForeignKey(Card, null=False, on_delete=models.CASCADE)
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    phone  = models.CharField(max_length=10)
-    mail =  models.CharField(max_length=100, unique = True)
-    dateOfBirth = models.DateField()
-    personType = models.CharField(max_length=10, choices=person_type)
+    documentId = models.CharField(max_length=20, unique= True, null=False, blank=False)
+    firstName = models.CharField(max_length=50, null=False, blank=False)
+    lastName = models.CharField(max_length=50, null=False, blank=False)
+    phone  = models.CharField(max_length=10, null=False, blank=False)
+    mail =  models.CharField(max_length=100, unique = True, null=False, blank=False)
+    dateOfBirth = models.DateField(null=False, blank=False)
+    personType = models.CharField(max_length=1, choices=person_type, null=False, blank=False)
     password = models.CharField(max_length=500, null=False, blank=False)
     #images = models.ImageField(upload_to = 'movie/images/')
 
@@ -36,7 +36,7 @@ class Card (models.Model):
     idCard = models.AutoField(primary_key=True)
     idPerson= models.ForeignKey(Person, null=False, on_delete=models.CASCADE)
     balance = models.IntegerField()
-    status = models.CharField(max_length=10, default='A', choices=card_status)
+    status = models.CharField(max_length=1, default='A', choices=card_status)
 
     def __str__(self):
         texto = "{0}: ({1})"

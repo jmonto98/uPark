@@ -35,6 +35,10 @@ def main(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle")     
     return render (request, 'main.html',{"Vehicles":vehiclelist})
 
+def masive(request):
+    mensaje = masivePays()
+    return render (request, 'errors.html',{"error": mensaje})
+
 def login(request):
     return render(request, 'login.html')
 
@@ -275,20 +279,25 @@ def statistics_view(request):
     graphic = graphic.decode('utf-8') 
 
     #---Creacion grafica por vehiculo----#
+    # Ordenamos el Diccionario
+    sortedVehicles = {}
+    keys = pay_counts_by_vehicle.keys()
+    keys = sorted(keys)
+    for key in keys:
+        sortedVehicles[key] = pay_counts_by_vehicle[key] 
     bar_width = 0.5 
     # Posiciones de las barras 
-    bar_positions = range(len(pay_counts_by_vehicle)) 
-    
+    bar_positions = range(len(sortedVehicles)) 
     # Crear la gráfica de barras 
-    plt.bar(bar_positions, pay_counts_by_vehicle.values(), width=bar_width, align='center') 
+    plt.bar(bar_positions, sortedVehicles.values(), width=bar_width, align='center') 
     
     # Personalizar la gráfica 
     plt.title('Pay per Vehicle') 
     plt.xlabel('Vehicle') 
     plt.ylabel('Number of pay')
-    plt.xticks(bar_positions, sorted(pay_counts_by_vehicle.keys()), rotation='vertical')
+    plt.xticks(bar_positions, sortedVehicles.keys(), rotation='vertical')
 
-    for i, label in enumerate(pay_counts_by_vehicle.values()):
+    for i, label in enumerate(sortedVehicles.values()):
         plt.annotate(label, (i-0.05, (label/2)))
     
     # Ajustar el espaciado entre las barras 
@@ -447,7 +456,7 @@ def reportPay(request):
         ws.cell(row = cont, column =5).value = pay.transactionValue
         ws.cell(row = cont, column =6).value = pay.date.strftime("%d/%m/%Y")
         cont += 1
-    fileName= "List_pay_uPark.xslx"
+    fileName= "List_pay_uPark.xlsx"
 
     response = HttpResponse(content_type = "applications/ms-excel")
     content = "attachment; filename={0}".format(fileName)

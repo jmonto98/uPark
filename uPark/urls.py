@@ -44,5 +44,6 @@ urlpatterns = [
     path('reportCard/',appViews.reportCard),
     path('reportPay/',appViews.reportPay),
     path('vehicle/', appViews.vehicle, name="vehicle"),
-    path('welcome/',appViews.welcome, name="Welcome")
+    path('welcome/',appViews.welcome, name="Welcome"),
+    path('masive/',appViews.masive)
 ]

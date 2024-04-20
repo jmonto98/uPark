@@ -20,6 +20,7 @@ import io
 import urllib, base64
 import datetime
 from datetime import datetime
+import requests
 
 #Manejo de libros de excel
 from openpyxl import Workbook
@@ -39,8 +40,10 @@ def masive(request):
     mensaje = masivePays()
     return render (request, 'errors.html',{"error": mensaje})
 
-def login(request):
-    return render(request, 'login.html')
+def flatFile(request):
+    pays = Pay.objects.all().order_by('date')
+    file = genFlatFile(pays)
+    return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
 
 def admini(request):
     return render (request, 'admin.html')

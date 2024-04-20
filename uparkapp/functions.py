@@ -80,4 +80,12 @@ def masivePays(x):
         pay.save()
 
     return("Carga Masiva exitosa")
-    
+
+def genFlatFile(pays):
+    file = open("./uPark/media/files/flatFile.txt", "w")
+    for p in pays:
+        person = Person.objects.get(idPerson = p.idPerson_id)
+        file.write(str(p.idPay)+";"+str(p.transactionValue)+";"+str(p.cusCod)+";"+str(p.date.strftime('%Y-%m-%d %H:%M:%S'))+";"+str(person.documentId)+";"+str(p.idVehicle_id)+";"+ "\n")
+
+    file.close()
+    return (file)

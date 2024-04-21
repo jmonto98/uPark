@@ -1,0 +1,57 @@
+body {
+    font-family: Rajdhani !important;
+    background-color: #f8f7f7; /* Cambia este valor al código del color deseado */
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1985A1;
+    border:0px !important ;
+    
+  } 
+  .card {
+    border-radius: .60rem;
+  }
+   
+ .logo img {
+    width: 50px; /* Ajusta el tamaño de la imagen según necesites */
+    height: 50px;
+  }
+
+  header,nav,section,
+  footer {
+    border: 1px solid #000;
+    padding: 10px;
+  }
+
+  nav {
+    width: 200px;
+    float: right;
+  }
+  section {
+    clear: both;
+  }
+  .btn-primary {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background: #1985A1 !important;
+  }
+  .btn-primary:hover {
+    background: #4C5C68 !important; 
+}
+  
+  .card-title{
+    text-align: start;
+    transition-property: opacity, transform;
+    font-family: Rajdhani !important;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    font-optical-sizing: auto;
+    line-height: initial;
+    opacity: 1;
+    transition-duration: 350ms;
+}

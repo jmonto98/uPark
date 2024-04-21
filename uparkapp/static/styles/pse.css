@@ -1,0 +1,21 @@
+body {
+    font-family: Rajdhani !important;
+    background-color: #f8f7f7; /* Cambia este valor al código del color deseado */
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1985A1;
+    border:0px !important ;
+    
+  }
+  .logo img {
+    width: 50px; /* Ajusta el tamaño de la imagen según necesites */
+    height: 50px;
+  }
+  .card {
+    border-radius: .60rem;
+}

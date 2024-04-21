@@ -13,7 +13,7 @@
     <style>
       body {
         font-family: Rajdhani !important;
-        background-color: #C5C3C6; /* Cambia este valor al código del color deseado */
+        background-color: #f8f7f7; /* Cambia este valor al código del color deseado */
       }
       
       header {
@@ -32,7 +32,6 @@
       .card {
         border-radius: .60rem;
     }
-
 
 
     </style>
@@ -59,15 +58,16 @@
                   <br>
                   <div class="row">
                     <div class="col">
-                      <input type="firstName" class="form-control" id="firstName"  required/>
                       <label class="form-label">First Name</label>
+                      <input type="firstName" class="form-control" id="firstName"  required/>
                       
-                      <input type="Phone" class="form-control" id="Phone" required/>
                       <label class="form-label">Phone</label>
-
-                      <input disabled type="text" class="form-control" name="Rate"  value={{ rate }} id="rate" required />
+                      <input type="Phone" class="form-control" id="Phone" required/>
+                      
                       <label class="form-label">Rate</label>
-                
+                      <input disabled type="text" class="form-control" name="Rate"  value={{ rate }} id="rate" required />
+                      
+                      <label class="form-label">Select a Bank</label> 
                       <select class="form-control" name="banks" id="banks"> 
                         <option value="">-------</option> 
                         <option value="Banco Caja Social">Banco Caja Social</option> 
@@ -75,54 +75,56 @@
                         <option value="Bancolombia">Bancolombia</option> 
                         <option value="Itau">Itau</option> 
                       </select>
-                      <label class="form-label">Select a Bank</label> 
+                      
                     </div>
                     <div class="col">
-                      <input type="lastName" class="form-control" id="lastName" required/>
                       <label class="form-label">Last Name</label>
+                      <input type="lastName" class="form-control" id="lastName" required/>
                       
-                      <input type="Mail" class="form-control" id="Mail" required/>
                       <label class="form-label">Mail</label>
-
-                      <input disabled type="text" class="form-control" name="vehicle"  value={{ vehicle }} id="vehicle" required />
+                      <input type="Mail" class="form-control" id="Mail" required/>
+                      
                       <label class="form-label">Vehicle type</label>
+                      <input disabled type="text" class="form-control" name="vehicle"  value={{ vehicle }} id="vehicle" required />
+                    
                     </div>
                   </div>
-                <form action="/validatePay/" method="POST">
-                  {% csrf_token %} {% load static %}
-                  <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card mb-3" style="width: 18rem">                    
-                                <button type="submit" class="btn btn-primary" name="accepted">
-                                    Accepted
-                                </button>
-                                <input hidden type="text" class="form-control" name="idVehicle"   value= {{ idVehicle }}    />
-                                <input hidden type="text" class="form-control" name="_rate"  value={{ rate }}    />
-                                <input hidden type="text" class="form-control" name="idPerson"    value={{ idPerson }}     />
-                            </div>
-                        </div> 
-                        <div class="col">
-                </form>    
+                  <label class="form-label"></label>
+                      <form action="/validatePay/" method="POST">
+                        {% csrf_token %} {% load static %}
+                        <div class="container">
+                          <div class="row">
+                              <div class="col">
+                                  <div class="card mb-3" style="width: 18rem">                    
+                                      <button type="submit" class="btn btn-primary" name="accepted">
+                                          Accepted
+                                      </button>
+                                      <input hidden type="text" class="form-control" name="idVehicle"   value= {{ idVehicle }}    />
+                                      <input hidden type="text" class="form-control" name="_rate"  value={{ rate }}    />
+                                      <input hidden type="text" class="form-control" name="idPerson"    value={{ idPerson }}     />
+                                  </div>
+                              </div> 
+                              <div class="col">
+                      </form>    
 
-                <form action="/errors/" { error } method="POST">
-                  {% csrf_token %} {% load static %}
-                  <div class="container-fluid">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-sm-12 col-lg-4"></div>
-                        <div class="col-sm-12 col-lg-5">
-                          <div class="card mb-3" style="width: 18rem">  
-                            <button type="submit" class="btn btn-danger" name="Declined">
-                              Declined
-                            </button>
-                          </div>
-                        </div> 
-                      </div>     
-                    </div>  
-                    <input hidden type="text" name="error" value="The transaction was Declined!"  class="form-control" />
-                  </div>
-                </form>
+                      <form action="/errors/" { error } method="POST">
+                      {% csrf_token %} {% load static %}
+                      <div class="container-fluid">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-sm-12 col-lg-4"></div>
+                            <div class="col-sm-12 col-lg-5">
+                              <div class="card mb-3" style="width: 18rem">  
+                                <button type="submit" class="btn btn-danger" name="Declined">
+                                  Declined
+                                </button>
+                              </div>
+                            </div> 
+                          </div>     
+                        </div>  
+                        <input hidden type="text" name="error" value="The transaction was Declined!"  class="form-control" />
+                      </div>
+                    </form>
                         
                         </div> 
                       </div>     

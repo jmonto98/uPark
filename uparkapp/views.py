@@ -21,6 +21,7 @@ import urllib, base64
 import datetime
 from datetime import datetime
 import requests
+from flask import Flask, send_file
 
 #Manejo de libros de excel
 from openpyxl import Workbook
@@ -42,8 +43,18 @@ def masive(request):
 
 def flatFile(request):
     pays = Pay.objects.all().order_by('date')
-    file = genFlatFile(pays)
-    return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
+    # file = genFlatFile(pays)
+    # return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
+    file = open("./uPark/media/files/flatFile.txt", "w")
+    for p in pays:
+        person = Person.objects.get(idPerson = p.idPerson_id)
+        file.write(str(p.idPay)+";"+str(p.transactionValue)+";"+str(p.cusCod)+";"+str(p.date.strftime('%Y-%m-%d %H:%M:%S'))+";"+str(person.documentId)+";"+str(p.idVehicle_id)+";"+ "\n")
+    file.close()
+    
+    #file = open("./uPark/media/files/flatFile.txt", "r")
+    #content = "attachment; filename={0}".format(file)
+    return send_file("./uPark/media/files/flatFile.txt", as_attachment=True)
+    #return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
 
 def admini(request):
     return render (request, 'admin.html')
@@ -206,7 +217,7 @@ def welcome (request):
         if person.personType == 'A':
             return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
         else:
-            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("-idPay")  
+            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("-date")  
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})
     else:
         return render(request, "errors.html",{"error": "Usuario o contraseña inválida"})

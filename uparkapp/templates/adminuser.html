@@ -2,91 +2,67 @@
 {% block body %}
 
 <body>
-  <div class="container">
-    <form action="/addPerson/" method="POST">
-      <h2>Create User</h2>
-      <div class="container-fluid">
-        {% csrf_token %}
-        <label class="form-label">Document ID</label>
-        <input
-          type="text"
-          class="form-control"
-          id="documentId"
-          name="documentId"
-          required
-        />
-        <label class="form-label">First Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="firstName"
-          name="firstName"
-          required
-        />
-        <label class="form-label">Last Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="lastName"
-          name="lastName"
-          required
-        />
-        <label class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="pass"
-          name="password"
-          required
-        />
-        <label class="form-label">Phone</label>
-        <input
-          type="text"
-          class="form-control"
-          id="phone"
-          name="phone"
-          required
-        />
-        <label class="form-label">Mail</label>
-        <input
-          type="email"
-          class="form-control"
-          id="mail"
-          name="mail"
-          placeholder="xxxxxxx@xxxxx.com"
-          required
-        />
-        <label class="form-label">Date of Birth</label>
-        <input
-          type="date"
-          class="form-control"
-          min="1900-01-01"
-          max="2100-12-31"
-          id="dateOfBirth"
-          name="dateOfBirth"
-          required
-        />
-        <label class="form-label">Type of person</label>
-        <select
-          class="form-select"
-          aria-label="personType"
-          id="personType"
-          name="personType"
-          required
-        >
-          <option selected>Select Type</option>
-          <option value="A">Administrator</option>
-          <option value="E">Employee</option>
-          <option value="S">Student</option>
-          <option value="G">Graduate</option>
-          <option value="V">Visitor</option>
-        </select>
-        <br />
-        <button type="submit" class="btn btn-sm btn-success btn-block">
-          Save
-        </button>
+
+  <div class="container-fluid vh-100 d-flex justify-content-center">
+    <div class="container">
+      <div class="row justify-content-center">
+       
+          <div class="card " style="width: 100%">
+            <div class="card-body">
+              <form action="/addPerson/" method="POST">
+                <h3>Create User</h3>
+                <div class="row">
+                  <!-- First Column -->
+                  <div class="col-md-6">
+                    {% csrf_token %}
+            
+                    <label class="form-label">Document ID</label>
+                    <input type="number" class="form-control" id="documentId" name="documentId" placeholder="document" required />
+            
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="first Name" required />
+            
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="last Name" required />
+            
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pass" name="password" placeholder="password" required />
+                  </div>
+                  <!-- Second Column -->
+                  <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" required />
+            
+                    <label class="form-label">Mail</label>
+                    <input type="email" class="form-control" id="mail" name="mail" placeholder="user@upark.com" required />
+            
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" min="1900-01-01" max="2100-12-31" id="dateOfBirth" name="dateOfBirth" required />
+            
+                    <label class="form-label">Type of person</label> 
+                     <select class="form-control" name="banks" id="banks"> 
+                        <option value="">Select Type</option> 
+                        <option value="A">Administrator</option>
+                        <option value="E">Employee</option>
+                        <option value="S">Student</option>
+                        <option value="G">Graduate</option>
+                        <option value="V">Visitor</option>
+                      </select>
+                  </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-sm btn-success btn-block">
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+       
       </div>
-    </form>
-  </div>
+    </div>
+  </div>  
+
+
+
 </body>
 {% endblock %}

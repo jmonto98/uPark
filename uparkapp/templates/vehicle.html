@@ -4,81 +4,97 @@
 
 
 <body>
- 
-
-  <div  class="card">
-    <div class="card-body">
-      <button id="showFormBtn" class="btn btn-primary">Add Vehicle</button>
-      <!-- Formulario oculto para ingresar un nuevo vehículo -->
-      <form id="addVehicleForm" action="/addVehicle/" method="POST" style="display: none;">
-        {% csrf_token %}
-        <div class="col">
-          <label class="form-label">Type</label>
-          <input type="text" class="form-control" id="type" required/>
+  <div class="container  text-start"><br><br>
+    <div class="row"> 
+      <div class="col align-items-center">
+        <div  class="card" style="width: 16rem">
+          <div class="card-body">
+            <button id="showFormBtn" class="btn btn-primary">Add Vehicle</button>
+            <!-- Formulario oculto para ingresar un nuevo vehículo -->
+            <form id="addVehicleForm" action="/addVehicle/" method="POST" style="display: none;">
+              {% csrf_token %}
+              <div class="col">
+                <label class="form-label">Type</label>
+                <input type="text" class="form-control" id="type" required/>
+              </div>
+              <div class="col">
+                <label class="form-label">Rate</label>
+                <input type="text" class="form-control" id="rate" required/>
+              </div>
+              <div class="col">
+                <label class="form-label"></label>
+                <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="col">
-          <label class="form-label">Rate</label>
-          <input type="text" class="form-control" id="rate" required/>
-        </div>
-        <div class="col">
-          <label class="form-label"></label>
-          <button type="submit" class="btn btn-sm btn-success btn-block">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Scripts de Bootstrap y FontAwesome -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script>
-    // Función para mostrar u ocultar el formulario al hacer clic en el botón
-    document.getElementById("showFormBtn").addEventListener("click", function() {
-      var form = document.getElementById("addVehicleForm");
-      if (form.style.display === "none") {
-        form.style.display = "block";
-      } else {
-        form.style.display = "none";
-      }
-    });
-  </script>
-<br>
-
       
-<div  class="card">
-  <div class="card-body">
-              <div style="height: 300px; width: 100%;" class="card-body">
-                <div>
-                  <h5 class="card-title">List Vehicle</h5>
-                  <div style="overflow-y: scroll; height: calc(100% - 40px);">
-                    <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
-                      <div style="flex: 1;"><b>ID</b></div>
-                      <div style="flex: 1;"><b>Type</b></div>
-                      <div style="flex: 1;"><b>Rate</b></div>
-                      <div style="flex: 1;"><b>Options</b></div>
-                    </div>
-                    {% for c in Vehicles %}
-                      <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
-                        <div style="flex: 1;">{{c.idVehicle}}</div>
-                        <div style="flex: 1;">{{c.type}}</div>
-                        <div style="flex: 1;">{{c.rate}}</div>
-                        <div style="flex: 1;"> 
-                          <div class="col">
-                            <a style="width: 100px;" href="/editVehicle/{{c.idVehicle}}"  class="btn btn-sm btn-block btn-info btn-block" >Edit</a>
-                          
-                            <a style="width: 100px;" href="/deleteVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-danger btn-block" >Delete</a>
-                          </div>
-                          </div>
-                      </div>
-                    {% endfor %}
-                
+
+            <!-- Scripts de Bootstrap y FontAwesome -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <script>
+              // Función para mostrar u ocultar el formulario al hacer clic en el botón
+              document.getElementById("showFormBtn").addEventListener("click", function() {
+                var form = document.getElementById("addVehicleForm");
+                if (form.style.display === "none") {
+                  form.style.display = "block";
+                } else {
+                  form.style.display = "none";
+                }
+              });
+            </script>
+          <br>
+      </div>
+      <div class="col align-items-cente">    
+        <div  class="card" style="width: 45rem">
+          <div  style="height:420px; width:100% " class="card-body">
+            <div style="height: 100%; width: 100%;" class="card-body">
+              <div>
+                <div style="display: flex; justify-content: space-between;">
+                  <div>
+                    <h5 class="card-title" style="text-align: right;">List Vehicle</h5>
                   </div>
+                  <div>
+                    <h5 class="card-title"><a href="/reportVehicle">Export to Excel</a></h5>
+                  </div>
+                </div>
+                <div style="overflow-y: scroll; height: calc(100% - 40px);">
+                  <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
+                    <div style="flex: 1;"><b>ID</b></div>
+                    <div style="flex: 1;"><b>Type</b></div>
+                    <div style="flex: 1;"><b>Rate</b></div>
+                    <div style="flex: 1;"><b>Options</b></div>
+                  </div>
+                  {% for c in Vehicles %}
+                  <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
+                    <div style="flex: 1;">{{c.idVehicle}}</div>
+                    <div style="flex: 1;">{{c.type}}</div>
+                    <div style="flex: 1;">{{c.rate}}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;"> 
+                      
+                      <div> 
+                        <a style="width: 60px;" href="/editVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-info btn-block">Edit</a>
+                      </div>   
+
+                      <div>
+                        <a style="width: 60px;" href="/deleteVehicle/{{c.idVehicle}}" class="btn btn-sm btn-block btn-danger btn-block">Delete</a>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
                 </div>
               </div>
             </div>
+            
+            
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
            
           
 </body>

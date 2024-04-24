@@ -33,9 +33,9 @@ import pandas as pd
 
 # Create your views here.
 
-def main(request):
-    vehiclelist=Vehicle.objects.all().order_by("idVehicle")     
-    return render (request, 'main.html',{"Vehicles":vehiclelist})
+# def main(request):
+#     vehiclelist=Vehicle.objects.all().order_by("idVehicle")     
+#     return render (request, 'main.html',{"Vehicles":vehiclelist})
 
 def masive(request):
     mensaje = masivePays()

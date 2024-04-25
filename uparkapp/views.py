@@ -20,7 +20,6 @@ import io
 import urllib, base64
 import datetime
 from datetime import datetime
-import requests
 from flask import Flask, send_file
 
 #Manejo de libros de excel

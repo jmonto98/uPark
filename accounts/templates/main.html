@@ -135,7 +135,7 @@
             <div  style="height:320px; width:100% " class="card-body ">
               <h5 class="card-title">Buy your ticket</h5>
               {% for vehicle in Vehicles %}
-              <form action="/pse/" method="POST">
+              <form action="pse/" method="POST">
                 {% csrf_token %} {% if vehicle.rate > 0 %}
 
                 <div  class="row ">
@@ -154,7 +154,7 @@
                         />
                       </div>
                       <div class="col">
-                        <input type="hidden" name="idPerson" value="0" />
+                        <input type="hidden" name="idPerson" value="1" />
                       </div>
                     
                   </div>

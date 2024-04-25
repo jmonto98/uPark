@@ -102,19 +102,17 @@
               {% csrf_token %}
               <div class="form-group">
                 <label for="username">Value to recharge:</label>
-                <input type="hidden" name="type" value="1"/>
                 <input type="number" name="rate" id="rate" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required/>
                 <input hidden text name="idPerson" value="{{ idPerson }}" />
               </div>
 
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Recharge</button>
-                <input type="hidden" name="type" value="0">
+                <input type="hidden" name="type" value="1">
               </div>
 
               <div class="form-group">
                 <a href="/" class="btn btn-danger btn-block">Exit</a>
-                <input type="hidden" name="type" value="0">
               </div>
             </form>
           </div>

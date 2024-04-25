@@ -1,3 +1,4 @@
 *.pyc
 pruebas.py
 /uparkapp/static/images/qrcodes
+**/env

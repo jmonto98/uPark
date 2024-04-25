@@ -41,7 +41,7 @@ def validatePay(request):
             card.balance = card.balance + int(request.POST['_rate'])
             card.save()
             pay.save()
-            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("idPay")  
+            paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("-date")  
             return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})     
     except:
         return render (request, 'errors.html',{"error": "Something went wrong durig the transaction"})

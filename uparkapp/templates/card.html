@@ -53,7 +53,7 @@
           </tr>
           <tr>
             <th scope="col">Id Card</th>
-            <th scope="col">Id Person</th>
+            <th scope="col">Document</th>
             <th scope="col">Name</th>
             <th scope="col">Balance</th>
             <th scope="col">Status</th>
@@ -65,7 +65,7 @@
           {% for c in Card %}
           <tr>
             <td>{{c.idCard}}</td>
-            <td>{{c.idPerson_id}}</td>
+            <td>{{c.idPerson.documentId}}</td>
             <td>{{c.idPerson.firstName}} {{c.idPerson.lastName}}</td>
             <td>{{c.balance}}</td>
             <!--td>{{c.status}}</!--td-->

@@ -124,7 +124,9 @@
           <div style="height: 550px; width: 100%;" class="card-body">
             <div style="height: 500px; width: 100%;">
               <h2>List of pays</h2><br>
-              <h6 align="left"><a href="/reportPayUser">Export Pays</a></h6>
+              <form action="">
+              <input  text name="idPersons" value="{{ idPersons }}" />
+              <h6 align="left"><a href="/reportPayUser">Export Pays</a></h6></form>
               <div style="overflow-y: scroll; height: calc(100% - 40px);">
                 <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
 
@@ -132,11 +134,11 @@
                   <div style="flex: 1;"><b>Transaction Value</b></div>
                   <div style="flex: 1;"><b>Date</b></div>
                 </div>
-                {% for LisPay in Viewpay %}
+                {% for ListPay in Viewpay %}
                   <div style="display: flex; border-bottom: 1px solid #ccc; padding: 8px;">
-                    <div style="flex: 1;">{{ LisPay.cusCod }}</div>
-                    <div style="flex: 1;">{{ LisPay.transactionValue }}</div>
-                    <div style="flex: 1;">{{ LisPay.date }}</div>
+                    <div style="flex: 1;">{{ ListPay.cusCod }}</div>
+                    <div style="flex: 1;">{{ ListPay.transactionValue }}</div>
+                    <div style="flex: 1;">{{ ListPay.date }}</div>
                   </div>
                 {% endfor %}
               </div>

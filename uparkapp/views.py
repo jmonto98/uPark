@@ -166,26 +166,25 @@ def welcome (request):
         person = Person.objects.get(mail = request.POST['username'])
         #return render(request, "Errors.html",{"error":person.password})
     except:
-        return render(request, "errors.html",{"error": "usuario no existe"})
-    
+        return render(request, "errors.html",{"error": "usuario no existe"})    
     if (decryptPwd(person.password, request.POST['password'])):
         card = Card.objects.get(idPerson =  person.idPerson)
         if person.personType == 'A':
             return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
         else:
             paylist=Pay.objects.filter(idPerson_id= person.idPerson).order_by("-date")  
-            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist})
+            return render(request, "welcome.html",{"resulPerson": person.firstName, "idPerson":person.idPerson, "resulCard": card.balance, "Viewpay":paylist, "idPersons":person.idPerson})
     else:
         return render(request, "errors.html",{"error": "Usuario o contraseña inválida"})
 
 
-def Viewpay(request):
+""" def Viewpay(request):
     IdPerson = request.GET.get('idPerson')
     if (IdPerson):    
         paylist = Pay.objects.filter(idPerson_id=IdPerson).order_by("-idPay")  
         return render(request,'welcome.html',{"Viewpay":paylist})
     else:
-         return render (request, 'errors.html',{"error": "no entro"})
+         return render (request, 'errors.html',{"error": "no entro"}) """
 
 
 def statistics_view(request): 
@@ -435,7 +434,10 @@ def reportPay(request):
     return (response)   
 
 def reportPayUser(request):
-    pay = Pay.objects.select_related ('idPerson')
+    IdPerson = request.POST ['idPersons']
+    return render (request, 'errors.html',{"error": IdPerson})
+    person = Person.objects.get(idPerson=IdPerson)
+    pay = Pay.objects.filter(idPerson_id=person ).order_by("-date") 
     wb = Workbook()
     ws = wb.active
     font = Font(b=True, color="00000080")
@@ -443,31 +445,34 @@ def reportPayUser(request):
     a1 = ws['A1']
     a1.font = font 
     a1.alignment = alignment
-    a1.value  = 'PAY USER LIST'
+    a1.value  = 'PAY LIST USER'
     #Cabezera de reporte
     ws.merge_cells('A1:C1')
     a3 = ws['A3']
-    b3 = ws['B3'] 
+    b3 = ws['B3']
     c3 = ws['C3']
+
     a3.font = font 
     a3.alignment = alignment
     b3.font = font 
     b3.alignment = alignment
     c3.font = font 
-    c3.alignment = alignment    
+    c3.alignment = alignment
+ 
     a3.value = 'CUS Code'
     b3.value = 'Transaction Value'
     c3.value = 'Date'
-    
+   
     cont = 4
     for pay in pay:
         ws.cell(row = cont, column =1).value = pay.cusCod
         ws.cell(row = cont, column =2).value = pay.transactionValue
-        ws.cell(row = cont, column =3).value = pay.date
+        ws.cell(row = cont, column =3).value = pay.date.strftime("%d/%m/%Y")
         cont += 1
-    fileName= "List_Pay_User.xlsx"
+    fileName= "List_pay_User.xlsx"
+
     response = HttpResponse(content_type = "applications/ms-excel")
     content = "attachment; filename={0}".format(fileName)
     response['Content-Disposition'] = content
     wb.save(response)
-    return (response) 
+    return (response)   

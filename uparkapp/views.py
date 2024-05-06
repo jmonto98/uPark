@@ -431,48 +431,4 @@ def reportPay(request):
     content = "attachment; filename={0}".format(fileName)
     response['Content-Disposition'] = content
     wb.save(response)
-    return (response)   
-
-def reportPayUser(request):
-    IdPerson = request.POST ['idPersons']
-    return render (request, 'errors.html',{"error": IdPerson})
-    person = Person.objects.get(idPerson=IdPerson)
-    pay = Pay.objects.filter(idPerson_id=person ).order_by("-date") 
-    wb = Workbook()
-    ws = wb.active
-    font = Font(b=True, color="00000080")
-    alignment = Alignment(horizontal="center", vertical="center")
-    a1 = ws['A1']
-    a1.font = font 
-    a1.alignment = alignment
-    a1.value  = 'PAY LIST USER'
-    #Cabezera de reporte
-    ws.merge_cells('A1:C1')
-    a3 = ws['A3']
-    b3 = ws['B3']
-    c3 = ws['C3']
-
-    a3.font = font 
-    a3.alignment = alignment
-    b3.font = font 
-    b3.alignment = alignment
-    c3.font = font 
-    c3.alignment = alignment
- 
-    a3.value = 'CUS Code'
-    b3.value = 'Transaction Value'
-    c3.value = 'Date'
-   
-    cont = 4
-    for pay in pay:
-        ws.cell(row = cont, column =1).value = pay.cusCod
-        ws.cell(row = cont, column =2).value = pay.transactionValue
-        ws.cell(row = cont, column =3).value = pay.date.strftime("%d/%m/%Y")
-        cont += 1
-    fileName= "List_pay_User.xlsx"
-
-    response = HttpResponse(content_type = "applications/ms-excel")
-    content = "attachment; filename={0}".format(fileName)
-    response['Content-Disposition'] = content
-    wb.save(response)
-    return (response)   
+    return (response)

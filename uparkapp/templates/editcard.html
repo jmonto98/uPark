@@ -7,7 +7,7 @@
     <thead>
       <tr>
         <th scope="col">Id Card</th>
-        <th scope="col">Id Person</th>
+        <th scope="col">Document</th>
         <th scope="col">Balance</th>
         <th scope="col">Status</th>
       </tr>
@@ -23,20 +23,21 @@
             id="idCard"
             name="idCard"
             class="form-control"
-            placeholder="idCard"
+            {% comment %} placeholder="idCard" {% endcomment %}
             readonly
             required
           />
         </td>
         <td>
           <input
-            value="{{card.idPerson}}"
+            value="{{card.idPerson.documentId}}"
             type="text"
             class="form-control"
-            id="idPerson"
-            name="idPerson"
+            id="documentId"
+            name="documentId"
             class="form-control"
-            placeholder="idPerson"
+            {% comment %} placeholder="idPerson" {% endcomment %}
+            readonly
             required
           />
         </td>
@@ -48,12 +49,16 @@
             id="balance"
             name="balance"
             class="form-control"
-            placeholder="Balance"
+            {% comment %} placeholder="Balance" {% endcomment %}
             required
           />
         </td>
         <td>
-          <input
+          <select class="form-control" name="status" id="status" value={{card.status}}>
+            <option value="A">Active</option>
+            <option value="I">Inactive</option> 
+          </select>
+          {% comment %} <input
             value="{{card.status}}"
             type="text"
             class="form-control"
@@ -62,7 +67,7 @@
             class="form-control"
             placeholder="status"
             required
-          />
+          /> {% endcomment %}
         </td>
         <td>
           <!--Save Vehicle-->

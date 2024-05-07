@@ -59,7 +59,8 @@ def adminuser(request):
     return render (request, 'adminuser.html')
 
 def card(request):
-    cardList= Card.objects.select_related ('idPerson').all()    
+    #cardList= Card.objects.select_related ('idPerson').all()    
+    cardList= Card.objects.filter(status = 'A').order_by("idCard") 
     return render (request, 'card.html',{"Card": cardList})
 
 def visitor(request):
@@ -104,62 +105,62 @@ def deleteVehicle (request, idVehicle):
     return redirect ('/vehicle')
 
 def addPerson (request):
-    try:        
-        firstName = request.POST ['firstName']
-        lastName = request.POST ['lastName']
-        pwd = encryptPwd(request.POST ['password'])
-        #pwd = request.POST ['password']
-        phone  = request.POST ['phone']
-        mail = str.replace(request.POST ['mail'].lower(), ' ', '')
-        dateOfBirth = request.POST ['dateOfBirth']
-        personType = request.POST ['personType']
-        person = Person.objects.create(firstName=firstName,
-                                    lastName=lastName,
-                                    password = pwd,
-                                    phone=phone,
-                                    mail=mail,
-                                    dateOfBirth=dateOfBirth,
-                                    personType=personType)        
-        
-        lastId = Person.objects.aggregate(idPerson = models.Max('idPerson'))
-        cont = lastId['idPerson']
-        card=Card.objects.create(idPerson_id= cont,
-                                 balance= '0',                                 
-                                 status='A')
-        person.save()
-        card.save()
-        return redirect ('/adminuser')
-    except:
-        user = Person.objects.get(mail = mail)
-        if user:
-            return render (request, 'errors.html',{"error": "The email is already assigned to another person"})
-        else:
+    mail = str.replace(request.POST ['mail'].lower(), ' ', '')
+    user = Person.objects.filter(mail = mail).first()
+    if user:
+        return render (request, 'errors.html',{"error": "The email is already assigned to another person"})
+    else:
+        try:
+            document = request.POST ['documentId']       
+            firstName = request.POST ['firstName']
+            lastName = request.POST ['lastName']
+            pwd = encryptPwd(request.POST ['password'])
+            #pwd = request.POST ['password']
+            phone  = request.POST ['phone']
+            #mail = str.replace(request.POST ['mail'].lower(), ' ', '')
+            dateOfBirth = request.POST ['dateOfBirth']
+            personType = request.POST ['personType']
+            person = Person.objects.create(documentId=document,
+                                        firstName=firstName,
+                                        lastName=lastName,
+                                        password = pwd,
+                                        phone=phone,
+                                        mail=mail,
+                                        dateOfBirth=dateOfBirth,
+                                        personType=personType)        
+            
+            # lastId = Person.objects.aggregate(idPerson = models.Max('idPerson'))
+            # cont = lastId['idPerson']
+            createCard(person.idPerson, 0)
+            person.save()
+            #card.save()
+            return redirect ('/adminuser')
+        except:
             return render (request, 'errors.html',{"error": "Something went wrong!"})
 
-def addCard (request):
-    #idCard = request.POST ['idCard']    
-    idPerson = request.POST ['idPerson']
-    balance = request.POST ['balance']
-    status = request.POST ['status']
-    card = Card.objects.create (idPerson_id=idPerson, balance = balance,status=status)
+def createCard (idPerson, balance):
+    card = Card.objects.create (idPerson_id=idPerson, balance = balance,status='A')
     card.save()
-    return redirect ('/card')
+    
 
 def editCard (request, idCard):
     card = Card.objects.get(idCard=idCard)
     return render (request, "editCard.html",{"card" : card})
 
 def editarCard (request):
-    idCard = request.POST ['idCard']
-    idPerson = request.POST ['idPerson']
     balance = request.POST ['balance']
     status = request.POST ['status']
+    idCard = request.POST ['idCard']
     card = Card.objects.get(idCard=idCard)
-    card.idPerson = idPerson
-    card.balance = balance
-    card.status = status
-    card.save()
-    return redirect ('/editcard')    
+    if status == 'A':
+        card.balance = balance
+        card.save()
+    else:
+        card.status = status
+        card.save()
+        createCard(card.idPerson.idPerson, balance)
+        
+    return redirect ('/card')    
     
 def welcome (request):
     try:

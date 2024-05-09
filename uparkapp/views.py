@@ -31,7 +31,7 @@ import pandas as pd
 
 
 def masive(request):
-    mensaje = masivePays(3000)
+    mensaje = masivePays()
     return render (request, 'errors.html',{"error": mensaje})
 
 def flatFile(request):
@@ -59,8 +59,8 @@ def adminuser(request):
     return render (request, 'adminuser.html')
 
 def card(request):
-    #cardList= Card.objects.select_related ('idPerson').all()    
     cardList= Card.objects.filter(status = 'A').order_by("idCard") 
+    #cardList= Card.objects.all().order_by("idCard") 
     return render (request, 'card.html',{"Card": cardList})
 
 def visitor(request):
@@ -115,9 +115,7 @@ def addPerson (request):
             firstName = request.POST ['firstName']
             lastName = request.POST ['lastName']
             pwd = encryptPwd(request.POST ['password'])
-            #pwd = request.POST ['password']
             phone  = request.POST ['phone']
-            #mail = str.replace(request.POST ['mail'].lower(), ' ', '')
             dateOfBirth = request.POST ['dateOfBirth']
             personType = request.POST ['personType']
             person = Person.objects.create(documentId=document,
@@ -128,12 +126,8 @@ def addPerson (request):
                                         mail=mail,
                                         dateOfBirth=dateOfBirth,
                                         personType=personType)        
-            
-            # lastId = Person.objects.aggregate(idPerson = models.Max('idPerson'))
-            # cont = lastId['idPerson']
             createCard(person.idPerson, 0)
             person.save()
-            #card.save()
             return redirect ('/adminuser')
         except:
             return render (request, 'errors.html',{"error": "Something went wrong!"})
@@ -157,6 +151,7 @@ def editarCard (request):
         card.save()
     else:
         card.status = status
+        card.balance = 0
         card.save()
         createCard(card.idPerson.idPerson, balance)
         
@@ -178,14 +173,6 @@ def welcome (request):
     else:
         return render(request, "errors.html",{"error": "Usuario o contraseña inválida"})
 
-
-""" def Viewpay(request):
-    IdPerson = request.GET.get('idPerson')
-    if (IdPerson):    
-        paylist = Pay.objects.filter(idPerson_id=IdPerson).order_by("-idPay")  
-        return render(request,'welcome.html',{"Viewpay":paylist})
-    else:
-         return render (request, 'errors.html',{"error": "no entro"}) """
 
 
 def statistics_view(request): 

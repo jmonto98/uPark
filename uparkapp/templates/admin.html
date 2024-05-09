@@ -17,11 +17,15 @@
 </style>
 <br>
 <body>
-  <div class="gallery">
-    <img src="data:image/png;base64,{{ graphic }}" alt="Pay per Date">
-    <img src="data:image/png;base64,{{ graphicG }}" alt="Pay per Vehicle">
+  {% comment %} <div class="gallery"> {% endcomment %}
+    {% comment %} <img src="data:image/png;base64,{{ graphic }}" alt="Pay per Date">
+    <img src="data:image/png;base64,{{ graphicG }}" alt="Pay per Vehicle"> {% endcomment %}
     <!-- Add more images here -->
-  </div>
+    <iframe title="InformeUpark" width="1424" height="804" 
+      src="https://app.powerbi.com/view?r=eyJrIjoiZWMyNjVjZWEtYzdlOS00ZDI3LWE3N2UtNjAzMjJkNDA4ODc5IiwidCI6Ijk5ZjdiNTVlLTljYmUtNDY3Yi04MTQzLTkxOTc4MjkxOGFmYiIsImMiOjR9" 
+      frameborder="0" allowFullScreen="true">
+    </iframe>
+  {% comment %} </div> {% endcomment %}
   <br>
     <a href="/reportPay">Export Pays to Excel</a>
 </body>

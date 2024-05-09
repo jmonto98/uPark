@@ -31,7 +31,7 @@ import pandas as pd
 
 
 def masive(request):
-    mensaje = masivePays()
+    mensaje = masivePays(3000)
     return render (request, 'errors.html',{"error": mensaje})
 
 def flatFile(request):

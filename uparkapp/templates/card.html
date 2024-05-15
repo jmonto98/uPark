@@ -2,48 +2,6 @@
 
 <body>
   <div class="container">
-    {% comment %}
-    <form action="/addCard/" method="POST">
-      <h2>Create Card</h2>
-      <div class="container-fluid">
-        {% csrf_token %}
-        <label class="form-label">Id Person</label>
-        <input
-          type="text"
-          class="form-control"
-          id="idPerson_id"
-          name="idPerson_id"
-          required
-        />
-        <label class="form-label">Balance</label>
-        <input
-          type="text"
-          class="form-control"
-          id="balance"
-          name="balance"
-          class="form-control"
-          placeholder="Balance"
-          required
-        />
-        <label class="form-label">Status</label>
-        <select
-          class="form-select"
-          aria-label="personType"
-          id="status"
-          name="status"
-          required
-        >
-          <option selected>Select Type</option>
-          <option value="A">Active</option>
-          <option value="I">Inactive</option>
-        </select>
-        <br />
-        <button type="submit" class="btn btn-sm btn-success btn-block">
-          Save
-        </button>
-      </div>
-    </form>
-    {% endcomment %}
     <!--LIST-->
     <div class="container mt-4">
       <table class="table table-bordered table-query table-striped">

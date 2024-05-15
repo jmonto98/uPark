@@ -56,7 +56,8 @@ def prueba(request):
     return render (request, 'prueba.html')
 
 def adminuser(request):
-    return render (request, 'adminuser.html')
+    personList = Person.objects.all()
+    return render (request, 'adminuser.html', {"Persons": personList})
 
 def card(request):
     cardList= Card.objects.filter(status = 'A').order_by("idCard") 
@@ -174,107 +175,6 @@ def welcome (request):
         return render(request, "errors.html",{"error": "Usuario o contraseña inválida"})
 
 
-
-def statistics_view(request): 
-    matplotlib.use('Agg') 
-    # Obtener todas los pagos 
-    all_pays = Pay.objects.all() 
-    
-    # Crear un diccionario para almacenar la cantidad de pagos 
-    pay_counts_by_date = {} 
-    pay_counts_by_vehicle = {} 
-    
-    # Filtrar los pagos por fecha y contar la cantidad de pagos por fecha 
-    for pay in all_pays:
-
-        date = pay.date
-        date = date.strftime("%d/%m/%Y")
-        if date in pay_counts_by_date: 
-            pay_counts_by_date[date] += 1 
-        else: 
-            pay_counts_by_date[date] = 1  
-
-        #Captura datos por Vehiculo
-        vehicle = pay.idVehicle
-
-        if vehicle.type in pay_counts_by_vehicle: 
-            pay_counts_by_vehicle[vehicle.type] += 1 
-        else: 
-            pay_counts_by_vehicle[vehicle.type] = 1    
-        
-    # Ancho de las barras 
-    bar_width = 0.5 
-    # Posiciones de las barras 
-    bar_positions = range(len(pay_counts_by_date)) 
-    
-    # Crear la gráfica de barras 
-    #plt.bar(bar_positions, pay_counts_by_date.values(), width=bar_width, align='center', color ='green') 
-    plt.subplots()
-    plt.plot( pay_counts_by_date.values())
-    # Personalizar la gráfica 
-    plt.title('Pay per Date') 
-    plt.xlabel('Date') 
-    plt.ylabel('Number of pay') 
-    plt.xticks(bar_positions, sorted(pay_counts_by_date.keys()), rotation=90) 
-
-    for i, label in enumerate(pay_counts_by_date.values()):
-        plt.annotate(label, (i, label))
-    
-    # Ajustar el espaciado entre las barras 
-    plt.subplots_adjust(bottom=0.3) 
-    
-    # Guardar la gráfica en un objeto BytesIO
-    buffer = io.BytesIO() 
-    plt.savefig(buffer, format='png') 
-    buffer.seek(0) 
-    plt.close() 
-    
-    # Convertir la gráfica a base64 
-    image_png = buffer.getvalue() 
-    buffer.close() 
-    graphic = base64.b64encode(image_png) 
-    graphic = graphic.decode('utf-8') 
-
-    #---Creacion grafica por vehiculo----#
-    # Ordenamos el Diccionario
-    sortedVehicles = {}
-    keys = pay_counts_by_vehicle.keys()
-    keys = sorted(keys)
-    for key in keys:
-        sortedVehicles[key] = pay_counts_by_vehicle[key] 
-    bar_width = 0.5 
-    # Posiciones de las barras 
-    bar_positions = range(len(sortedVehicles)) 
-    # Crear la gráfica de barras 
-    plt.bar(bar_positions, sortedVehicles.values(), width=bar_width, align='center') 
-    
-    # Personalizar la gráfica 
-    plt.title('Pay per Vehicle') 
-    plt.xlabel('Vehicle') 
-    plt.ylabel('Number of pay')
-    plt.xticks(bar_positions, sortedVehicles.keys(), rotation='vertical')
-
-    for i, label in enumerate(sortedVehicles.values()):
-        plt.annotate(label, (i-0.05, (label/2)))
-    
-    # Ajustar el espaciado entre las barras 
-    plt.subplots_adjust(bottom=0.3) 
-    
-    # Guardar la gráfica en un objeto BytesIO
-    buffer = io.BytesIO() 
-    plt.savefig(buffer, format='png') 
-    buffer.seek(0) 
-    plt.close() 
-    
-    # Convertir la gráfica a base64 
-    image_png = buffer.getvalue() 
-    buffer.close() 
-    graphicG = base64.b64encode(image_png) 
-    graphicG = graphicG.decode('utf-8') 
-    
-    # Renderizar la plantilla 
-    # admin.html con la gráfica 
-    return render(request, 'admin.html', {'graphic': graphic,'graphicG': graphicG})
 
 def reportVehicle(request):
     vehicle = Vehicle.objects.all()
@@ -420,3 +320,61 @@ def reportPay(request):
     response['Content-Disposition'] = content
     wb.save(response)
     return (response)
+
+def reportPerson(request):
+    persons = Person.objects.all()   
+    wb = Workbook()
+    ws = wb.active
+    font = Font(b=True, color="00000080")
+    alignment = Alignment(horizontal="center", vertical="center")
+    a1 = ws['A1']
+    a1.font = font 
+    a1.alignment = alignment
+    a1.value  = 'PERSON LIST'
+    #Cabezera de reporte
+    ws.merge_cells('A1:E1')
+    a3 = ws['A3']
+    b3 = ws['B3']
+    c3 = ws['C3']
+    d3 = ws['D3']
+    e3 = ws['E3']
+    f3 = ws['F3']
+    g3 = ws['G3']
+    a3.font = font 
+    a3.alignment = alignment
+    b3.font = font 
+    b3.alignment = alignment
+    c3.font = font 
+    c3.alignment = alignment
+    d3.font = font 
+    d3.alignment = alignment
+    e3.font = font 
+    f3.alignment = alignment
+    f3.font = font 
+    g3.alignment = alignment   
+    g3.font = font 
+    e3.alignment = alignment       
+    a3.value = 'Id Person'
+    b3.value = 'Document ID'
+    c3.value = 'Name'
+    d3.value = 'Phone'
+    e3.value = 'Mail'
+    f3.value = 'Date of Birth'
+    g3.value = 'Person Type'
+    cont = 4
+    for per in persons:
+        ws.cell(row = cont, column =1).value = per.idPerson
+        ws.cell(row = cont, column =2).value = per.documentId
+        ws.cell(row = cont, column =3).value = per.firstName+' '+per.lastName
+        ws.cell(row = cont, column =4).value = per.phone
+        ws.cell(row = cont, column =5).value = per.mail
+        ws.cell(row = cont, column =6).value = per.dateOfBirth
+        ws.cell(row = cont, column =7).value = per.personType
+        cont += 1
+    fileName= "List_Persons_uPark.xlsx"
+
+    response = HttpResponse(content_type = "applications/ms-excel")
+    content = "attachment; filename={0}".format(fileName)
+    response['Content-Disposition'] = content
+    wb.save(response)
+    return (response)     

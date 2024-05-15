@@ -9,8 +9,8 @@
        
           <div class="card " style="width: 100%">
             <div class="card-body">
-              <form action="/addPerson/" method="POST">
-                <h3>Create User</h3>
+              <button id="showFormBtn" class="btn btn-primary">Add User</button>
+              <form id="addPersonForm" action="/addPerson/" method="POST" style="display: none;">
                 <div class="row">
                   <!-- First Column -->
                   <div class="col-md-6">
@@ -55,14 +55,55 @@
                   Save
                 </button>
               </form>
+
+              <div class="container">
+                <div class="container mt-4">
+                  <table class="table table-bordered table-query table-striped">
+                    <thead>
+                      <tr colspan="4">
+                        <h2>List of Persons</h2>
+                      </tr>
+                      <tr>
+                        <th scope="col">Document ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Person Type</th>
+                      </tr>
+                    </thead>
+                    <a href="/reportPerson">Export to Excel</a>
+                    <tbody>
+                      {% for per in Persons %}
+                      <tr>
+                        <td>{{per.documentId}}</td>
+                        <td>{{per.firstName}} {{per.lastName}}</td>
+                        <td>{{per.phone}}</td>
+                        <td>{{per.mail}}</td>
+                        <td>{{per.personType}}</td>
+                       
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+
             </div>
           </div>
-       
+          <script>
+            // Función para mostrar u ocultar el formulario al hacer clic en el botón
+            document.getElementById("showFormBtn").addEventListener("click", function() {
+              var form = document.getElementById("addPersonForm");
+              if (form.style.display === "none") {
+                form.style.display = "block";
+              } else {
+                form.style.display = "none";
+              }
+            });
+          </script>
       </div>
     </div>
   </div>  
-
-
-
+  
 </body>
 {% endblock %}

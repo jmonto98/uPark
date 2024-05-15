@@ -79,7 +79,20 @@
                         <td>{{per.firstName}} {{per.lastName}}</td>
                         <td>{{per.phone}}</td>
                         <td>{{per.mail}}</td>
-                        <td>{{per.personType}}</td>
+                        <td>
+                          {% if per.personType == 'A' %}
+                          Administrator
+                          {% elif per.personType == 'E' %}
+                          Employee
+                          {% elif per.personType == 'S' %}
+                          Student
+                          {% elif per.personType == 'G' %}
+                          Graduate
+                          {% else %}
+                          Visitor
+                          {% endif %}
+
+                        </td>
                        
                       </tr>
                       {% endfor %}

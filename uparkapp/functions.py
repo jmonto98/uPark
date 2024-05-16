@@ -1,6 +1,6 @@
 import qrcode
-import datetime
-#from datetime import datetime
+import datetime as tempo
+from datetime import datetime
 from datetime import timedelta
 import random
 from uPark import settings 
@@ -42,12 +42,12 @@ def decryptPwd(encripted, pwd):
 
 
 def randomDate():
-    start_date = datetime.datetime(2024, 1, 1, 6, 00, 00)
-    end_date   = datetime.datetime(2024, 5, 7, 22, 00, 00)
+    start_date = datetime(2024, 1, 1, 6, 00, 00)
+    end_date   = datetime(2024, 5, 7, 22, 00, 00)
 
     num_days   = (end_date - start_date).days
     rand_days   = random.randint(1, num_days)
-    random_date = start_date + datetime.timedelta(days=rand_days,hours=random.randint(1,24),minutes=random.randint(0,59),seconds=random.randint(0,59))
+    random_date = start_date + tempo.timedelta(days=rand_days,hours=random.randint(1,24),minutes=random.randint(0,59),seconds=random.randint(0,59))
     return(random_date)
 
 
@@ -97,7 +97,11 @@ def paperSaved():
     return(tickets)
 
 def wattsSaved():
-    watts = (600 * 0.8)
+    end_date = datetime.today()
+    start_date = datetime(2024, 1, 1, 6, 00, 00)
+    num_days   = (end_date - start_date).days
+    
+    watts = num_days * (600 * 0.85)
     return(watts)
 
 def paysCon():

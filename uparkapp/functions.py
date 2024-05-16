@@ -98,7 +98,8 @@ def paperSaved():
 
 def wattsSaved():
     end_date = datetime.today()
-    start_date = datetime(2024, 1, 1, 6, 00, 00)
+    st = Pay.objects.earliest('date')
+    start_date = datetime(st.date.year, st.date.month, st.date.day, 00, 00, 00)
     num_days   = (end_date - start_date).days
     
     watts = num_days * (600 * 0.85)

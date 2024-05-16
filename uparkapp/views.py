@@ -49,7 +49,7 @@ def flatFile(request):
     return send_file("./uPark/media/files/flatFile.txt", as_attachment=True)
     #return HttpResponse('<meta http-equiv="refresh" content="0; /admin"/>')
 
-def admini(request):
+def admin(request):
     return render (request, 'admin.html')
 
 def prueba(request):

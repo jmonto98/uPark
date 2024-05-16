@@ -8,7 +8,7 @@ def main(request):
     vehiclelist=Vehicle.objects.all().order_by("idVehicle") 
     pays = paysCon()
     tickets = paperSaved()    
-    return render (request, 'main.html',{"trees":tickets,"watts":2, "pays":pays, "Vehicles":vehiclelist})
+    return render (request, 'main.html',{"trees":tickets,"watts":wattsSaved, "pays":pays, "Vehicles":vehiclelist})
 
 def registration(request):
     return render (request, 'registration.html')

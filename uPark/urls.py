@@ -24,7 +24,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('pays.urls')),
-    #path('addCard/',appViews.addCard),
+    path('admin/',appViews.admin),
     path('addPerson/',appViews.addPerson),
     path('addVehicle/',appViews.addVehicle),
     path('adminuser/', appViews.adminuser),
@@ -42,6 +42,6 @@ urlpatterns = [
     path('reportPay/',appViews.reportPay),
     path('reportPerson/', appViews.reportPerson),
     path('vehicle/', appViews.vehicle, name="vehicle"),
-    path('welcome/',appViews.welcome, name="Welcome"),
+    path('welcome/',appViews.welcome),
     path('masive/',appViews.masive),
 ]

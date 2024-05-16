@@ -89,3 +89,17 @@ def genFlatFile(pays):
 
     file.close()
     return (file)
+
+def paperSaved():
+    pays = paysCon()*0.2
+    tickets = Pay.objects.filter(idPerson_id = 1).count() + pays
+    tickets = round(tickets/8000,2)
+    return(tickets)
+
+def wattsSaved():
+    
+    return()
+
+def paysCon():
+    pays = Pay.objects.count()
+    return(pays)

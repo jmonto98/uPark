@@ -140,7 +140,7 @@ def createCard (idPerson, balance):
 
 def editCard (request, idCard):
     card = Card.objects.get(idCard=idCard)
-    return render (request, "editCard.html",{"card" : card})
+    return render (request, "editcard.html",{"card" : card})
 
 def editarCard (request):
     balance = request.POST ['balance']

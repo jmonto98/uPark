@@ -81,7 +81,7 @@ def errors(request):
 
 def addVehicle (request):
     type = request.POST ['type']
-    rate = request.POST ['rate']    
+    rate = request.POST ['rate'] 
     vehicle = Vehicle.objects.create(type=type, rate=rate)
     vehicle.save()
     return redirect ('/vehicle')
